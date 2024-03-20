@@ -52,6 +52,9 @@
             font-size: 1.5rem;
         }
     </style>
+    <!-- broccoli style -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/broccoli-color.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/artical.css') }}">
 
 </head>
 

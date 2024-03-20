@@ -56,7 +56,7 @@
         <section class="bg-light py-5 border-bottom" id="features">
             <div class="studentSection">
                 <div class="row gx-5">
-                    <div style="text-align:center; margin-bottom:100px">
+                    <div style="text-align:center; margin-bottom:100px;">
                         <a style="background:#45ecd9; border: none" class="btn btn-primary btn-lg px-5" href="#features">關注
                             | 學長姐</a>
                     </div>
@@ -98,9 +98,13 @@
                                         <div class="postTags">
                                             <?php
                                             $PostCategory = $Data['PostCategory']->all();
+                                            $count = 0;
                                             ?>
                                             @foreach ($PostCategory as $cate)
-                                                <span href="#">#{{ $cate->name }}</span>
+                                                @if ($count < 3)
+                                                    <span href="#">#{{ $cate->name }}</span>
+                                                @endif
+                                                <?php $count++; ?>
                                             @endforeach
                                         </div>
                                         <?php
@@ -130,7 +134,7 @@
 
         <!-- QA section -->
         <section class="py-5" id="Qa">
-            <div class="row p-5">
+            <div class="row">
                 <!-- @if(!is_null($Data['Qas']))
                     @foreach($Data['Qas'] as $qa)
                         <div class="col-3 text-center">
@@ -253,5 +257,14 @@
             </div>
         </section>
 
+        <section class="localOlder">
+        <h6>地區找學長姐</h6>
+        <div>
+            <p>美國｜加拿⼤｜英國｜澳洲｜紐⻄蘭｜其他英語系國家</p>
+            <p>法國｜德國｜義⼤利｜其他歐語系國家</p>
+            <p>台灣｜⽇本｜韓國｜其他亞洲</p>
+            <p>中國｜香港｜澳⾨</p>
+        </div>
+        </section>
 
 @endsection
