@@ -17,7 +17,9 @@
                         <rect x="45.3" y="183.6" transform="matrix(0.7071 0.7071 -0.7071 0.7071 206.129 22.7085)" fill="#FFFFFF" width="60.7" height="153.2"/>
                     </g>
                 </svg>
-                <input type="search">
+                <div class="inputDiv">
+                    <input type="search">
+                </div>
             </form>
         </div>
         <!-- title -->
@@ -54,9 +56,9 @@
                 <!-- call to action -->
                 
                     <div class="py-4 callToAction">
-                        <div class="card-body text-white py-2 part1" style="background-color: #4C2A70;">
+                        <h5 class="card-body text-white py-2 part1" style="background-color: #4C2A70;">
                             讓專業持續變現
-                        </div>
+                        </h5>
                         <div class="card-body part2">
                             <p>
                             我們一起幫助學弟妹

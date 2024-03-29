@@ -135,43 +135,16 @@
         <!-- QA section -->
         <section class="py-5" id="Qa">
             <div class="row">
-                <!-- @if(!is_null($Data['Qas']))
-                    @foreach($Data['Qas'] as $qa)
-                        <div class="col-3 text-center">
-                            <div class="row">
-                                <div class="fa-2x">
-                                    <span class="fa-stack fa-lg">
-                                        <i class="fa fa-lightbulb fa-stack-2x text-left mt-4" style="margin-left: -10px;"></i>
-                                        <i class="fa fa-calendar-alt fa-stack-2x text-right"></i>
-                                    </span>
-                                </div>
-                            </div>
-                            <div class="row">
-
-                                <h3 class="w-75 mt-4 mx-auto text-white" style="background-color: #73E9DD;">
-                                    {{$qa->first()->category->name}}
-                                </h3>
-                                @for($i=0; $i<3; $i++)
-                                    <h5 class="text-center mx-auto" style="color:#B9CBF8;">
-                                        @if(isset($qa[$i]))
-                                            {{$qa[$i]->qa->title}}
-                                        @endif
-                                    </h5>
-                                @endfor
-                            </div>
-                        </div>
-                    @endforeach
-
-                @endif -->
-
                 <!-- QA section 1 -->
                 <div class="qaSection">
                     <div class="card">
                         <svg width="70" height="70">
                         <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>
@@ -179,17 +152,21 @@
                         <svg width="70" height="70">
                         <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>
                     <div class="card">
-                        <svg width="80" height="80">
-                        <rect width="80" height="80" x="0" y="0" fill="gray"/>
+                        <svg width="70" height="70">
+                        <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>
@@ -197,29 +174,35 @@
                 <!-- QA section 2 -->
                 <div class="qaSection">
                     <div class="card">
-                        <svg width="80" height="80">
-                        <rect width="80" height="80" x="0" y="0" fill="gray"/>
+                        <svg width="70" height="70">
+                        <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>
                     <div class="card">
-                        <svg width="80" height="80">
-                        <rect width="80" height="80" x="0" y="0" fill="gray"/>
+                        <svg width="70" height="70">
+                        <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>
                     <div class="card">
-                        <svg width="80" height="80">
-                        <rect width="80" height="80" x="0" y="0" fill="gray"/>
+                        <svg width="70" height="70">
+                        <rect width="70" height="70" x="0" y="0" fill="gray"/>
                         </svg>
-                        <h5>海外留學</h5>
-                        <p>到美國念高中是不是比較容易申請</p>
+                        <div>
+                            <h5>海外留學</h5>
+                        </div>
+                        <p>到美國念高中是不是</p>
                         <p>歐洲留學是不是比較便宜</p>
                         <p>30歲才準備出國來得及嗎</p>
                     </div>

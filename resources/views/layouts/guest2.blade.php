@@ -96,12 +96,11 @@
 <div class="container-fluid px-5 mt-3">
     <footer class="py-5 bg-dark footer">
         <div class="row text-center text-white">
-            <div class="col-md-4">
-                <p style="font-size: 3.5rem;">行 家 在 線</p>
-                <p class="text-uppercase"><span style="font-size: 1.5rem;">H</span>ANG <span style="font-size:1.5rem;">J</span>IA</p>
-                <p>@2022行家在線有限公司. All Right Reservec. | Powered by Match 19</p>
-                <p>統一編號：83453577</p>
-            </div>
+        <div class="col-md-4">
+            <img src="{{asset('uploads/images/yzl-footer-logo.png')}}" alt="footer logo">
+            <p class="copyright">@2022行家在線有限公司. All Right Reservec. | Powered by Match 19</p>
+            <p>統一編號：83453577</p>
+        </div>
             <div class="col-md-8">
                 <div class="row">
                     <div class="col-md-3">

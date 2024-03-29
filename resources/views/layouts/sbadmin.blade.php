@@ -19,6 +19,9 @@
 
     <!-- Custom styles for this template-->
     <link href="{{ asset('sb-admin/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <!-- broccoli style -->
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/broccoli-color.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/artical.css') }}">
 
 </head>
 <style>

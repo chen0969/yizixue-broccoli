@@ -65,21 +65,20 @@
 <footer class="py-5 bg-dark footer">
     <div class="row text-center text-white">
         <div class="col-md-4">
-            <p style="font-size: 3.5rem;">行 家 在 線</p>
-            <p class="text-uppercase"><span style="font-size: 1.5rem;">H</span>ANG <span style="font-size:1.5rem;">J</span>IA</p>
-            <p>@2022行家在線有限公司. All Right Reservec. | Powered by Match 19</p>
+            <img src="{{asset('uploads/images/yzl-footer-logo.png')}}" alt="footer logo">
+            <p class="copyright">@2022行家在線有限公司. All Right Reservec. | Powered by Match 19</p>
             <p>統一編號：83453577</p>
         </div>
         <div class="col-md-8">
             <div class="row">
                 <div class="col-md-3">
-                    <p style="font-size: 1.5rem;">加入 | 易子學</p>
-                    <a href="{{route('login')}}" style="text-decoration: none; color:white; pb-5">登入/註冊</a>
+                    <h6>加入 | 易子學</h6>
+                    <a href="{{route('login')}}">登入/註冊</a>
                     <br>
                     <a href="">聯絡我們</a>
                 </div>
                 <div class="col-md-3">
-                    <p>關於 | 會員</p>
+                    <h6>關於 | 會員</h6>
                     <a href="{{route('senior')}}">找學長姐</a>
                     <br>
                     <a href="">找學校</a>
@@ -87,13 +86,13 @@
                     <a href="">問與答</a>
                 </div>
                 <div class="col-md-3">
-                    <p>關於 | 學長姐</p>
+                    <h6>關於 | 學長姐</h6>
                     <a href="">成為學長姐</a>
                     <br>
                     <a href="">教戰手則</a>
                 </div>
                 <div class="col-md-3">
-                    <p>關於 | 易子學</p>
+                    <h6>關於 | 易子學</h6>
                     <a href="">關於我們</a>
                     <br>
                     <a href="">前輩網</a>
