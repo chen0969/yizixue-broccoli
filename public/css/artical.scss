@@ -984,8 +984,83 @@
     }
 }
 
-// footer
+// single Article
+.singleArticle{
+    h2{
+        font-size: 5rem;
+    }
+    .postCategory{
+        span{
+            border: none;
+        }
+    }
+    .socialIcons{
+        svg {
+            width: 2.2rem;
+    
+            path {
+                fill: black;
+            }
+    
+            circle {
+                fill: none;
+                stroke: #000000;
+                stroke-width: 9;
+                stroke-miterlimit: 10;
+            }
+    
+        }
+    } 
+    .authorDetail{
+        background-color: $primeGray;
+        border: #000000 1rem solid;
+        border-radius: 50px;
+        .authorCard{
+            border-radius: 30px;
+            width:20rem;
+            background-color: white;
+            height: fit-content;
+            padding: 1rem;
+            box-shadow: 10px 10px 10px $darkGray;
+            .avatar{
+                width: 100%;
+                display: grid;
+                grid-template-columns: 10% 90%;
+                grid-template-rows: 80% 20%;
+                img{
+                    width: 100%;
+                    grid-column: 1/3;
+                    grid-row: 1/3;
+                    border-radius: 30px;
+                }
+                div{
+                    grid-column: 2/3;
+                    grid-row: 2/3;
+                    h2{font-size: 2rem;}
+                }
+                .tags{
+                    justify-content: center !important;
+                }
+            }
+        }
+    .moreArticles{
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 30px;
+        box-shadow: 10px 10px 10px $darkGray;
+        img{border-radius: 30px;}
+    }
+    }
+    .moreArticles{
+        background-color: white;
+        border: 2px solid black;
+        border-radius: 30px;
+        box-shadow: 10px 10px 10px $primeGray;
+        img{border-radius: 30px;}
+    }
+}
 
+// footer
 footer{
     .col-md-4{
         img{
