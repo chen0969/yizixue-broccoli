@@ -3,7 +3,11 @@
 @section('content')
 <div class="container-fluid py-5 singleArticle">
     <div class="row">
-        <h4 class="mt-3">首頁 > {{$Data['article']->category->first()->postCategory->name}} > {{$Data['article']->title}}</h4>
+        <h4 class="mt-3">
+            <a class="text-decoration-none text-black" href="{{url('/')}}">首頁</a> >
+            <a class="text-decoration-none text-black" href="{{route('study-abroad', ['category_id' => $Data['article']->category->first()->postCategory->id])}}">{{$Data['article']->category->first()->postCategory->name}}</a> >
+            {{$Data['article']->title}}
+        </h4>
     </div>
     <!-- search bar -->
     <div class="searchBar">
@@ -48,12 +52,27 @@
         <!-- social icons -->
         <div class="col socialIcons">
             <div style="text-align: right";>
-                <i class="fa fa-heart" style="font-size:20px; color:red; margin:5px">
-                    <span style="color:black">{{$Data['article']->likePost->count()}}</span>
-                </i>
-                <i class="fa fa-bookmark" style="font-size:20px; margin:5px">
-                    <span style="color:black">{{$Data['article']->collectPost->count()}}</span>
-                </i>
+                @if(auth()->check())
+                    <i class="fa fa-heart" style="font-size:20px;
+                    color:@if(auth()->user()->likePost->where('post_id', $Data['article']->id)->count() == 1) red @else black @endif ;
+                    margin:5px"
+                       data-id="{{$Data['article']->id}}"
+                    >
+                        <span style="color:black">{{$Data['article']->likePost->count()}}</span>
+                    </i>
+                    <i class="fa fa-bookmark" style="font-size:20px;
+                     color: @if(auth()->user()->collectPost->where('post_id', $Data['article']->id)->count() == 1) red @else black @endif ;
+                     margin:5px" data-id="{{$Data['article']->id}}">
+                        <span style="color:black">{{$Data['article']->collectPost->count()}}</span>
+                    </i>
+                @else
+                    <i class="fa fa-heart" style="font-size:20px; color:black; margin:5px" data-id="{{$Data['article']->id}}">
+                        <span style="color:black">{{$Data['article']->likePost->count()}}</span>
+                    </i>
+                    <i class="fa fa-bookmark" style="font-size:20px; color:black; margin:5px" data-id="{{$Data['article']->id}}">
+                        <span style="color:black">{{$Data['article']->collectPost->count()}}</span>
+                    </i>
+                @endif
                 <i>
                     <svg viewBox="0 0 512 512" >
                         <path d="M295.4,235.2c32.9,0,59.5-26.7,59.5-59.5s-26.7-59.5-59.5-59.5s-59.5,26.7-59.5,59.5c0,2.5,0.1,5,0.4,7.4l-58.4,29.1
@@ -80,7 +99,9 @@
                             <img src="{{asset('uploads/'.$Data['article']->author->avatar)}}" alt="...">
                             <div style="background-color: #BD9EBE" class="text-white" >
                                 <h2 class="card-title text-center " >{{ $Data['article']->author->name }}</h2>
-                                <h6 class="card-title text-center " style="background-color: #BD9EBE" >{{ $Data['article']->author->university }}</h6>
+                                <h6 class="card-title text-center " style="background-color: #BD9EBE" >
+                                    {{ !is_null($Data['article']->universityItem) ? $Data['article']->author->universityItem->name: '' }}
+                                </h6>
                             </div>
                         </div>
                         @if(!is_null($Data['article']->author->postCategory))
@@ -98,7 +119,7 @@
                             </div>
                         @endif
 
-                        <a href="#" class="btn btn-outline text-center w-100">查看更多</a>
+                            <a href="{{route('article-list', $Data['article']->author->id)}}" class="btn btn-outline text-center w-100">查看更多</a>
                     </div>
                 </div>
                 <!-- more posts of the author -->
@@ -140,7 +161,7 @@
     <div class="row" style="border: 2px solid black; height: 2px;"></div>
 
     <div class="mt-5">
-        <h2>你可能感興趣的文章</h2>
+        <h2>您可能感興趣的文章</h2>
 
         <div class="row row-cols-2">
             @if(!is_null($Data['interested']))
@@ -172,6 +193,50 @@
             @endif
         </div>
     </div>
-
 </div>
+
+<script>
+    $('.fa-heart').click(function(){
+        let that = $(this);
+        $.ajax({
+            url: "{{url('like-post/')}}" +"/"+ $(this).data('id'),
+            method: 'GET',
+            success: function (res) {
+                if(res.operator === 'no') {
+                    alert(res.message);
+                } else if(res.operator === 'add') {
+                    that.css('color', 'red');
+                    that.children('span').text(res.total);
+                } else if(res.operator === 'reduce') {
+                    that.css('color', 'black');
+                    that.children('span').text(res.total);
+                }
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+    })
+
+    $('.fa-bookmark').click(function(){
+        let that = $(this);
+        $.ajax({
+            url: "{{url('collect-post/')}}" + "/" + $(this).data('id'),
+            method: 'GET',
+            success: function (res) {
+                if(res.operator === 'no') {
+                    alert(res.message);
+                } else if(res.operator === 'add') {
+                    that.removeClass('text-gray').addClass('text-danger');
+                } else if(res.operator === 'reduce') {
+                    that.removeClass('text-danger').addClass('text-black');
+                }
+            },
+            error: function(error) {
+                console.log(error)
+            }
+        });
+
+    })
+</script>
 @endsection

@@ -7,12 +7,12 @@
 
     <div class="row">
         @if(!is_null($qas))
-            @foreach($qas as $num => $qa)
+            @forelse($qas as $num => $qa)
               <div class="row m-4">
                   <div class="col-11 text-lg p-3" style="border-left-style: solid; border-top-style: solid; border-bottom-style: solid; border-color: #6D757D;">
                       <h2 class="d-flex">
                           <i class="fa fa-circle px-3" style="color:gray"></i>
-                          <a href="{{route('qna.show', $qa->id)}}" class="text-decoration-none"></a>{{$qa->title}}
+                          <a href="{{route('qna.show', $qa->id)}}" class="text-decoration-none text-gray-600">{{$qa->title}}</a>
                           <span class="w-100 text-right">
                               @if($qa->categoryRelation)
                                   @foreach($qa->categoryRelation as $relation)
@@ -39,7 +39,7 @@
                         @foreach($posts as $post)
                             <div class="col-5 mx-2 row mx-auto" style="border: 2px solid black; border-radius: 10px;">
                                 <div class="col-6">
-                                    <img src="{{asset('uploads/'.$post->author->avatar)}}" alt="">
+                                    <img src="{{asset('uploads/'.$post->author->avatar)}}" alt="" width="300" height="300">
                                 </div>
                                 <div class="col-6 text-break">
                                     <h2 class="w-100">{{$post->title}} </h2>
@@ -48,10 +48,20 @@
                                 </div>
                             </div>
                         @endforeach
+                    @else
+                        <p class="vh-100">
+                            目前尚無文章
+                        </p>
                     @endif
                 </div>
               @endif
-            @endforeach
+            @empty
+                <div class="row text-center">
+                    <p class="vh-100">
+                        目前尚無資料
+                    </p>
+                </div>
+            @endforelse
             <div class="row">
                 <nav>
                     {{$qas->links('vendor.pagination.bootstrap-4')}}

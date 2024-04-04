@@ -124,14 +124,14 @@
                         <option value="approve" {{ $Data['qa']->state == 'approve' ? 'selected' : '' }}>已審核</option>
                     </select>
                 </div>
-                <div class="mb-3">
-                    <label for="contact_time" class="form-label">聯絡時間</label>
-                    <select class="form-control" name="contact_time" aria-label="Default select example">
-                        <option value="morning">上午</option>
-                        <option value="afternoon">下午</option>
-                        <option value="night">晚上</option>
-                    </select>
-                </div>
+{{--                <div class="mb-3">--}}
+{{--                    <label for="contact_time" class="form-label">聯絡時間</label>--}}
+{{--                    <select class="form-control" name="contact_time" aria-label="Default select example">--}}
+{{--                        <option value="morning">上午</option>--}}
+{{--                        <option value="afternoon">下午</option>--}}
+{{--                        <option value="night">晚上</option>--}}
+{{--                    </select>--}}
+{{--                </div>--}}
                 <button type="submit" class="btn btn-primary">更新</button>
             </form>
 

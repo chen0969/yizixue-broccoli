@@ -63,17 +63,31 @@
                                 </div>
                             </div>
                             <div class="card-body text-center">
-                                <a href="#" data-toggle="modal" data-target="#edit-avatar"><img
+                                <a href="#" data-toggle="modal" data-target="#edit-avatar">
+                                    @if(!is_null(Auth::user()->avatar))
+                                    <img
                                         src="{{ url('/') . '/uploads/' . Auth::user()->avatar }}" alt="avatar"
-                                        style="width: 150px;"></a>
+                                        style="width: 150px;">
+                                    @else
+                                    <img
+                                            src="{{ url('/') . '/uploads/images/default_avatar.png'}}" alt="avatar"
+                                            style="width: 150px;">
+                                    @endif
+                                </a>
                                 <h5 class="my-3">{{ Auth::user()->name }}</h5>
                                 <p class="text-muted mb-1">{{ Auth::user()->role == 'normal' ? '一般用戶' : 'VIP用戶' }}</p>
                             </div>
                         </div>
-                        <div class="card mb-4 mb-lg-0">
+                        <div class="card mb-4">
                             <div class="card-body p-0">
                                 <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-primary">您的專長</h6>
+                                    @if($errors->has('skills'))
+                                        <div class="alert alert-danger alert-dismissible text-center">
+                                            <button class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                            {{$errors->first('skills')}}
+                                        </div>
+                                    @endif
                                     <div class="dropdown no-arrow">
                                         <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,6 +108,96 @@
                                                     class="round button">{{ $Data['skills']->where('id', $value)->first()->name }}</span>
                                             </label>
                                         @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4">
+                            <div class="card-body p-0">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">您的主題</h6>
+                                    @if($errors->has('post_categories'))
+                                        <div class="alert alert-danger alert-dismissible text-center">
+                                            <button class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                            {{$errors->first('post_categories')}}
+                                        </div>
+                                    @endif
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#edit-post-category"
+                                               href="#">編輯</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+{{--                                    @if($errors->any())--}}
+{{--                                        <div class="alert alert-danger alert-dismissible text-center">--}}
+{{--                                            <button class="close" data-dismiss="alert" aria-hidden="true">x</button>--}}
+{{--                                            {{$errors->first('message')}}--}}
+{{--                                        </div>--}}
+{{--                                    @endif--}}
+{{--                                    {{$errors->first('message')}}--}}
+                                    <div id="checkbox">
+                                        @foreach ($Data['user_categories'] as $key => $value)
+                                            <label>
+                                                <input type="checkbox" value="{{ $value }}" checked="checked" /><span
+                                                        class="round button" style="background-color: #4C2A70;">{{ $Data['categories']->where('id', $value)->first()->name }}</span>
+                                            </label>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card mb-4 mb-lg-0">
+                            <div class="card-body p-0">
+                                <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-primary">參考文件</h6>
+                                    @if($errors->has('references'))
+                                        <div class="alert alert-danger alert-dismissible text-center">
+                                            <button class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                            {{$errors->first('references')}}
+                                        </div>
+                                    @endif
+                                    <div class="dropdown no-arrow">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+                                           data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
+                                             aria-labelledby="dropdownMenuLink" style="">
+                                            <a class="dropdown-item" data-toggle="modal" data-target="#edit-references"
+                                               href="#">編輯</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="card-body">
+                                    <div>
+                                        <table class=" table">
+                                            <tr>
+                                                <th>檔案</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        @forelse ($Data['user']->references as $key => $value)
+                                            <tr>
+                                                <td>
+                                                    <a href="{{route('reference-download', $value->id)}}">{{$value->file_name}}</a>
+                                                </td>
+                                                <td>
+                                                    <form action="{{route('reference-delete', $value->id)}}" method="post">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" class="btn btn-danger">刪除</button>
+                                                    </form>
+                                                </td>
+                                            </tr>
+                                        @empty
+                                        @endforelse
+                                        </table>
                                     </div>
                                 </div>
                             </div>
@@ -140,7 +244,7 @@
                                         <p class="mb-0">大學</p>
                                     </div>
                                     <div class="col-sm-9">
-                                        <p class="text-muted mb-0">{{ Auth::user()->university }}</p>
+                                        <p class="text-muted mb-0">{{ is_null(Auth::user()->universityItem)? '' : Auth::user()->universityItem->name }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -173,6 +277,24 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
+                                        <p class="mb-0">Facebook</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ Auth::user()->fb }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">Instagram</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ Auth::user()->ig }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
                                         <p class="mb-0">地址</p>
                                     </div>
                                     <div class="col-sm-9">
@@ -198,6 +320,12 @@
                                     <div
                                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <h6 class="m-0 font-weight-bold text-primary">簡介</h6>
+                                        @if($errors->has('description'))
+                                            <div class="alert alert-danger alert-dismissible text-center">
+                                                <button class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                                {{$errors->first('description')}}
+                                            </div>
+                                        @endif
                                         <div class="dropdown no-arrow">
                                             <a class="dropdown-toggle" href="#" role="button"
                                                 id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true"
@@ -322,8 +450,15 @@
                             </div>
                             <div class="mb-3">
                                 <label for="university" class="form-label">大學</label>
-                                <input type="text" value="{{ Auth::user()->university }}" name="university"
-                                    class="form-control">
+                                <select name="university" id="university" class="form-control">
+                                    @if(!is_null($Data['universities']))
+                                        @foreach($Data['universities'] as $university)
+                                            <option class="form-control" value="{{$university->id}}" @if(Auth::user()->university == $university->id) selected @endif>{{$university->name}}</option>
+                                        @endforeach
+                                    @endif
+                                </select>
+{{--                                <input type="text" value="{{ Auth::user()->university }}" name="university"--}}
+{{--                                    class="form-control">--}}
                             </div>
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
@@ -339,6 +474,16 @@
                                 <label for="line" class="form-label">Line Id</label>
                                 <input type="text" value="{{ Auth::user()->line }}" name="line"
                                     class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="line" class="form-label">Facebook</label>
+                                <input type="text" value="{{ Auth::user()->fb }}" name="fb"
+                                       class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="line" class="form-label">Instagram</label>
+                                <input type="text" value="{{ Auth::user()->ig }}" name="ig"
+                                       class="form-control">
                             </div>
                             <div class="mb-3">
                                 <label for="address" class="form-label">地址</label>
@@ -448,6 +593,49 @@
         </div>
         <!-- Modal 用戶Tags-->
 
+        <!-- Modal 用戶主題-->
+        <div class="modal fade" id="edit-post-category" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+             aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('update-profile') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="modal-header">
+                            <h5 class="modal-title">編輯您的主題</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3" style="display:none">
+                                <input type="text" value={{ Auth::user()->id }} name="uid" class="form-control"
+                                       readonly>
+                            </div>
+                            <div id="checkbox">
+                                @foreach ($Data['categories'] as $key => $value)
+                                    <label>
+                                        @if (in_array($value->id, $Data['user_categories']))
+                                            <input type="checkbox" name="post_categories[]" value="{{ $value->id }}"
+                                                   checked="checked" />
+                                            <span class="round button">{{ $value->name }}</span>
+                                        @else
+                                            <input type="checkbox" name="post_categories[]" value="{{ $value->id }}" />
+                                            <span class="round button">{{ $value->name }}</span>
+                                        @endif
+                                    </label>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                            <button type="submit" class="btn btn-primary">更新</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 用戶主題-->
+
         <!-- Modal 用戶頭像-->
         <div class="modal fade" id="edit-avatar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
             aria-hidden="true">
@@ -484,6 +672,41 @@
             </div>
         </div>
         <!-- Modal 用戶頭像-->
+
+        <!-- Modal 參考文件-->
+        <div class="modal fade" id="edit-references" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-xl" role="document">
+                <div class="modal-content">
+                    <form method="POST" action="{{ route('update-profile') }}" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                        <div class="modal-header">
+                            <h5 class="modal-title">編輯您的參考文件</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3" style="display:none">
+                                <input type="text" value={{ Auth::user()->id }} name="uid" class="form-control"
+                                       readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label for="uname" class="form-label">參考文件</label>
+                                <input type="file" name="references"
+                                       class="form-control">
+                            </div>
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">關閉</button>
+                            <button type="submit" class="btn btn-primary">更新</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Modal 參考文件-->
 
     </div>
     <!-- /.container-fluid -->

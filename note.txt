@@ -291,11 +291,11 @@
             @foreach($users as $user)
                 <div class="col" style="border: 2px solid black; border-radius: 20px;">
                     <div class="row">
-                        
+
                         <div class="col-6">
-                            
+
                             <img src="{{asset('uploads/'.$user->avatar)}}" alt="user avatar" class="w-100">
-                            
+
                             <div class="row text-center text-white" style="background-color: #BD9EBE;">
                                 <h3>{{$user->name}}</h3>
                                 <h6>{{$user->university}}</h6>
@@ -303,7 +303,7 @@
                         </div>
                         <div class="col-6 text-center">
                             <div class="mt-5">
-                                
+
                                 <img class="w-25" src="https://cdn.pixabay.com/photo/2016/02/01/12/33/play-1173551_640.png" alt="Card image cap">
                             </div>
                         </div>

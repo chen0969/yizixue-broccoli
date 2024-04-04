@@ -21,8 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css/broccoli-color.css') }}">
     <link rel="stylesheet" href="{{ asset('css/welcomeP.css')}}">
     <!-- End of Broccoli code -->
-
-    <!-- owl js -->
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css" />
     <link rel="stylesheet"
@@ -48,12 +46,30 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('senior')}}">學長姐|快找</a></li>
                 <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('study-abroad')}}">留學誌|推薦</a></li>
-                <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('login')}}">註冊  |登入</a></li>
-                <li class="nav-item">
-                    <svg height="80" width="80" xmlns="http://www.w3.org/2000/svg">
-                    <circle r="30" cx="40" cy="40" fill="#C1C1C1" />
-                    </svg>
-                </li>
+                @if(auth()->check())
+                    <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('home')}}">易子學系統</a></li>
+                    <li class="nav-item">
+                        <svg height="80" width="80" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <pattern id="image" patternUnits="userSpaceOnUse" height="80" width="80">
+                                    @if(!is_null(auth()->user()->avatar))
+                                        <image x="0" y="0" xlink:href="{{asset('uploads/'.auth()->user()->avatar)}}" width="80" height="80"></image>
+                                    @else
+                                        <image x="0" y="0" xlink:href="{{asset('uploads/images/default_avatar.png')}}" width="80" height="80"></image>
+                                    @endif
+                                </pattern>
+                            </defs>
+                            <circle cx="40" cy="40" r="30" fill="url(#image)"/>
+                        </svg>
+                    </li>
+                @else
+                    <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('login')}}">註冊  |登入</a></li>
+                    <li class="nav-item">
+                        <svg height="80" width="80" xmlns="http://www.w3.org/2000/svg">
+                            <circle r="30" cx="40" cy="40" fill="#C1C1C1" />
+                        </svg>
+                    </li>
+                @endif
             </ul>
         </div>
     </div>
@@ -83,13 +99,13 @@
                     <h6>關於 | 會員</h6>
                     <a href="{{route('senior')}}">找學長姐</a>
                     <br>
-                    <a href="">找學校</a>
+                    <a href="{{route('university-list')}}">找學校</a>
                     <br>
-                    <a href="">問與答</a>
+                    <a href="{{route('qna')}}">問與答</a>
                 </div>
                 <div class="col-md-3">
                     <h6>關於 | 學長姐</h6>
-                    <a href="">成為學長姐</a>
+                    <a href="{{route('pay-product-list')}}">成為學長姐</a>
                     <br>
                     <a href="">教戰手則</a>
                 </div>
@@ -108,20 +124,20 @@
 <script>
     $(".owl-carousel").owlCarousel({
         loop: true, // 循環播放
-        margin: 50, // 外距 10px
+        margin: 10, // 外距 10px
         nav: true, // 顯示點點
         responsive: {
             0: {
-                items: 1 // 螢幕大小為 0~600 顯示 1 個項目
+                items: 4 // 螢幕大小為 0~600 顯示 1 個項目
             },
             600: {
-                items: 3 // 螢幕大小為 600~1000 顯示 3 個項目
+                items: 4 // 螢幕大小為 600~1000 顯示 3 個項目
             },
             800: {
                 items: 5 // 螢幕大小為 1000 以上 顯示 5 個項目
             },
             1500: {
-                items: 6 // 螢幕大小為 1000 以上 顯示 5 個項目
+                items: 5 // 螢幕大小為 1000 以上 顯示 5 個項目
             }
         }
     });

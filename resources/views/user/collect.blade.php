@@ -5,7 +5,7 @@
         <div id="content" style="margin:15px">
             <div class="card shadow mb-4">
                 <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">Collect List</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">學長姐收藏名單</h6>
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
@@ -26,17 +26,30 @@
                                                     >頭像</th>
                                                 <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
                                                     colspan="1" aria-label="Age: activate to sort column ascending"
+                                                >學校</th>
+                                                <th class="sorting" tabindex="0" aria-controls="dataTable" rowspan="1"
+                                                    colspan="1" aria-label="Age: activate to sort column ascending"
                                                     >動作</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                         @foreach ($Data['Users'] as $key => $user)
                                         <tr>
-                                            <td>{{$user->name}}</td>
-                                            <td>{{$user->avatar}}</td>
-                                            <td>{{$user->university}}</td>
+                                            <td><a href="{{route('get-introduction', $user->id)}}">{{$user->name}}</a></td>
                                             <td>
-                                            <a href="/user/delete-collect/{{$user->id}}" type="button" class="btn btn-primary" data-dismiss="modal">刪除</a>
+                                                @if(is_null($user->avatar))
+                                                    <img src="{{asset('uploads/images/default_avatar.png')}}" alt="" width="200" height="200">
+                                                @else
+                                                    <img src="{{asset('uploads/'.$user->avatar)}}" alt="" width="200" height="200">
+                                                @endif
+                                            </td>
+                                            <td>{{!is_null($user->universityItem) ? $user->universityItem->name : ''}}</td>
+                                            <td>
+                                                <form action="{{route('delete-collect', $user->id)}}" method="post">
+                                                    {{csrf_field()}}
+                                                    {{method_field('DELETE')}}
+                                                    <button type="submit" class="btn btn-primary" data-dismiss="modal">刪除</button>
+                                                </form>
                                             </td>
                                         </tr>
                                         @endforeach

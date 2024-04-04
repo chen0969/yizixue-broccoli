@@ -137,7 +137,18 @@ class QnAController extends Controller
     public function delete($uuid) 
     {
         $QnA = QnA::where('uuid', $uuid)->first();
+        QACategoryRelation::where('qa_id', $QnA->id)->delete();
+        CollectQA::where('qa_id', $QnA->id)->delete();
         $QnA->delete();
+
+        return back();
+    }
+
+    public function delectCollectQa($uuid)
+    {
+
+        $QnA = QnA::where('uuid', $uuid)->first();
+        CollectQA::where('qa_id', $QnA->id)->where('uid', auth()->user()->id)->delete();
 
         return back();
     }
@@ -164,4 +175,32 @@ class QnAController extends Controller
         return view('qa.collect')->with('Data', $Data);
     }
 
+    public function show($slug)
+    {
+        $uid = Auth::user()->id;
+        $QnA = QnA::where('uuid', $slug)->first();
+        $categories = QACategory::all();
+        $qaCategoryRelation = QACategoryRelation::where('qa_id', $QnA->id)->get();
+        $selectCategories = [];
+        foreach($qaCategoryRelation as $ele) {
+            array_push($selectCategories, $ele->category_id);
+        }
+
+        $Data = [
+            'qa' => $QnA,
+            'authId' => Auth()->user()->id,
+            'categories' => $categories,
+            'selectCategories' => $selectCategories
+        ];
+
+        return view('qa.view')->with('Data', $Data);
+    }
+
+    public function showCollectQa($uuid)
+    {
+        $uid = Auth::user()->id;
+        $qna = QnA::where('uuid', $uuid)->first();
+
+        return view('qa.view_collect_qa', compact(['qna']));
+    }
 }

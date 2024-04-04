@@ -101,24 +101,47 @@ let currentNews = 1;
 const totalNews = 3; // 定義總共的圖片數量
 let timeout2; // 定義 timeout2
 
+let posts;
+$.ajax({
+    url: 'api/post-random',
+    method: 'get',
+    success: function(res){
+        posts=res;
+    },
+    error: function(err){
+
+    }
+});
 function newsSlide(){
     // 清除之前的 setTimeout
     clearTimeout(timeout2);
-    
+
     // 切換到下一張圖片
     if (currentNews < totalNews) {
         currentNews++;
     } else {
         currentNews = 1;
     }
-    
-    // 根據 currentPic 切換圖片
-    if (currentNews === 1) {
-        $("#newsTopic").text("留學誌1");
-    } else if (currentNews === 2) {
-        $("#newsTopic").text("留學誌2");
+    if(posts[currentNews-1] !== undefined){
+        // 根據 currentPic 切換標題
+        $("#newsTopic").text(posts[currentNews-1].title);
+        // 根據 currentPic 切換圖片
+        $(".newsCard img").attr("src", "uploads"+posts[currentNews-1].image_path);
+        let tags = '';
+        $.each(posts[currentNews-1].category, function(i, object){
+            tags += '#'+object.post_category.name;
+        });
+
+        $(".newsCard .info .tag").text(tags);
+        $(".newsCard .info .meta").text(posts[currentNews-1].title);
+        $(".newsCard .info .brief").text(encodeHTML(posts[currentNews-1].body));
+        $(".newsCard .info a").attr('href', 'article/'+posts[currentNews-1].id);
     }
-    else if (currentNews === 3) {
-        $("#newsTopic").text("留學誌3");
-    }
+}
+
+function encodeHTML(dirtyString) {
+    var container = document.createElement('div');
+    var text = document.createTextNode(dirtyString);
+    container.appendChild(text);
+    return container.innerHTML; // innerHTML will be a xss safe string
 }

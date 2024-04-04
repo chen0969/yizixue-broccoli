@@ -65,7 +65,12 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+            <li class="nav-item active">
+                <a class="nav-link" href="/">
+                    <i class="fas fa-compass fa-tachometer-alt"></i>
+                    <span>易子學前台</span></a>
+            </li>
+            <hr class="sidebar-divider my-0">
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
                 <a class="nav-link" href="/user/profile">
@@ -88,9 +93,9 @@
                 <div id="post-list" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
                     style="">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/create-post">添加文章</a>
-                        <a class="collapse-item" href="/list-posts">我的文章</a>
-                        <a class="collapse-item" href="/collect-posts">收藏文章</a>
+                        <a class="collapse-item" href="{{route('create-post')}}">添加文章</a>
+                        <a class="collapse-item" href="{{route('list-all-posts')}}">我的文章</a>
+                        <a class="collapse-item" href="{{route('collect-posts')}}">收藏文章</a>
                     </div>
                 </div>
             </li>
@@ -110,12 +115,12 @@
                     </div>
                 </div>
             </li>
-            <hr class="sidebar-divider">
-            <li class="nav-item active">
-                <a class="nav-link" href="#">
-                    <i class="fa fa-envelope" aria-hidden="true"></i>
-                    <span>我的訊息</span></a>
-            </li>
+{{--            <hr class="sidebar-divider">--}}
+{{--            <li class="nav-item active">--}}
+{{--                <a class="nav-link" href="#">--}}
+{{--                    <i class="fa fa-envelope" aria-hidden="true"></i>--}}
+{{--                    <span>我的訊息</span></a>--}}
+{{--            </li>--}}
             <hr class="sidebar-divider">
             <li class="nav-item">
                 <a style="color:white !important" class="nav-link collapsed" href="#" data-toggle="collapse"
@@ -126,20 +131,20 @@
                 <div id="invite-list" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar"
                     style="">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="/user/invite-list">邀請學長姊</a>
+{{--                        <a class="collapse-item" href="/user/invite-list">邀請學長姊</a>--}}
                         <a class="collapse-item" href="/user/collect-user">收藏學長姐</a>
                     </div>
                 </div>
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('pay-product-list') }} ">
                     <i class="fa fa-asterisk" aria-hidden="true"></i>
                     <span>付費加值</span></a>
             </li>
             <hr class="sidebar-divider">
             <li class="nav-item active">
-                <a class="nav-link" href="#">
+                <a class="nav-link" href="{{ route('pay-order-list') }}">
                     <i class="fa fa-asterisk" aria-hidden="true"></i>
                     <span>加值服務紀錄</span></a>
             </li>
@@ -158,21 +163,21 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
-                Interface
-            </div>
+{{--            <div class="sidebar-heading">--}}
+{{--                Interface--}}
+{{--            </div>--}}
 
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
-                    aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>調整</span>
-                </a>
-            </li>
+{{--            <li class="nav-item">--}}
+{{--                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"--}}
+{{--                    aria-expanded="true" aria-controls="collapseTwo">--}}
+{{--                    <i class="fas fa-fw fa-cog"></i>--}}
+{{--                    <span>調整</span>--}}
+{{--                </a>--}}
+{{--            </li>--}}
 
             <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
+{{--            <hr class="sidebar-divider d-none d-md-block">--}}
 
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
@@ -206,8 +211,13 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span
                                     class="mr-2 d-none d-lg-inline text-gray-600 small">{{ Auth::user()->name }}</span>
+                                @if(!is_null(Auth::user()->avatar))
                                 <img class="img-profile rounded-circle"
                                     src="{{ url('/') . '/uploads/' . Auth::user()->avatar }}">
+                                @else
+                                    <img class="img-profile rounded-circle"
+                                         src="{{ url('/') . '/uploads/images/default_avatar.png' }}">
+                                @endif
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -216,10 +226,10 @@
                                     <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
                                     修改基本資料
                                 </a>
-                                <a class="dropdown-item" href="#">
-                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>
-                                    系統設定
-                                </a>
+{{--                                <a class="dropdown-item" href="#">--}}
+{{--                                    <i class="fas fa-cogs fa-sm fa-fw mr-2 text-gray-400"></i>--}}
+{{--                                    系統設定--}}
+{{--                                </a>--}}
                                 <div class="dropdown-divider"></div>
                                 <a class="dropdown-item" href="{{ route('logout') }}" data-toggle="modal"
                                     onclick="event.preventDefault();
