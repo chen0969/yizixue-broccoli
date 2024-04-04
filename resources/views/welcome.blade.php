@@ -134,6 +134,13 @@
 
         <!-- QA section -->
         <section class="py-5" id="Qa">
+            <div>
+                <div style="text-align:center; margin-bottom:100px;">
+                    <a style="background:#45ecd9; border: none" class="btn btn-primary btn-lg px-5 text-white" href="#features">
+                        諮詢｜問與答
+                    </a>
+                </div>
+            </div>
             <div class="row">
                 <!-- QA section 1 -->
                 <div class="qaSection">
@@ -240,7 +247,7 @@
             </div>
         </section>
 
-        <section class="localOlder">
+        <section class="localOlder ">
         <h6>地區找學長姐</h6>
         <div>
             <p>美國｜加拿⼤｜英國｜澳洲｜紐⻄蘭｜其他英語系國家</p>
