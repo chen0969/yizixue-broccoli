@@ -50,6 +50,19 @@
     aspect-ratio: 1/1; 
 }
 
+// readmore btn
+@mixin readMore(){
+    a.readMore{
+        display: block;
+        font-size: 0.8rem;
+        color: $primePurpleLight;
+        width: 100%;
+        text-align: end;
+        text-decoration: none;
+        border-bottom: solid 2px $primeGray;
+    }
+}
+
 // navbar
 .navbar {
     width: 100%;
@@ -259,7 +272,6 @@
             margin: 5px;
 
             &::after {
-                content: '8';
                 font-size: 1rem;
                 font-family: Rubik;
                 text-decoration: none;
@@ -384,7 +396,7 @@
                 .videoBtn {
                     grid-column: 4/5;
                     grid-row: 3/6;
-                    padding: 30px;
+                    padding: 15px;
                 }
                 .react{
                     i{font-size: 1.3rem !important;}
@@ -1139,9 +1151,11 @@
 // footer
 footer{
     .col-md-4{
+        border-right: solid 2px white;
         img{
             width: 15rem;
-            margin: 3rem;
+            margin-bottom: 10%;
+            padding: 3px;
         }
         .copyright{
             font-size: 0.6rem;
@@ -1153,8 +1167,9 @@ footer{
             display: flex;
             flex-direction: column;
             justify-content: start;
-            gap: 5px;
-            letter-spacing: 0.5rem;
+            gap: 2px;
+            letter-spacing: 0.2rem;
+            p{font-size: 1.1rem;}
             h6{font-size: 1.2rem;}
             a{
                 text-decoration: none;
@@ -1165,8 +1180,10 @@ footer{
     
 }
 
-// QA section
+// QA show section
 .question-and-answer-page{
+    @include readMore();
+    .qaShowToggle{@include taggleMenuFunction();}
     .qaSection{
         .border-b-line{
             border-bottom: 0.1rem solid #858796 !important;
@@ -1179,40 +1196,19 @@ footer{
             padding: 1.5rem 0 1.5rem;
             justify-content: space-evenly;
             .file{
-                background-color: $primePurpleLight;
-                justify-content: center;
+                justify-content: start;
                 align-items: end;
-                padding-bottom: 0.5rem;
                 width: 8rem;
                 height: 8rem;
                 border-radius: 10%;
-                svg{
-                    width: 80%;
-                    height: 75%;
-                    background-color: white;
-                    border-radius: 10%;
-                }
             }
         }
         .avatarName{
             display: grid;
-            grid-template-columns: repeat(12, 1fr);
-            .avatar{
-                grid-column: 3/5;
-                grid-row: 1/2;
-                z-index: 2;
-                img{
-                    border-radius: 50%;
-                    border: solid $darkGray 2px;
-                }
-            }
             .nameCard{
-                grid-column: 4/13;
-                grid-row: 1/2;
                 z-index: 1;
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                justify-content: start;
             }
         }
         .contact{
@@ -1229,28 +1225,50 @@ footer{
         }
         .card-footer{
             border-radius: 0 0 1rem 1rem !important;
+            cursor: pointer;
+            #joinYZL{
+                background-color: $primePurpleLight;
+                border-radius: 0 0 0.5rem 0.5rem !important;
+                display: none;
+                a{
+                    background-color: $primePurple;
+                    color: white;
+                    font-weight: 800;
+                    font-size: 2rem;
+                    border-radius: 3rem;
+                    padding: 8%;
+                    text-decoration: none;
+                }
+            }
         }
     }
     .similarQ{
-        div.titleInfo{
-            display: grid;
-            grid-template-columns: repeat(12, auto);
-            grid-template-rows: 50% 50%;
-            i{grid-column: 1/2; grid-row: 1/2;}
-            a{grid-column: 2/13; grid-row: 1/2;}
-            span{
-                grid-column: 1/13; grid-row: 2/3;
-                span{font-size: 0.6rem;}
+        .qCards{
+            height: 15rem;
+            .qStyle{
+                padding: 0;
+                svg{
+                    height: 100%;
+                    width: auto;
+                }
             }
         }
-        .qStyle{
-            padding: 0;
-            svg{
-                height: 100%;
-                width: auto;
-            }
+        
+    }
+}
+
+// QA index section
+.qa-index-page{
+    .qaIndexToggle{@include taggleMenuFunction();}
+    @include readMore();
+    .nowPosts{
+        .bgImg{
+            width: 100%;
+            @include bg_img();
         }
     }
+
+
 }
 
 // university list page
