@@ -225,22 +225,28 @@
         display: flex;
         flex-direction: row;
         width: 100%;
-        align-items: end;
-
+        align-items: center;
+        justify-content: start;
         h5 {
-            font-size: 2rem;
+            font-size: 1.3rem;
             color: $primePurple;
         }
-
-        h5,
-        p {
-            margin: 0 10px 0 0;
+        p{
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            a{
+                background-color: $primePurple;
+                border-radius: 3px;
+                span{
+                    font-size: 0.7rem;
+                    color: white;
+                    display: block;
+                    height: min-content;
+                }
+            }
         }
 
-        p {
-            font-size: 1rem;
-            color: black;
-        }
     }
 
     .content {

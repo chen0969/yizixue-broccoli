@@ -137,19 +137,28 @@
   display: flex;
   flex-direction: row;
   width: 100%;
-  align-items: end;
+  align-items: center;
+  justify-content: start;
 }
 .postsSection .postTitle h5 {
-  font-size: 2rem;
+  font-size: 1.3rem;
   color: #4C2A70;
 }
-.postsSection .postTitle h5,
 .postsSection .postTitle p {
-  margin: 0 10px 0 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
-.postsSection .postTitle p {
-  font-size: 1rem;
-  color: black;
+.postsSection .postTitle p a {
+  background-color: #4C2A70;
+  border-radius: 3px;
+}
+.postsSection .postTitle p a span {
+  font-size: 0.7rem;
+  color: white;
+  display: block;
+  height: -moz-min-content;
+  height: min-content;
 }
 .postsSection .content {
   color: #C1C1C1;
