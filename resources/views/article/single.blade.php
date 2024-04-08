@@ -11,7 +11,7 @@
     </div>
     <!-- search bar -->
     <div class="searchBar">
-        <form>
+        <form method="get" action="{{route('study-abroad')}}">
             <svg x="0px" y="0px" viewBox="0 0 335.8 335.8">
                 <g>
                     <circle fill="#FFFFFF" cx="224.7" cy="111.1" r="77.6"/>
@@ -21,7 +21,8 @@
                 </g>
             </svg>
             <div class="inputDiv">
-                <input type="search">
+                <input type="search" name="title">
+                <button type="submit" style="display: none;"></button>
             </div>
         </form>
     </div>
@@ -45,7 +46,7 @@
         <div class="col postCategory">
             @if(!is_null($Data['article']->category))
                 @foreach($Data['article']->category as $category)
-                    <span class="btn btn-outline" style="border-color: #4C2A70; color: #4C2A70">#{{$category->postCategory->name}} </span>
+                    <a href="{{route('study-abroad', ['category_id' => $category->postCategory->id])}}"><span class="btn btn-outline" style="border-color: #4C2A70; color: #4C2A70">#{{$category->postCategory->name}} </span></a>
                 @endforeach
             @endif
         </div>
@@ -100,26 +101,30 @@
                             <div style="background-color: #BD9EBE" class="text-white" >
                                 <h2 class="card-title text-center " >{{ $Data['article']->author->name }}</h2>
                                 <h6 class="card-title text-center " style="background-color: #BD9EBE" >
-                                    {{ !is_null($Data['article']->universityItem) ? $Data['article']->author->universityItem->name: '' }}
+                                    {{ !is_null($Data['article']->author->universityItem) ? $Data['article']->author->universityItem->english_name: '' }}
                                 </h6>
                             </div>
                         </div>
                         @if(!is_null($Data['article']->author->postCategory))
                             <div class="row row-cols-3 mt-3 tags" style="justify-content: center">
-                                @foreach($Data['article']->author->postCategory as $postCategory)
-                                    <span class="col-3 btn text-white m-1 tags" style="background-color: #4C2A70; font-size: 0.6rem;">{{$postCategory->postCategory->name}}</span>
+                                @foreach($Data['article']->author->postCategory as $count => $postCategory)
+                                    @if($count < 3)
+                                        <span class="col-3 btn text-white m-1 tags" style="background-color: #4C2A70; font-size: 0.6rem;">{{$postCategory->postCategory->name}}</span>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif
                         @if(!is_null($Data['article']->author->skills))
                             <div class="row row-cols-3 mt-2" style="justify-content: center">
-                                @foreach($Data['article']->author->skills as $skill)
+                                @foreach($Data['article']->author->skills as $count => $skill)
+                                    @if($count < 6)
                                         <span class="col-3 btn btn-outline-secondary m-1" style="font-size: 0.6rem;">{{ $skill->skill->name }}</span>
+                                    @endif
                                 @endforeach
                             </div>
                         @endif
 
-                            <a href="{{route('article-list', $Data['article']->author->id)}}" class="btn btn-outline text-center w-100">查看更多</a>
+                            <a href="{{route('article-list', $Data['article']->author->id)}}" class="btn btn-outline text-center w-100">查看更多{{$Data['article']->author->name}}的文章</a>
                     </div>
                 </div>
                 <!-- more posts of the author -->
@@ -131,7 +136,11 @@
                                     <div class="row py-2 moreArticles">
                                         <div class="col-2">
                                             <a href="{{ route('article', $post->id) }}" style="color: #4C2A70; text-decoration: none;">
-                                            <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a>
+                                            <!-- <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a> -->
+                                                <div class=" d-flex justify-content-center">
+                                                    <span style="background-image: url('{{ asset('uploads'.$post->image_path)  }}') ;" class="bgImg">&nbsp</span>
+                                                </div> 
+                                            </a>
                                         </div>
                                         <div class="col">
                                             <p>
@@ -139,9 +148,10 @@
                                             </p>
                                             <p>
                                                 <a href="{{ route('article', $post->id) }}" style="color:black; text-decoration: none;" class="text-break w-75">
-                                                    {!! \Illuminate\Support\Str::limit($post->body) !!}
+                                                    {!! \Illuminate\Support\Str::limit(strip_tags($post->body)) !!}
                                                 </a>
                                             </p>
+                                            <a class="readMore" href="{{ route('article', $post->id) }}">...閱讀更多</a>
                                             <p class="text-right" style="color:gray; margin-right: 10%;">
                                                 發布日期：{{$post->created_at->format('Y/m/d')}}
                                             </p>
@@ -168,20 +178,25 @@
                 @foreach($Data['interested'] as $post)
                     <div class="row">
                         <div class="m-2 px-4">
-                            <div class="row py-2 moreArticles" style="border: 2px solid black; border-radius: 30px;">
-                                <div class="col-2">
+                            <div class="row py-2 moreArticles" style="border: 2px solid black;">
+                                <div class="col-4">
                                     <a href="{{ route('article', $post->id) }}" style="color: #4C2A70; text-decoration: none;">
-                                    <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a>
+                                    <!-- <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a> -->
+                                        <div class=" d-flex justify-content-center">
+                                            <span style="background-image: url('{{ asset('uploads'.$post->image_path)  }}') ;" class="bgImg">&nbsp</span>
+                                        </div> 
+                                    </a>
                                 </div>
-                                <div class="col">
+                                <div class="col d-flex flex-column justify-content-between">
                                     <p>
                                         <a href="{{ route('article', $post->id) }}" style="color: #4C2A70; text-decoration: none;"><h3 class="text-break"> {{$post->title}} </h3></a>
                                     </p>
                                     <p >
                                         <a href="{{ route('article', $post->id) }}" style="color: black; text-decoration: none;" class="text-break w-75">
-                                            {!! \Illuminate\Support\Str::limit($post->body) !!}
+                                            {!! \Illuminate\Support\Str::limit(strip_tags($post->body)) !!}
                                         </a>
                                     </p>
+                                    <a class="readMore" href="{{ route('article', $post->id) }}">...閱讀更多</a>
                                     <p class="text-right" style="color:gray; margin-right: 10%;">
                                         發布日期：{{$post->created_at->format('Y/m/d')}}
                                     </p>

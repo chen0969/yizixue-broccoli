@@ -12,7 +12,7 @@
                   <div class="col-11 text-lg p-3" style="border-left-style: solid; border-top-style: solid; border-bottom-style: solid; border-color: #6D757D;">
                       <h2 class="d-flex">
                           <i class="fa fa-circle px-3" style="color:gray"></i>
-                          <a href="{{route('qna.show', $qa->id)}}" class="text-decoration-none text-gray-600">{{$qa->title}}</a>
+                          <a href="{{route('qna.show', $qa->id)}}" class="text-decoration-none text-gray-600 w-100">{{$qa->title}}</a>
                           <span class="w-100 text-right">
                               @if($qa->categoryRelation)
                                   @foreach($qa->categoryRelation as $relation)
@@ -23,7 +23,7 @@
                               @endif
                           </span>
                       </h2>
-                      <div class="row text-center">
+                      <div class="row">
                         {!! $qa->body !!}
                       </div>
                   </div>
@@ -39,11 +39,12 @@
                         @foreach($posts as $post)
                             <div class="col-5 mx-2 row mx-auto" style="border: 2px solid black; border-radius: 10px;">
                                 <div class="col-6">
-                                    <img src="{{asset('uploads/'.$post->author->avatar)}}" alt="" width="300" height="300">
+{{--                                    <img src="{{asset('uploads/'.$post->author->avatar)}}" alt="" width="300" height="300">--}}
+                                    <img src="{{asset('uploads/'.$post->image_path)}}" style="border-radius: 20px; grid-column: 1/6; grid-row:1/5;" width="300" height="300">
                                 </div>
                                 <div class="col-6 text-break">
-                                    <h2 class="w-100">{{$post->title}} </h2>
-                                    <p>{!! \Illuminate\Support\Str::limit($post->body) !!}</p>
+                                    <h2 class="w-100"><a href="{{route('article', $post->id)}}" class="text-decoration-none" style="color: #4C2A70">{{$post->title}} </a></h2>
+                                    <p>{!! \Illuminate\Support\Str::limit(strip_tags($post->body)) !!}</p>
                                     <p class=" text-right w-100">發布日期：{{$post->created_at->format('Y/m/d')}}</p>
                                 </div>
                             </div>

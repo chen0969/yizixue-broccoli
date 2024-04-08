@@ -6,7 +6,7 @@
         <div class="row">
             <h4 class="mt-3">
                 <a class="text-decoration-none text-black" href="{{url('/')}}">首頁</a> >
-                留學誌
+                <a class="text-decoration-none text-black" href="{{url('study-abroad')}}">留學誌</a>
             </h4>
         </div>
         <!-- search bar -->
@@ -28,7 +28,7 @@
         </div>
         <!-- title -->
         <div class="row">
-            <h2 style="font-size: 3rem;color: #4C2A70">留學誌</h2>
+            <a class="text-decoration-none" href="{{url('study-abroad')}}"><h2 style="font-size: 3rem;color: #4C2A70">留學誌</h2></a>
         </div>
         <!-- main content -->
         <div class="row mt-4">
@@ -36,7 +36,11 @@
                 <!-- categories -->
                 <div class="row">
                     <ul class="list-group">
-
+                        <li class="list-group-item" style="background-color: #4C2A70">
+                            <a style="text-decoration: none;" class="text-white text-center" href="{{route('study-abroad')}}">
+                                <div class="border-bottom-light">全部文章</div>
+                            </a>
+                        </li>
                         @forelse($Data['category'] as $category)
                             <li class="list-group-item" style="background-color: #4C2A70">
                                 <a style="text-decoration: none;" class="text-white text-center" href="{{route('study-abroad', ['category_id' => $category->id])}}">
@@ -59,7 +63,7 @@
                     </div>
                 </div>
                 <!-- call to action -->
-
+                @if(auth()->guest() || !auth()->user()->isVip())
                     <div class="py-4 callToAction">
                         <h5 class="card-body text-white py-2 part1" style="background-color: #4C2A70;">
                             讓專業持續變現
@@ -78,7 +82,7 @@
                             </button>
                         </div>
                     </div>
-
+                @endif
             </div>
             <!-- posts -->
             <div class="col-9 postsSection">
@@ -96,12 +100,16 @@
                         <!-- Post Contents -->
                         <div class="col-9">
                             <div class="postTitle" style="font-size:2rem;">
-                                <h5 class="text-break">
-                                    {{ $post->title }}
+                                <h5 class="text-break w-100">
+                                    <a href="{{route('article', $post->id)}}" class="text-decoration-none" style="color:#4C2A70">{{ $post->title }}</a>
                                 </h5>
                                 <p class="text-break">
-                                    @forelse($post->category as $cate)
-                                        <span class="mx-4" style="color: #4C2A70;">#{{$cate->postCategory->name}} </span>
+                                    @forelse($post->category as $count => $cate)
+                                        @if($count < 3)
+                                            <a href="{{route('study-abroad', ['category_id' => $cate->postCategory->id])}}" class="text-decoration-none" style="color: #4C2A70;">
+                                                <span class="mx-4" style="color: #4C2A70;">#{{$cate->postCategory->name}} </span>
+                                            </a>
+                                        @endif
                                     @empty
                                     @endforelse
                                 </p>

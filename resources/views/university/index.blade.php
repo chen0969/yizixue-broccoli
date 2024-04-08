@@ -23,7 +23,7 @@
 <div class="uniListPage">
     <!-- taggle menu section -->
     <div class="row text-gray-600">
-        <h4 class="mt-3 col-6">首頁 > 學校</h4>
+        <h4 class="mt-3 col-6"><a href="{{url('/')}}" class="text-decoration-none text-black">首頁</a> > 學校</h4>
         <div class="col-6 d-flex justify-content-end">
             <svg id="burger" width="50px" height="50px" viewbox="0 0 50 50" onclick="toggle()">
                 <g>
@@ -37,36 +37,35 @@
     <div id="toggleBar">
         <div class="col d-flex flex-column">
             <h6>英語系國家</h6>
-            <a>美國北部</a>
-            <a>美國南部</a>
-            <a>美國中部</a>
-            <a>美國東部</a>
-            <a>美國西部</a>
-            <a>加拿大</a>
-            <a>英國</a>
-            <a>澳洲</a>
-            <a>其他</a>
+            <a href="{{route('university-list', ['area' => 'northeast'])}}" class="text-decoration-none">美國東北部</a>
+            <a href="{{route('university-list', ['area' => 'west'])}}" class="text-decoration-none">美國西北部</a>
+            <a href="{{route('university-list', ['area' => 'midwest'])}}" class="text-decoration-none">美國中西部</a>
+            <a href="{{route('university-list', ['area' => 'south'])}}" class="text-decoration-none">美國南部</a>
+            <a href="{{route('university-list', ['country' => 'canada'])}}" class="text-decoration-none">加拿大</a>
+            <a href="{{route('university-list', ['country' => 'uk'])}}" class="text-decoration-none">英國</a>
+            <a href="{{route('university-list', ['country' => 'australia'])}}" class="text-decoration-none">澳洲</a>
+            <a href="{{route('university-list', ['country' => 'new zealand'])}}" class="text-decoration-none">其他</a>
         </div>
         <div class="col d-flex flex-column">
             <h6>歐語系國家</h6>
-            <a>法國</a>
-            <a>德國</a>
+            <a href="{{route('university-list', ['country' => 'france'])}}" class="text-decoration-none">法國</a>
+            <a href="{{route('university-list', ['country' => 'germany'])}}" class="text-decoration-none">德國</a>
             <a>義大利</a>
             <a>其他</a>
         </div>
         <div class="col d-flex flex-column">
             <h6>亞洲國家</h6>
-            <a>台灣</a>
-            <a>日本</a>
-            <a>韓國</a>
+            <a href="{{route('university-list', ['country' => 'taiwan'])}}" class="text-decoration-none">台灣</a>
+            <a href="{{route('university-list', ['country' => 'japan'])}}" class="text-decoration-none">日本</a>
+            <a href="{{route('university-list', ['country' => 'korea'])}}" class="text-decoration-none">韓國</a>
             <a>其他</a>
         </div>
         <div class="col d-flex flex-column">
             <h6>中國相關</h6>
             <a>中國</a>
-            <a>新加坡</a>
-            <a>香港</a>
-            <a>澳門</a>
+            <a href="{{route('university-list', ['country' => 'singapore'])}}" class="text-decoration-none">新加坡</a>
+            <a href="{{route('university-list', ['country' => 'hong kong'])}}" class="text-decoration-none">香港</a>
+            <a href="{{route('university-list', ['country' => 'macau'])}}" class="text-decoration-none">澳門</a>
             <a>其他</a>
         </div>
     </div>

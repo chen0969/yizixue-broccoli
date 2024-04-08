@@ -29,7 +29,7 @@
                                             <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
                                                 aria-labelledby="dropdownMenuLink">
                                                 <div class="dropdown-header">動作:</div>
-                                                <a class="dropdown-item" href="/view-post/{{ $post->uuid }}">查看</a>
+                                                <a class="dropdown-item" href="{{route('article', $post->id)}}">查看</a>
                                                 <a class="dropdown-item" href="/edit-post/{{ $post->uuid }}">編輯</a>
                                                 <a class="dropdown-item" href="/delete-post/{{ $post->uuid }}">刪除</a>
                                             </div>
@@ -57,7 +57,7 @@
                                                         </span>
                                                     @endforeach
                                                 </h4>
-                                                <p>{!! substr($post->body, 0, 300) !!}...</p>
+                                                <p>{!! substr(strip_tags($post->body), 0, 300) !!}...</p>
                                             </div>
                                         </div>
                                     </div>

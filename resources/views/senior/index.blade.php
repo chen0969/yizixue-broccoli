@@ -3,9 +3,9 @@
 @section('content')
 <!-- breadcrumb -->
     <div class="row text-gray-600 seniorListPage">
-            <!-- taggle menu section -->
+        <!-- taggle menu section -->
         <div class="row text-gray-600">
-            <h4 class="mt-3 col-6">首頁 > 學長姊</h4>
+            <h4 class="mt-3 col-6"><a href="{{url('/')}}" class="text-decoration-none text-black">首頁</a> > 學長姊</h4>
             <div class="col-6 d-flex justify-content-end">
                 <svg id="burger" width="50px" height="50px" viewbox="0 0 50 50" onclick="toggle()">
                     <g>
@@ -19,36 +19,35 @@
         <div id="toggleBar">
             <div class="col d-flex flex-column">
                 <h6>英語系國家</h6>
-                <a>美國北部</a>
-                <a>美國南部</a>
-                <a>美國中部</a>
-                <a>美國東部</a>
-                <a>美國西部</a>
-                <a>加拿大</a>
-                <a>英國</a>
-                <a>澳洲</a>
-                <a>其他</a>
+                <a href="{{route('senior', ['area' => 'northeast'])}}" class="text-decoration-none">美國東北部</a>
+                <a href="{{route('senior', ['area' => 'west'])}}" class="text-decoration-none">美國西北部</a>
+                <a href="{{route('senior', ['area' => 'midwest'])}}" class="text-decoration-none">美國中西部</a>
+                <a href="{{route('senior', ['area' => 'south'])}}" class="text-decoration-none">美國南部</a>
+                <a href="{{route('senior', ['country' => 'canada'])}}" class="text-decoration-none">加拿大</a>
+                <a href="{{route('senior', ['country' => 'uk'])}}" class="text-decoration-none">英國</a>
+                <a href="{{route('senior', ['country' => 'australia'])}}" class="text-decoration-none">澳洲</a>
+                <a href="{{route('senior', ['country' => 'new zealand'])}}" class="text-decoration-none">其他</a>
             </div>
             <div class="col d-flex flex-column">
                 <h6>歐語系國家</h6>
-                <a>法國</a>
-                <a>德國</a>
+                <a href="{{route('senior', ['country' => 'france'])}}" class="text-decoration-none">法國</a>
+                <a href="{{route('senior', ['country' => 'germany'])}}" class="text-decoration-none">德國</a>
                 <a>義大利</a>
                 <a>其他</a>
             </div>
             <div class="col d-flex flex-column">
                 <h6>亞洲國家</h6>
-                <a>台灣</a>
-                <a>日本</a>
-                <a>韓國</a>
+                <a href="{{route('senior', ['country' => 'taiwan'])}}" class="text-decoration-none">台灣</a>
+                <a href="{{route('senior', ['country' => 'japan'])}}" class="text-decoration-none">日本</a>
+                <a href="{{route('senior', ['country' => 'korea'])}}" class="text-decoration-none">韓國</a>
                 <a>其他</a>
             </div>
             <div class="col d-flex flex-column">
                 <h6>中國相關</h6>
                 <a>中國</a>
-                <a>新加坡</a>
-                <a>香港</a>
-                <a>澳門</a>
+                <a href="{{route('senior', ['country' => 'singapore'])}}" class="text-decoration-none">新加坡</a>
+                <a href="{{route('senior', ['country' => 'hong kong'])}}" class="text-decoration-none">香港</a>
+                <a href="{{route('senior', ['country' => 'macau'])}}" class="text-decoration-none">澳門</a>
                 <a>其他</a>
             </div>
         </div>
@@ -58,19 +57,25 @@
     <!-- senior cards broccoli ver -->
     <div class="seniorPage">
         @forelse($users as $user)
-            <div class="col-4 item studentC">
+            <div class="col-4 item studentC" onclick="cardClickable({{ $user->id }})">
                 <div class="col cards">
                     <div class="studentProfile">
                         <!-- avatar -->
                         <div class="studentImg">
-                            @if(is_null($user->avatar))
-                                <img src="{{asset('uploads/images/default_avatar.png')}}" alt="user avatar" width="300" height="300">
-                            @else
-                                <img src="{{asset('uploads/'.$user->avatar)}}" alt="user avatar" width="300" height="300">
-                            @endif
+                        @if(is_null($user->avatar))
+                            <!-- <img src="{{asset('uploads/images/default_avatar.png')}}" alt="Card image cap" width="200" height="200"> -->
+                            <div class=" d-flex justify-content-center">
+                                <span style="background-image: url('{{asset('uploads/images/default_avatar.png')}}') ;" class="bgImg">&nbsp</span>
+                            </div>
+                        @else
+                            <!-- <img src="/uploads/{{ $user->avatar }}" alt="Card image cap" width="200" height="200"> -->
+                            <div class=" d-flex justify-content-center">
+                                <span style="background-image: url('/uploads/{{ $user->avatar }}');" class="bgImg">&nbsp</span>
+                            </div>
+                        @endif
                         </div>
                         <!-- video btn -->
-                        <div class="videoBtn">
+                        <div class="videoBtn" onclick="event.stopPropagation(); event.preventDefault();">
                             @if(is_null($user->profile_video))
                                 <a class="text" onClick="alert('學長姐尚未上傳影音');">
                                     <img class="card-img-top" src="https://cdn.pixabay.com/photo/2016/02/01/12/33/play-1173551_640.png" alt="Card image cap">
@@ -82,7 +87,7 @@
                             @endif
                         </div>
                         <!-- react icons -->
-                        <div class="react">
+                        <div class="react" onclick="event.stopPropagation(); event.preventDefault();">
                             @if(auth()->check())
                                 <i class="fa fa-heart"
                                    style="color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count()==1) red @else black @endif;"
@@ -107,14 +112,14 @@
                     <!-- name card -->
                     <div class="name-card">
                         <h4>{{$user->name}}</h4>
-                        <h4>{{!is_null($user->universityItem) ? $user->universityItem->chinese_name:''}}</h4>
+                        <h6>{{!is_null($user->universityItem) ? $user->universityItem->english_name:''}}</h6>
                     </div>
                     <!-- post tags -->
-                    <div class="postTags">
+                    <div class="postTags row row-cols-3 mt-2 justify-content-center">
                         @if(!is_null($user->postCategory))
                             @foreach($user->postCategory as $key=>$category)
-                                @if($key <3)
-                                <span>
+                                @if($key < 3)
+                                <span class="col-3 btn btn-outline-secondary m-1" style="font-size: 0.6rem;">
                                     {{$category->postCategory->name}}
                                 </span>
                                 @endif
@@ -122,11 +127,11 @@
                         @endif
                     </div>
                     <!-- skill tags -->
-                    <div class="skillTags">
+                    <div class="skillTags row row-cols-3 mt-2 justify-content-center">
                         @if(!is_null($user->skills))
                             @foreach($user->skills as $key => $skill)
                                 @if($key < 6)
-                                <span>
+                                <span class="col-3 btn btn-outline-secondary m-1" style="font-size: 0.6rem;">
                                     {{$skill->skill->name}}
                                 </span>
                                     @if($key==2)

@@ -28,14 +28,16 @@
         <div class="col-4 text-center text-white">
             <div class="d-flex flex-column">
                 <h2 class="mt-5" style="font-size: 3rem;">{{$Data['user']->name}}</h2>
-                <h5 class="mt-2">{{!is_null($Data['user']->universityItem) ? $Data['user']->universityItem->name:''}}</h5>
+                <h5 class="mt-2">{{!is_null($Data['user']->universityItem) ? $Data['user']->universityItem->english_name:''}}</h5>
                 @if(!is_null($Data['user']->postCategory))
                     <div class="row w-100 row-cols-3 text-center mt-5">
                         @foreach($Data['user']->postCategory as $theme)
                             <div class="col">
-                                <span class="w-75 btn text-white p-2" style="background-color: #4C2A70">
-                                    {{$theme->postCategory->name}}
-                                </span>
+                                <a href="{{route('study-abroad', ['category_id' => $theme->postCategory->id])}}" class="text-decoration-none">
+                                    <span class="w-75 btn text-white p-2" style="background-color: #4C2A70">
+                                        {{$theme->postCategory->name}}
+                                    </span>
+                                </a>
                             </div>
                         @endforeach
                     </div>
@@ -71,18 +73,20 @@
                     <div class="col-9">
                         <div class="postTitle" style="font-size:2rem;">
                             <h5 class="text-break">
-                                {{ $post->title }}
+                                <a href="{{route('article', $post->id)}}" class="text-decoration-none" style="color: #4C2A70;">{{ $post->title }}</a>
                             </h5>
                             <p class="text-break">
-                                @forelse($post->category as $cate)
-                                    #{{$cate->postCategory->name}}
+                                @forelse($post->category as $count => $cate)
+                                    @if($count < 3)
+                                        <a href="{{route('study-abroad', ['category_id' => $cate->postCategory->id])}}" class="text-decoration-none text-black">#{{$cate->postCategory->name}}</a>
+                                    @endif
                                 @empty
                                 @endforelse
                             </p>
                         </div>
 
                         <div class="text-break content">
-                            {!!  \Illuminate\Support\Str::limit($post->body) !!}
+                            {!!  \Illuminate\Support\Str::limit(strip_tags($post->body)) !!}
                             <p class="readMore"><a href="{{route('article', $post->id)}}" class="text-decoration-none readMore">...閱讀更多</a></p>
                         </div>
                         <div class="socialIcons">

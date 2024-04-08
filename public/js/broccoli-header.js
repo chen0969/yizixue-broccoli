@@ -1,3 +1,29 @@
+let text = ["海外留學", "升學考試", "國際學校", "選課輔導", "校園導覽", "社團生活", "工作實習", "職涯創業"];
+let images = [
+    "uploads/images/banner_p1.jpg",
+    "uploads/images/banner_p2.jpg",
+    "uploads/images/banner_p3.jpg",
+    "uploads/images/banner_p4.jpg",
+    "uploads/images/banner_p5.jpg",
+    "uploads/images/banner_p6.jpg",
+    "uploads/images/banner_p7.jpg",
+    "uploads/images/banner_p8.jpg",
+];
+let backendImages = [];
+$.ajax({
+    url: 'carousel-list',
+    method: 'get',
+    success: function(res){
+        $.each(res, function(key, item){
+            backendImages.push(item.image_path);
+        });
+    },
+    error: function(error){
+        // console.log(error);
+    }
+})
+
+
 
 setInterval(headerSlide, 2000); // 每隔1秒呼叫一次headerSlide
 
@@ -16,25 +42,34 @@ function headerSlide(){
     } else {
         currentPic = 1;
     }
-    
+
     // 根據 currentPic 切換圖片
-    if (currentPic === 1) {
-        pic1();
-    } else if (currentPic === 2) {
-        pic2();
-    } else if (currentPic === 3) {
-        pic3();
-    } else if (currentPic === 4) {
-        pic4();
-    } else if (currentPic === 5) {
-        pic5();
-    } else if (currentPic === 6) {
-        pic6();
-    } else if (currentPic === 7) {
-        pic7();
-    } else if (currentPic === 8) {
-        pic8();
-    }
+    changePic(currentPic);
+
+    // if (currentPic === 1) {
+    //     pic1();
+    // } else if (currentPic === 2) {
+    //     pic2();
+    // } else if (currentPic === 3) {
+    //     pic3();
+    // } else if (currentPic === 4) {
+    //     pic4();
+    // } else if (currentPic === 5) {
+    //     pic5();
+    // } else if (currentPic === 6) {
+    //     pic6();
+    // } else if (currentPic === 7) {
+    //     pic7();
+    // } else if (currentPic === 8) {
+    //     pic8();
+    // }
+}
+
+function changePic(index)
+{
+    let image_path = backendImages[index-1] !== undefined ? backendImages[index-1] : images[index-1];
+    $('#topic').text(text[index-1]+"，");
+    $("#bannerImg").attr("src", image_path);
 }
 
 function pic1(){
@@ -124,18 +159,13 @@ function newsSlide(){
     }
     if(posts[currentNews-1] !== undefined){
         // 根據 currentPic 切換標題
-        $("#newsTopic").text(posts[currentNews-1].title);
+        $("#newsTopic").text(posts[currentNews-1].topic);
         // 根據 currentPic 切換圖片
-        $(".newsCard img").attr("src", "uploads"+posts[currentNews-1].image_path);
-        let tags = '';
-        $.each(posts[currentNews-1].category, function(i, object){
-            tags += '#'+object.post_category.name;
-        });
-
-        $(".newsCard .info .tag").text(tags);
+        $(".newsCard .bgImg").css("background-image", "url(" + posts[currentNews - 1].image_path + ")");
+        $(".newsCard .info .tag").text(posts[currentNews-1].category);
         $(".newsCard .info .meta").text(posts[currentNews-1].title);
         $(".newsCard .info .brief").text(encodeHTML(posts[currentNews-1].body));
-        $(".newsCard .info a").attr('href', 'article/'+posts[currentNews-1].id);
+        $(".newsCard .info a").attr('href', posts[currentNews-1].url);
     }
 }
 

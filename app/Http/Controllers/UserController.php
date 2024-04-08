@@ -58,7 +58,7 @@ class UserController extends Controller
             'references.max.file' => '檔案不得超過2M',
             'description.max' => '字數不得超過500字',
             'skills.max' => '專長不得超過12個',
-            'post_categories.max' => '主是不得超過3個'
+            'post_categories.max' => '主題不得超過3個'
         ]);
 
         if($req->filled('post_categories')){
@@ -226,8 +226,11 @@ class UserController extends Controller
 
     public function referenceDownload($id)
     {
-        $file = UserReference::where('id', $id)->where('user_id', auth()->user()->id)->first();
+        $file = UserReference::where('id', $id)->first();
         if(is_null($file)){
+            return redirect()->back();
+        }
+        if(!file_exists(public_path('uploads'.$file->image_path))){
             return redirect()->back();
         }
 

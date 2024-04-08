@@ -20,7 +20,7 @@ class PostController extends Controller
     public function list()
     {
         $uid = Auth::user()->id;
-        $posts = Post::where('uid', $uid)->get();
+        $posts = Post::where('uid', $uid)->orderBy('id', 'desc')->get();
         $QACategory = new PostCategory;
         $QACategoryRelation = new PostCategoryRelation;
         $Data = [
@@ -53,6 +53,13 @@ class PostController extends Controller
 
     public function save(Request $req)
     {
+
+        $req->validate([
+            'category' => 'array|max:3',
+        ],[
+            'category.max' => '不得超過:max個主題',
+        ]);
+
         $title = $req->title;
         $author = $req->author;
         $category = $req->category;
@@ -60,10 +67,15 @@ class PostController extends Controller
         $tag = $req->tag;
         $postbody = $req->postbody;
 
-        $file = $req->file('image_path');
-        $fileName = time().'-'.$file->getClientOriginalName();
-        //If you want to specify the disk, you can pass that as the third parameter.
-        $file->storeAs('images', $fileName, 'admin');
+        if($req->has('image_path')){
+            $file = $req->file('image_path');
+            $fileName = time().'-'.$file->getClientOriginalName();
+            //If you want to specify the disk, you can pass that as the third parameter.
+            $file->storeAs('images', $fileName, 'admin');
+        } else {
+            $fileName = 'default_avatar.png';
+        }
+
 
         $Post = new Post();
         $Post->uuid = 'post-'.uniqid();
@@ -89,7 +101,7 @@ class PostController extends Controller
             }
         }
 
-        return back();
+        return redirect()->route('list-all-posts');
     }
 
     public function edit($uuid)
@@ -114,6 +126,12 @@ class PostController extends Controller
 
     public function update(Request $req) 
     {
+        $req->validate([
+            'category' => 'array|max:3'
+        ],[
+            'category.max' => '不得超過:max個主題'
+        ]);
+
         $title = $req->title;
         $author = $req->author;
         $category = $req->category;
@@ -155,7 +173,7 @@ class PostController extends Controller
         $Post->body = $postbody;
         $Post->save();
 
-        return back();
+        return redirect()->route('list-all-posts');
     }
 
     public function delete($uuid) 
@@ -167,7 +185,9 @@ class PostController extends Controller
         PostCategoryRelation::where('post_id', $Post->id)->delete();
         LikePost::where('post_id', $Post->id)->delete();
         CollectPost::where('post_Id', $Post->id)->delete();
-        unlink(public_path('uploads'.$Post->image_path));
+        if(file_exists(public_path('uploads'.$Post->image_path)) && $Post->image_path !== '/images/default_avatar.png'){
+            unlink(public_path('uploads'.$Post->image_path));
+        }
         $Post->delete();
 
         return back();
