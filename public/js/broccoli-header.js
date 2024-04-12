@@ -69,47 +69,54 @@ function changePic(index)
 {
     let image_path = backendImages[index-1] !== undefined ? backendImages[index-1] : images[index-1];
     $('#topic').text(text[index-1]+"，");
-    $("#bannerImg").attr("src", image_path);
+    $("#bannerImg").css("background-image", "url('" + image_path + "')");
 }
 
 function pic1(){
     $("#topic").text("海外留學，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p1.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p1.jpg')");
 }
 
 function pic2(){
     $("#topic").text("升學考試，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p2.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p2.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p2.jpg')");
 }
 
 function pic3(){
     $("#topic").text("國際學校，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p3.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p3.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p3.jpg')");
 }
 
 function pic4(){
     $("#topic").text("選課輔導，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p4.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p4.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p4.jpg')");
 }
 
 function pic5(){
     $("#topic").text("校園導覽，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p5.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p5.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p5.jpg')");
 }
 
 function pic6(){
     $("#topic").text("社團⽣活，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p6.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p6.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p6.jpg')");
 }
 
 function pic7(){
     $("#topic").text("⼯作實習，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p7.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p7.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p7.jpg')");
 }
 
 function pic8(){
     $("#topic").text("職涯創業，");
-    $("#bannerImg").attr("src", "uploads/images/banner_p8.jpg");
+    // $("#bannerImg").attr("src", "uploads/images/banner_p8.jpg");
+    $("#bannerImg").css("background-image", "url('uploads/images/banner_p8.jpg')");
 }
 
 $(window).scroll(function(){
@@ -175,3 +182,37 @@ function encodeHTML(dirtyString) {
     container.appendChild(text);
     return container.innerHTML; // innerHTML will be a xss safe string
 }
+
+
+// test
+$(document).on('click', '.bookmark-icon', function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+
+    var icon = $(this);
+    var userId = icon.data('id');
+    var currentCount = parseInt(icon.data('collected-count'));
+
+    // 发送 AJAX 请求更新收藏总数
+    $.ajax({
+        url: '/', // 替换成实际的路由
+        method: 'POST',
+        data: {
+            user_id: userId
+        },
+        success: function(response) {
+            // 更新收藏总数的显示元素
+            var newCount = response.count;
+            $('#collected-count-' + userId).text(newCount);
+
+            // 更新图标颜色
+            icon.css('color', response.colored ? 'red' : 'black');
+
+            // 更新图标的 data-collected-count 属性
+            icon.data('collected-count', newCount);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error occurred:', error);
+        }
+    });
+});

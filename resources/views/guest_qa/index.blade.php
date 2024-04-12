@@ -19,29 +19,14 @@
         </div>
         <div id="toggleBar">
             <div class="col d-flex flex-column">
-                <h6>海外留學</h6>
+                <a href="{{route('qna')}}" class="text-decoration-none text-white"><h6>全部分類</h6></a>
             </div>
-            <div class="col d-flex flex-column">
-                <h6>升學考試</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>國際學校</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>選課輔導</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>校園導覽</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>社團活動</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>工作實習</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>職涯創業</h6>
-            </div>
+            @forelse($categories as $category)
+                <div class="col d-flex flex-column">
+                    <a href="{{route('qna', ['category_id' =>$category->id ])}}" class="text-decoration-none text-white"><h6>{{$category->name}}</h6></a>
+                </div>
+            @empty
+            @endforelse
         </div>
         <!-- end of toggle menu section -->
     </div>
@@ -90,7 +75,7 @@
                 <div class="col-4">
                     <div class="d-flex justify-content-center">
                         <span style="background-image: url('{{ asset('uploads/'.$post->image_path)  }}') ;" class="bgImg">&nbsp</span>
-                    </div> 
+                    </div>
                 </div>
                 <div class="col-8 text-break">
                     <h2 class="w-100"><a href="{{route('article', $post->id)}}" class="text-decoration-none"
@@ -115,11 +100,11 @@
             </p>
         </div>
         @endforelse
-        <div class="row">
-            <nav>
-                {{$qas->links('vendor.pagination.bootstrap-4')}}
-            </nav>
-        </div>
+            <div class="pageNav">
+                <div class="d-flex" style="flex-direction: row; justify-content: space-evenly; ">
+                {{$qas->appends($_GET)->links('vendor.pagination.bootstrap-4')}}
+                </div>
+            </div>
         @endif
     </div>
 </div>

@@ -139,7 +139,7 @@
                                             <!-- <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a> -->
                                                 <div class=" d-flex justify-content-center">
                                                     <span style="background-image: url('{{ asset('uploads'.$post->image_path)  }}') ;" class="bgImg">&nbsp</span>
-                                                </div> 
+                                                </div>
                                             </a>
                                         </div>
                                         <div class="col">
@@ -184,7 +184,7 @@
                                     <!-- <img src="{{ asset('uploads'.$post->image_path)  }}" alt="" class="w-100"></a> -->
                                         <div class=" d-flex justify-content-center">
                                             <span style="background-image: url('{{ asset('uploads'.$post->image_path)  }}') ;" class="bgImg">&nbsp</span>
-                                        </div> 
+                                        </div>
                                     </a>
                                 </div>
                                 <div class="col d-flex flex-column justify-content-between">

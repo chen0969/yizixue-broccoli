@@ -19,29 +19,14 @@
         </div>
         <div id="toggleBar">
             <div class="col d-flex flex-column">
-                <h6>海外留學</h6>
+                <a href="{{route('qna')}}" class="text-decoration-none text-white"><h6>全部分類</h6></a>
             </div>
-            <div class="col d-flex flex-column">
-                <h6>升學考試</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>國際學校</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>選課輔導</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>校園導覽</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>社團活動</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>工作實習</h6>
-            </div>
-            <div class="col d-flex flex-column">
-                <h6>職涯創業</h6>
-            </div>
+            @forelse($categories as $category)
+                <div class="col d-flex flex-column">
+                    <a href="{{route('qna', ['category_id' =>$category->id ])}}" class="text-decoration-none text-white"><h6>{{$category->name}}</h6></a>
+                </div>
+            @empty
+            @endforelse
         </div>
         <!-- end of toggle menu section -->
     </div>
@@ -209,13 +194,13 @@
                     </div>
                 </div>
                 @if(auth()->guest() || !auth()->user()->isVip())
-                
+
                     <div class="card-footer text-white text-center" style="background-color: #4C2A70">
                         <div id="joinYZL" class="p-5 m-3">
                             <h6>我們一起幫助學弟妹</h6>
                             <h6>更為自己創造收入</h6>
                             <h6>建立留學諮詢事業!</h6>
-                            <a href="{{route('home')}}">點擊成為學長姐</a>
+                            <a href="{{route('pay-product-list')}}">點擊成為學長姐</a>
                         </div>
 {{--                        <a href="{{route('pay-product-list')}}" class="text-decoration-none text-white"><h4>點擊查看</h4></a>--}}
                         <h4 onclick="joinYZL('joinYZL')">點擊查看</h4>
@@ -244,7 +229,7 @@
                                 </span>
                             </div>
                             <div class="row text-break">
-                                {!! \Illuminate\Support\Str::limit($qa->qa->body) !!}
+                                {!! \Illuminate\Support\Str::limit(strip_tags($qa->qa->body)) !!}
                             </div>
                             <a class="readMore" href="{{ route('qna', $qa->id) }}">...閱讀更多</a>
                         </div>

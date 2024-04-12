@@ -154,8 +154,8 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -283,8 +283,8 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         ),
         'Psr\\Http\\Message\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/http-factory/src',
-            1 => __DIR__ . '/..' . '/psr/http-message/src',
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+            1 => __DIR__ . '/..' . '/psr/http-factory/src',
         ),
         'Psr\\Http\\Client\\' => 
         array (
@@ -447,6 +447,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
     public static $classMap = array (
         'App\\Admin\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AuthController.php',
         'App\\Admin\\Controllers\\BulletinBoardController' => __DIR__ . '/../..' . '/app/Admin/Controllers/BulletinBoardController.php',
+        'App\\Admin\\Controllers\\CarouselController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CarouselController.php',
         'App\\Admin\\Controllers\\CollectPostController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CollectPostController.php',
         'App\\Admin\\Controllers\\CollectUserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CollectUserController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
@@ -465,6 +466,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'App\\Admin\\Controllers\\UserRelationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserRelationController.php',
         'App\\Admin\\Controllers\\UserSkillRelationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserSkillRelationController.php',
         'App\\BulletinBoard' => __DIR__ . '/../..' . '/app/BulletinBoard.php',
+        'App\\Carousel' => __DIR__ . '/../..' . '/app/Carousel.php',
         'App\\CollectPost' => __DIR__ . '/../..' . '/app/CollectPost.php',
         'App\\CollectQA' => __DIR__ . '/../..' . '/app/CollectQA.php',
         'App\\CollectUser' => __DIR__ . '/../..' . '/app/CollectUser.php',
@@ -477,6 +479,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'App\\Http\\Controllers\\Auth\\RegisterController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/RegisterController.php',
         'App\\Http\\Controllers\\Auth\\ResetPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ResetPasswordController.php',
         'App\\Http\\Controllers\\BulletinBoardController' => __DIR__ . '/../..' . '/app/Http/Controllers/BulletinBoardController.php',
+        'App\\Http\\Controllers\\CarouselController' => __DIR__ . '/../..' . '/app/Http/Controllers/CarouselController.php',
         'App\\Http\\Controllers\\CollectController' => __DIR__ . '/../..' . '/app/Http/Controllers/CollectController.php',
         'App\\Http\\Controllers\\CommentQAController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentQAController.php',
         'App\\Http\\Controllers\\ContractController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContractController.php',
@@ -517,6 +520,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'App\\QACategory' => __DIR__ . '/../..' . '/app/QACategory.php',
         'App\\QACategoryRelation' => __DIR__ . '/../..' . '/app/QACategoryRelation.php',
         'App\\QnA' => __DIR__ . '/../..' . '/app/QnA.php',
+        'App\\QnaAttachment' => __DIR__ . '/../..' . '/app/QnaAttachment.php',
         'App\\Services\\LinePayService' => __DIR__ . '/../..' . '/app/Services/LinePayService.php',
         'App\\Services\\LineService' => __DIR__ . '/../..' . '/app/Services/LineService.php',
         'App\\Services\\Response' => __DIR__ . '/../..' . '/app/Services/Response.php',
