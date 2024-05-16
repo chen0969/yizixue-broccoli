@@ -45,24 +45,6 @@ function headerSlide(){
 
     // 根據 currentPic 切換圖片
     changePic(currentPic);
-
-    // if (currentPic === 1) {
-    //     pic1();
-    // } else if (currentPic === 2) {
-    //     pic2();
-    // } else if (currentPic === 3) {
-    //     pic3();
-    // } else if (currentPic === 4) {
-    //     pic4();
-    // } else if (currentPic === 5) {
-    //     pic5();
-    // } else if (currentPic === 6) {
-    //     pic6();
-    // } else if (currentPic === 7) {
-    //     pic7();
-    // } else if (currentPic === 8) {
-    //     pic8();
-    // }
 }
 
 function changePic(index)
@@ -74,49 +56,42 @@ function changePic(index)
 
 function pic1(){
     $("#topic").text("海外留學，");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p1.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p1.jpg");
 }
 
 function pic2(){
     $("#topic").text("升學考試，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p2.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p2.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p2.jpg");
 }
 
 function pic3(){
     $("#topic").text("國際學校，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p3.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p3.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p3.jpg");
 }
 
 function pic4(){
     $("#topic").text("選課輔導，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p4.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p4.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p4.jpg");
 }
 
 function pic5(){
     $("#topic").text("校園導覽，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p5.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p5.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p5.jpg");
 }
 
 function pic6(){
     $("#topic").text("社團⽣活，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p6.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p6.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p6.jpg");
 }
 
 function pic7(){
     $("#topic").text("⼯作實習，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p7.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p7.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p7.jpg");
 }
 
 function pic8(){
     $("#topic").text("職涯創業，");
-    // $("#bannerImg").attr("src", "uploads/images/banner_p8.jpg");
-    $("#bannerImg").css("background-image", "url('uploads/images/banner_p8.jpg')");
+    $("#bannerImg").attr("src", "uploads/images/banner_p8.jpg");
 }
 
 $(window).scroll(function(){
@@ -169,7 +144,7 @@ function newsSlide(){
         $("#newsTopic").text(posts[currentNews-1].topic);
         // 根據 currentPic 切換圖片
         $(".newsCard .bgImg").css("background-image", "url(" + posts[currentNews - 1].image_path + ")");
-        $(".newsCard .info .tag").text(posts[currentNews-1].category);
+        $(".newsCard .info .tags").text(posts[currentNews-1].category);
         $(".newsCard .info .meta").text(posts[currentNews-1].title);
         $(".newsCard .info .brief").text(encodeHTML(posts[currentNews-1].body));
         $(".newsCard .info a").attr('href', posts[currentNews-1].url);

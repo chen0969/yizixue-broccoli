@@ -256,29 +256,6 @@
   animation: toggleIn 0.1s both;
 }
 
-.item {
-  width: 100%;
-  border-radius: 30px;
-  border: solid 1px #4C2A70;
-}
-.item div .card {
-  border: none;
-  padding: 10px;
-  z-index: -1;
-}
-.item div .card img {
-  padding: 20px;
-}
-.item div .name-card {
-  padding: 30px;
-  background: #BD9EBE;
-  text-align: center;
-  border-left: solid 30px white;
-}
-.item div .name-card h5 {
-  color: white;
-}
-
 .seniorPage {
   display: flex;
   flex-direction: row;
@@ -287,110 +264,109 @@
   flex-wrap: wrap;
 }
 .seniorPage a {
-  text-decoration: none;
-}
-.seniorPage .studentC {
-  height: 27rem !important;
-  padding: 10px;
-  display: grid;
-  grid-template-rows: 90% 10%;
-  max-width: 18.5rem;
-  min-width: 17rem;
-  margin: 1%;
+  all: unset;
   cursor: pointer;
 }
-.seniorPage .studentC .cards {
-  grid-column: 1/2;
+.seniorPage .sideNav {
+  background-color: #BD9EBE;
+}
+.seniorPage .cards {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  width: 100%;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+.seniorPage .cards .studentC {
   display: grid;
-  grid-template-rows: 40% 25% 15% 20%;
-  height: 100%;
+  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+  width: 15rem;
 }
-.seniorPage .studentC .cards .studentProfile {
-  grid-row: 1/2;
-  grid-column: 1/2;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-rows: repeat(12, auto);
+.seniorPage .cards .studentC svg {
+  grid-row: 1/21;
+  grid-column: 1/13;
+  width: 100%;
 }
-.seniorPage .studentC .cards .studentProfile .studentImg {
-  padding: 0;
-  grid-column: 1/4;
-  grid-row: 1/13;
+.seniorPage .cards .studentC svg path {
+  fill: #4C2A70;
+  stroke-width: 0px;
 }
-.seniorPage .studentC .cards .studentProfile .studentImg .bgImg {
+.seniorPage .cards .studentC svg polygon {
+  fill: #BD9EBE;
+  stroke-width: 0px;
+}
+.seniorPage .cards .studentC .studentImg {
+  grid-row: 3/15;
+  grid-column: 1/13;
+  padding: 0 0.5rem 0 0.5rem;
+}
+.seniorPage .cards .studentC .studentImg span {
   display: block;
-  width: 10rem;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 0.3rem solid #BD9EBE;
+}
+.seniorPage .cards .studentC .schoolImg {
+  grid-row: 11/16;
+  grid-column: 2/6;
+}
+.seniorPage .cards .studentC .schoolImg span {
+  display: block;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   aspect-ratio: 1/1;
 }
-.seniorPage .studentC .cards .studentProfile .videoBtn {
-  grid-column: 4/5;
-  grid-row: 3/6;
-  padding: 15px;
-}
-.seniorPage .studentC .cards .studentProfile .react {
-  grid-column: 4/6;
-  grid-row: 6/8;
-}
-.seniorPage .studentC .cards .studentProfile .react i {
-  font-size: 1.3rem !important;
-}
-.seniorPage .studentC .cards .studentProfile .react .fa-heart {
-  font-size: 15px;
-  color: red;
-  margin: 5px;
-}
-.seniorPage .studentC .cards .studentProfile .react .fa-heart span {
-  color: black;
-  font-family: "Rubik";
-}
-.seniorPage .studentC .cards .studentProfile .react .fa-bookmark span {
-  font-family: "Rubik";
-}
-.seniorPage .studentC .cards .name-card {
-  grid-row: 2/3;
-  grid-column: 1/2;
-  padding: 0 !important;
-  justify-self: end;
-  border: none;
-  width: 80%;
-  color: white;
-}
-.seniorPage .studentC .cards .postTags {
-  grid-row: 3/4;
-  grid-column: 1/2;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.seniorPage .studentC .cards .postTags span {
-  font-size: 12px;
-  padding: 5px;
-  margin: 5px;
-  background: #4C2A70;
-  color: #FFFFFF;
-  height: -moz-min-content !important;
-  height: min-content !important;
-}
-.seniorPage .studentC .cards .skillTags {
-  grid-row: 4/5;
-  grid-column: 1/2;
-  text-align: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  text-align: center;
-}
-.seniorPage .studentC .cards .skillTags span {
-  font-size: 12px;
-  padding: 1px;
-  margin: 5px;
+.seniorPage .cards .studentC h4 {
+  grid-row: 1/3;
+  grid-column: 2/8;
+  font-size: 1.3rem;
   color: #4C2A70;
-  border: 1px solid #4C2A70;
+  align-self: flex-end;
+  justify-self: start;
+}
+.seniorPage .cards .studentC h5 {
+  grid-row: 14/20;
+  grid-column: 5/12;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: white;
+  text-align: end;
+  align-self: center;
+  justify-self: end;
+}
+.seniorPage .cards .studentC h6 {
+  grid-row: 1/3;
+  grid-column: 8/12;
+  font-size: 0.8rem;
+  align-self: flex-end;
+  justify-self: end;
+}
+.seniorPage .cards .studentC .react {
+  grid-row: 17/19;
+  grid-column: 2/6;
+  font-size: 1.2rem;
+}
+.seniorPage .cards .studentC .postTags {
+  grid-row: 9/16;
+  grid-column: 10/13;
+}
+.seniorPage .cards .studentC .postTags a {
+  all: unset;
+  display: block;
+  background-color: #4C2A70;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 0.5rem;
+  letter-spacing: 0.1rem;
+  padding: 0.3rem;
+  margin: 0.2rem 0 0.2rem 0;
   border-radius: 5px;
-  height: -moz-min-content !important;
-  height: min-content !important;
 }
 
 .introduction .introCard {

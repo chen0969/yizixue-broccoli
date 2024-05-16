@@ -154,8 +154,8 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -507,6 +507,11 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'App\\Invite' => __DIR__ . '/../..' . '/app/Invite.php',
         'App\\LikePost' => __DIR__ . '/../..' . '/app/LikePost.php',
         'App\\LikeUser' => __DIR__ . '/../..' . '/app/LikeUser.php',
+        'App\\Observers\\PostCategoryObserver' => __DIR__ . '/../..' . '/app/Observers/PostCategoryObserver.php',
+        'App\\Observers\\PostObserver' => __DIR__ . '/../..' . '/app/Observers/PostObserver.php',
+        'App\\Observers\\QnAObserver' => __DIR__ . '/../..' . '/app/Observers/QnAObserver.php',
+        'App\\Observers\\SkillObserver' => __DIR__ . '/../..' . '/app/Observers/SkillObserver.php',
+        'App\\Observers\\UserObserver' => __DIR__ . '/../..' . '/app/Observers/UserObserver.php',
         'App\\PayOrder' => __DIR__ . '/../..' . '/app/PayOrder.php',
         'App\\PayProduct' => __DIR__ . '/../..' . '/app/PayProduct.php',
         'App\\Post' => __DIR__ . '/../..' . '/app/Post.php',

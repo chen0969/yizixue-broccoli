@@ -1,10 +1,14 @@
-# yizixue-broccoli
-Yizixue Broccoli edition
+## About this system
 
-# note of database
+yizixue 易子學系統
 
-Remember to find the "yizixue-data-for-test.sql"
-and import to the database.
+## About Laravel
 
-All the best,
-Broccoli
+Laravel is a web application framework with expressive, elegant syntax. Hopefully you have 1-2 year experience in using laravel framework before.
+
+## How to install
+
+1. $git pull this repo.
+2. $composer install
+3. $php artisan migrate
+4. enjoy :)
