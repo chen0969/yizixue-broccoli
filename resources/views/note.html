@@ -460,3 +460,40 @@
     <!-- namecard -->
     <p class="text-white namecard"><a href="{{route('get-introduction', $post->author->id)}}" class="text-decoration-none text-white">{{ $post->author->name  }}</a></p>
 </div>
+
+<!-- old author card -->
+<div class="authorCard">
+    <div>
+        <div class="avatar">
+            <img src="{{asset('uploads/'.$Data['article']->author->avatar)}}" alt="...">
+            <div style="background-color: #BD9EBE" class="text-white">
+                <h2 class="card-title text-center ">{{ $Data['article']->author->name }}</h2>
+                <h6 class="card-title text-center " style="background-color: #BD9EBE">
+                    {{ !is_null($Data['article']->author->universityItem) ? $Data['article']->author->universityItem->english_name: '' }}
+                </h6>
+            </div>
+        </div>
+        @if(!is_null($Data['article']->author->postCategory))
+        <div class="row row-cols-3 mt-3 tags" style="justify-content: center">
+            @foreach($Data['article']->author->postCategory as $count => $postCategory)
+            @if($count < 3) <span class="col-3 btn text-white m-1 tags"
+                style="background-color: #4C2A70; font-size: 0.6rem;">
+                {{$postCategory->postCategory->name}}</span>
+                @endif
+                @endforeach
+        </div>
+        @endif
+        @if(!is_null($Data['article']->author->skills))
+        <div class="row row-cols-3 mt-2" style="justify-content: center">
+            @foreach($Data['article']->author->skills as $count => $skill)
+            @if($count < 6) <span class="col-3 btn btn-outline-secondary m-1"
+                style="font-size: 0.6rem;">{{ $skill->skill->name }}</span>
+                @endif
+                @endforeach
+        </div>
+        @endif
+
+        <a href="{{route('article-list', $Data['article']->author->id)}}"
+            class="btn btn-outline text-center w-100">查看更多{{$Data['article']->author->name}}的文章</a>
+    </div>
+</div>

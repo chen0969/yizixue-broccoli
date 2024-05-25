@@ -106,7 +106,7 @@
     </nav>
 </div>
 
-<div class="container-fluid px-5">
+<div class="container-fluid px-5 adjOnSingleArticle">
     @yield('content')
 </div>
 

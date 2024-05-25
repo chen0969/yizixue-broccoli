@@ -452,6 +452,7 @@ footer .row .col-md-3 {
 footer .row .col-md-3 h6 {
   font-size: 1.2rem;
   text-align: start;
+  margin-bottom: 1rem;
 }
 footer .row .col-md-3 div {
   display: flex;
