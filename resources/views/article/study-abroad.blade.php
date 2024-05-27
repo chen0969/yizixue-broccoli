@@ -38,13 +38,13 @@
                     <ul class="list-group">
                         <li class="list-group-item" style="background-color: #4C2A70">
                             <a style="text-decoration: none;" class="text-white text-center" href="{{route('study-abroad')}}">
-                                <div class="border-bottom-light">全部文章</div>
+                                <div class="borderSetting">全部文章</div>
                             </a>
                         </li>
                         @forelse($Data['category'] as $category)
                             <li class="list-group-item" style="background-color: #4C2A70">
                                 <a style="text-decoration: none;" class="text-white text-center" href="{{route('study-abroad', ['category_id' => $category->id])}}">
-                                    <div class="border-bottom-light">{{$category->name}}</div>
+                                    <div class="borderSetting">{{$category->name}}</div>
                                 </a>
                             </li>
                         @empty
@@ -87,9 +87,9 @@
             <!-- posts -->
             <div class="col-9 postsSection">
                 @forelse($Data['posts'] as $post)
-                    <div class="container-fluid row mb-5 ml-5 cardborder">
+                    <div class="mb-5 ml-5 cardborder">
                         <!-- Post images -->
-                        <div class="postImg col-3">
+                        <div class="postImg">
                             <!-- post img -->
                             <div class="postPhoto">
                                 @if(is_null($post->image_path))
@@ -110,7 +110,7 @@
                             <p class="text-white namecard"><a href="{{route('get-introduction', $post->author->id)}}" class="text-decoration-none text-white">{{ $post->author->name  }}</a></p>
                         </div>
                         <!-- Post Contents -->
-                        <div class="col-9 postContents">
+                        <div class="postContents">
                             <div class="postTitle row" style="font-size:2rem;">
                                 <p class="text-break col-12">
                                     @forelse($post->category as $count => $cate)

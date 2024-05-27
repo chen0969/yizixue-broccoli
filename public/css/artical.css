@@ -65,11 +65,17 @@
   border: none;
 }
 
+.list-group {
+  border-radius: 30px;
+}
 .list-group a {
   font-size: 1.3rem;
 }
-.list-group .border-bottom-light {
-  border-bottom: solid 1px white !important;
+.list-group .borderSetting {
+  border-bottom: solid 1px white;
+}
+.list-group li:nth-last-child(1) .borderSetting {
+  border-bottom: none;
 }
 
 .callToAction .part1,
@@ -102,8 +108,12 @@
   box-shadow: 0px 5px 5px #C1C1C1;
   border-radius: 20px;
   padding: 1%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
 }
-.postsSection .postImg {
+.postsSection .cardborder .postImg {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   grid-template-rows: repeat(5, 1fr);
@@ -111,12 +121,12 @@
   height: 100%;
   align-self: center;
 }
-.postsSection .postImg .postPhoto {
+.postsSection .cardborder .postImg .postPhoto {
   width: 100%;
   grid-column: 1/6;
   grid-row: 1/6;
 }
-.postsSection .postImg .postPhoto span {
+.postsSection .cardborder .postImg .postPhoto span {
   display: block;
   background-repeat: no-repeat;
   background-size: cover;
@@ -125,13 +135,13 @@
   aspect-ratio: 1/1;
   border-radius: 1rem;
 }
-.postsSection .postImg .userimg {
+.postsSection .cardborder .postImg .userimg {
   grid-column: 1/2;
   grid-row: 5/6;
   width: 100%;
   background-color: white;
 }
-.postsSection .postImg .userimg span {
+.postsSection .cardborder .postImg .userimg span {
   display: block;
   background-repeat: no-repeat;
   background-size: cover;
@@ -139,7 +149,7 @@
   width: 100%;
   aspect-ratio: 1/1;
 }
-.postsSection .postImg p {
+.postsSection .cardborder .postImg p {
   width: 100%;
   font-size: 0.8rem;
   grid-column: 2/6;
@@ -150,33 +160,34 @@
   background-color: #BD9EBE;
   text-wrap: nowrap;
 }
-.postsSection .postContents {
+.postsSection .cardborder .postContents {
+  width: 70%;
   padding: 0.5rem;
 }
-.postsSection .postContents .postTitle {
+.postsSection .cardborder .postContents .postTitle {
   display: flex;
   flex-direction: row;
   width: 100%;
   align-items: center;
   justify-content: start;
 }
-.postsSection .postContents .postTitle h5 {
+.postsSection .cardborder .postContents .postTitle h5 {
   font-size: 2rem;
   color: #4C2A70;
   font-weight: 400;
   margin: 0;
 }
-.postsSection .postContents .postTitle p {
+.postsSection .cardborder .postContents .postTitle p {
   display: flex;
   flex-direction: row;
   align-items: center;
   margin: 0;
 }
-.postsSection .postContents .postTitle p a {
+.postsSection .cardborder .postContents .postTitle p a {
   background-color: #4C2A70;
   border-radius: 0.5rem;
 }
-.postsSection .postContents .postTitle p a span {
+.postsSection .cardborder .postContents .postTitle p a span {
   font-size: 1rem;
   letter-spacing: 0.1rem;
   font-weight: 300;
@@ -185,33 +196,33 @@
   height: -moz-min-content;
   height: min-content;
 }
-.postsSection .postContents .content {
+.postsSection .cardborder .postContents .content {
   color: #C1C1C1;
   border-bottom: solid 2px #C1C1C1;
   margin-top: 0.5rem;
 }
-.postsSection .postContents .content .readMore {
+.postsSection .cardborder .postContents .content .readMore {
   width: 100%;
   font-size: 0.8rem;
   text-align: end;
   margin: 0;
   color: #4C2A70;
 }
-.postsSection .postContents .socialIcons {
+.postsSection .cardborder .postContents .socialIcons {
   margin-left: 0.1rem;
   align-items: center;
   margin-top: 0.5rem;
   padding: 0;
 }
-.postsSection .postContents .socialIcons i {
+.postsSection .cardborder .postContents .socialIcons i {
   display: flex;
   align-items: center;
   padding: 0.5rem;
 }
-.postsSection .postContents .socialIcons i span {
+.postsSection .cardborder .postContents .socialIcons i span {
   padding-left: 0.2rem;
 }
-.postsSection .postContents .socialIcons p {
+.postsSection .cardborder .postContents .socialIcons p {
   margin: 0;
   padding: 0;
   text-align: end;
@@ -225,7 +236,8 @@
 
 .seniorPage-breadcrumbs div,
 .uniListPage-breadcrumbs div,
-.singleArticle-breadcrumbs div {
+.singleArticle-breadcrumbs div,
+.introduction-breadcrumbs div {
   gap: 2rem;
 }
 .seniorPage-breadcrumbs h4,
@@ -233,13 +245,16 @@
 .uniListPage-breadcrumbs h4,
 .uniListPage-breadcrumbs a,
 .singleArticle-breadcrumbs h4,
-.singleArticle-breadcrumbs a {
+.singleArticle-breadcrumbs a,
+.introduction-breadcrumbs h4,
+.introduction-breadcrumbs a {
   font-size: 2rem;
   font-weight: 300;
 }
 .seniorPage-breadcrumbs h3,
 .uniListPage-breadcrumbs h3,
-.singleArticle-breadcrumbs h3 {
+.singleArticle-breadcrumbs h3,
+.introduction-breadcrumbs h3 {
   font-size: 3rem;
   font-weight: 300;
   color: #4C2A70;
@@ -549,188 +564,390 @@
 }
 
 .introduction .introCard {
-  display: grid;
-  grid-template-columns: repeat(12, 1fr);
-  grid-template-rows: repeat(12, auto);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: end;
+  padding-left: 3rem;
+  gap: 8rem;
+  padding-bottom: 8rem;
 }
-.introduction .introCard .portriat {
-  grid-column: 1/5;
-  grid-row: 1/12;
-  margin: 2%;
-  border-radius: 10%;
-}
-.introduction .introCard .portriat span {
-  display: block;
-  width: 100%;
+.introduction .introCard div.portriat {
+  width: 30%;
   aspect-ratio: 1/1;
   background-position: center;
   background-size: cover;
 }
-.introduction .introCard .nameCard {
-  grid-column: 3/6;
-  grid-row: 11/13;
+.introduction .introCard .infoSection {
+  width: 55%;
 }
-.introduction .introCard .postCateg {
-  grid-column: 6/13;
+.introduction .introCard .infoSection .userName {
+  background-color: #BD9EBE;
+  color: white;
+  padding: 1rem 1rem 1rem 3rem;
+  font-size: 3rem;
+  border-radius: 1rem 0 0 1rem;
+}
+.introduction .introCard .infoSection .details {
+  padding: 1rem;
+  border: solid 1px black;
+  border-radius: 1rem 0 0 1rem;
+  display: grid;
+  grid-template-columns: 60% auto;
+  grid-template-rows: auto auto;
+}
+.introduction .introCard .infoSection .details .schoolInfo {
+  grid-column: 1/2;
+  grid-row: 1/2;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: start;
+  border: solid 1px black;
+  gap: 0.5rem;
+  background-color: #BD9EBE;
+  border-radius: 1rem;
+  padding: 0.5rem;
+}
+.introduction .introCard .infoSection .details .schoolInfo .schoolImg {
+  width: 5rem;
+  display: block;
+  aspect-ratio: 1/1;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+.introduction .introCard .infoSection .details .schoolInfo div {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+.introduction .introCard .infoSection .details .schoolInfo div .schoolNameE, .introduction .introCard .infoSection .details .schoolInfo div .schoolNameC {
+  color: white;
+  font-size: 1.5rem;
+  margin: 0;
+}
+.introduction .introCard .infoSection .details .schoolInfo h3 {
+  padding: 0.5rem 1.5rem 0.5rem 1.5rem;
+  background-color: white;
+  border: solid 1px black;
+  color: #4C2A70;
+  border-radius: 10px;
+  margin: 0;
+}
+.introduction .introCard .infoSection .details .postCateg {
+  grid-column: 1/2;
+  grid-row: 2/3;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  width: 100%;
+  padding: 1rem 0 0 0;
+}
+.introduction .introCard .infoSection .details .postCateg h4 {
+  width: 30%;
+  padding: 0.5rem;
+  background-color: #4C2A70;
+  color: white;
+  border-radius: 10px;
+  text-align: center;
+}
+.introduction .introCard .infoSection .details .skillCateg {
+  grid-column: 2/3;
   grid-row: 1/3;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  width: 100%;
+  height: 12rem;
+  padding-left: 1rem;
 }
-.introduction .introCard .skill {
-  grid-column: 6/13;
-  grid-row: 3/10;
+.introduction .introCard .infoSection .details .skillCateg h6 {
+  display: block;
+  padding: 0.5rem;
+  width: 30%;
+  height: -moz-fit-content;
+  height: fit-content;
+  border: solid 1px #4C2A70;
+  background-color: white;
+  color: #4C2A70;
+  border-radius: 10px;
+  text-align: center;
 }
-.introduction .introCard .react {
-  grid-column: 10/13;
-  grid-row: 10/11;
+.introduction .introCard .infoSection .interaction {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+}
+.introduction .introCard .infoSection .interaction .react {
   display: flex;
   align-items: center;
-  gap: 2px;
-  margin: 5px;
+  gap: 2rem;
+  width: 30%;
 }
-.introduction .introCard .react i {
+.introduction .introCard .infoSection .interaction .react i {
   font-size: 2.5rem;
 }
-.introduction .introCard .react svg {
-  width: 2.2rem;
-}
-.introduction .introCard .react svg path {
-  fill: black;
-}
-.introduction .introCard .react svg circle {
-  fill: none;
-  stroke: #000000;
-  stroke-width: 9;
-  stroke-miterlimit: 10;
-}
-.introduction .introCard .state {
-  grid-column: 10/11;
-  grid-row: 12/13;
-  font-size: 1.5rem;
-  color: gray;
-}
-.introduction .introCard .socialBtn {
-  grid-column: 11/13;
-  grid-row: 12/13;
+.introduction .introCard .infoSection .interaction .socialBtn {
   display: flex;
+  flex-direction: row;
   align-items: center;
-  gap: 1rem;
-  background-color: #4C2A70;
+  justify-content: start;
+  width: 70%;
+  gap: 3rem;
   padding: 1rem;
 }
-.introduction .introCard .socialBtn a img {
-  width: 3rem;
-}
-.introduction .introCard .socialBtn i {
-  font-size: 2.5rem;
+.introduction .introCard .infoSection .interaction .socialBtn a {
+  all: unset;
+  cursor: pointer;
+  display: block;
+  text-align: center;
+  font-size: 1.8rem;
+  border-radius: 10rem;
+  background-color: #4C2A70;
+  height: 3rem;
+  width: 12rem;
+  font-size: 2rem;
   color: white;
-}
-.introduction .introCard .socialBtn svg {
-  width: 2.5rem;
 }
 .introduction .detail p {
   color: gray;
   font-size: 1.5rem;
 }
+.introduction .detail .selfIntro {
+  background-color: #d9d9d9;
+}
+.introduction .detail .selfIntro h2 {
+  background-color: #BD9EBE;
+  color: white;
+  width: 40%;
+  text-align: end;
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem 5rem 1rem 1rem;
+  transform: translateY(-2.5rem);
+}
+.introduction .detail .selfIntro .selfContent > p {
+  color: black;
+  font-size: 1.2rem;
+}
+.introduction .detail .selfIntro .selfContent, .introduction .detail .selfIntro .edu, .introduction .detail .selfIntro .social, .introduction .detail .selfIntro .contact {
+  background-color: white;
+  margin: 1rem 10rem 1rem 10rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  border: solid 1px black;
+}
+.introduction .detail .selfIntro .selfContent h3, .introduction .detail .selfIntro .edu h3, .introduction .detail .selfIntro .social h3, .introduction .detail .selfIntro .contact h3 {
+  color: #4C2A70;
+}
+.introduction .detail .selfIntro .selfContent div, .introduction .detail .selfIntro .edu div, .introduction .detail .selfIntro .social div, .introduction .detail .selfIntro .contact div {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+.introduction .detail .selfIntro .selfContent div svg, .introduction .detail .selfIntro .edu div svg, .introduction .detail .selfIntro .social div svg, .introduction .detail .selfIntro .contact div svg {
+  width: 4rem;
+  aspect-ratio: 1/1;
+}
+.introduction .detail .selfIntro .selfContent div svg path, .introduction .detail .selfIntro .edu div svg path, .introduction .detail .selfIntro .social div svg path, .introduction .detail .selfIntro .contact div svg path {
+  fill: #5b5b5b;
+}
+.introduction .detail .selfIntro .selfContent div p, .introduction .detail .selfIntro .edu div p, .introduction .detail .selfIntro .social div p, .introduction .detail .selfIntro .contact div p {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+.introduction .detail .selfIntro .selfContent div p i, .introduction .detail .selfIntro .edu div p i, .introduction .detail .selfIntro .social div p i, .introduction .detail .selfIntro .contact div p i {
+  font-size: 4rem;
+}
+.introduction .detail h2.myArtical {
+  background-color: #BD9EBE;
+  color: white;
+  width: 40%;
+  text-align: end;
+  border-radius: 0 1rem 1rem 0;
+  padding: 1rem 5rem 1rem 1rem;
+  margin-top: 5rem;
+  transform: translateY(6rem);
+}
+.introduction .detail .postCard {
+  background-color: #d9d9d9;
+  margin: 5rem;
+  padding: 2rem;
+  border-radius: 2rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
 .introduction .detail .postCard .card {
   margin: 1%;
-  width: 40vw;
+  width: 30rem;
+  height: 10rem;
   padding: 0;
   border-radius: 20px;
   border: solid 1px #BD9EBE !important;
   display: grid;
   grid-template-columns: repeat(6, auto);
   box-shadow: -5px 5px 10px #C1C1C1;
+  overflow: hidden;
 }
 .introduction .detail .postCard .card .imgPart {
-  grid-column: 1/3;
+  grid-column: 1/2;
   grid-row: 1/2;
-  width: 8rem;
-  padding: 10%;
-  border-radius: 30px;
-}
-.introduction .detail .postCard .card .imgPart span {
-  display: block;
+  height: 10rem;
+  border-radius: 20px;
   background-repeat: no-repeat;
-  background-size: contain;
+  background-size: cover;
   background-position: center;
   aspect-ratio: 1/1;
 }
 .introduction .detail .postCard .card .infoPart {
-  grid-column: 3/7;
+  all: unset;
+  display: block;
+  grid-column: 2/7;
   grid-row: 1/2;
+  padding: 0.5rem;
 }
-.introduction .detail .postCard .card .infoPart div {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
+.introduction .detail .postCard .card .infoPart h3 {
+  font-size: 1.5rem;
+  font-weight: 200;
+  color: #4C2A70;
 }
-.introduction .detail .postCard .card .infoPart div p {
+.introduction .detail .postCard .card .infoPart p {
   font-size: 1rem;
+  color: #C1C1C1;
 }
-.introduction .detail .postCard .card .infoPart div a.readMore {
-  font-size: 0.8rem;
-  color: #BD9EBE;
-  width: 100%;
+.introduction .detail .postCard .card .infoPart p.content {
+  color: #5b5b5b;
+}
+.introduction .detail .postCard .card .infoPart .react {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.introduction .detail .postCard .card .infoPart .react p.date {
   text-align: end;
-  text-decoration: none;
+  margin: 0;
 }
 .introduction .attachment {
-  padding: 1.5rem 0 1.5rem;
-  justify-content: space-evenly;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-self: start;
+  gap: 2rem;
+  margin: 5rem;
 }
 .introduction .attachment .file {
-  justify-content: start;
-  align-items: end;
-  width: 8rem;
-  height: 8rem;
-  border-radius: 10%;
+  all: unset;
+  display: block;
 }
-.introduction .carouselSection .item {
+.introduction .attachment .file svg {
+  width: 10rem;
+  height: 10rem;
+}
+.introduction .attachment .file svg text {
+  overflow-x: hidden;
+}
+.introduction .carouselSection .studentC {
+  padding: 1rem;
+  display: grid;
+  grid-template-rows: repeat(20, 1fr);
+  grid-template-columns: repeat(12, 1fr);
+}
+.introduction .carouselSection .studentC svg {
+  grid-row: 1/21;
+  grid-column: 1/13;
   width: 100%;
-  border-radius: 30px;
-  border: solid 1px #4C2A70;
 }
-.introduction .carouselSection .item div .card {
-  border: none;
-  padding: 10px;
-  z-index: -1;
+.introduction .carouselSection .studentC svg path {
+  fill: #4C2A70;
+  stroke-width: 0px;
 }
-.introduction .carouselSection .item div .card .bgImg {
-  width: 80%;
+.introduction .carouselSection .studentC svg polygon {
+  fill: #BD9EBE;
+  stroke-width: 0px;
+}
+.introduction .carouselSection .studentC .studentImg {
+  grid-row: 3/15;
+  grid-column: 1/13;
+  padding: 0 0.5rem 0 0.5rem;
+}
+.introduction .carouselSection .studentC .studentImg span {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  aspect-ratio: 1/1;
+  border: 0.3rem solid #BD9EBE;
+}
+.introduction .carouselSection .studentC .schoolImg {
+  grid-row: 10/15;
+  grid-column: 2/6;
+}
+.introduction .carouselSection .studentC .schoolImg span {
   display: block;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   aspect-ratio: 1/1;
 }
-.introduction .carouselSection .item div .name-card {
-  padding: 30px;
-  background: #BD9EBE;
-  text-align: center;
-  border-left: solid 30px white;
+.introduction .carouselSection .studentC h4 {
+  grid-row: 1/3;
+  grid-column: 2/8;
+  font-size: 1.3rem;
+  color: #4C2A70;
+  align-self: flex-end;
+  justify-self: start;
 }
-.introduction .carouselSection .item div .name-card h5 {
-  color: white;
-}
-.introduction .carouselSection .item div .info {
-  margin: 20px;
-}
-.introduction .carouselSection .item div .info h5 {
-  text-align: end;
-  font-size: 0.9rem;
-}
-.introduction .carouselSection .item div .info h5 a {
-  text-decoration: none;
-  color: #4676ED;
+.introduction .carouselSection .studentC h5 {
+  grid-row: 13/19;
+  grid-column: 5/12;
   font-size: 1.2rem;
-  margin: 0.5rem;
+  font-weight: 400;
+  color: white;
+  text-align: end;
+  align-self: center;
+  justify-self: end;
 }
-.introduction .carouselSection .studentNav .owl-stage {
-  width: -moz-max-content !important;
-  width: max-content !important;
+.introduction .carouselSection .studentC h6 {
+  grid-row: 1/3;
+  grid-column: 8/12;
+  font-size: 0.8rem;
+  align-self: flex-end;
+  justify-self: end;
 }
-.introduction .carouselSection .studentNav .owl-item {
-  width: auto !important;
+.introduction .carouselSection .studentC .react {
+  grid-row: 17/19;
+  grid-column: 2/6;
+  font-size: 1.2rem;
+}
+.introduction .carouselSection .studentC .postTags {
+  grid-row: 8/15;
+  grid-column: 9/13;
+}
+.introduction .carouselSection .studentC .postTags p {
+  all: unset;
+  display: block;
+  background-color: #4C2A70;
+  width: -moz-fit-content;
+  width: fit-content;
+  font-size: 0.7rem;
+  letter-spacing: 0.1rem;
+  padding: 0.3rem;
+  margin: 0.2rem 0 0.2rem 0;
+  border-radius: 5px;
 }
 .introduction .carouselSection .studentNav .owl-nav {
   display: flex;
@@ -749,107 +966,14 @@
   width: 20px !important;
   transition: 0.1s !important;
 }
-.introduction .carouselSection .studentC {
-  height: 27rem !important;
-  padding: 10px;
-  display: grid;
-  grid-template-rows: 90% 10%;
-  max-width: 18.5rem;
-  min-width: 17rem;
+.introduction a.moreTag {
+  all: unset;
+  display: inline-block;
   cursor: pointer;
-}
-.introduction .carouselSection .studentC .cards {
-  grid-column: 1/2;
-  display: grid;
-  grid-template-rows: 40% 25% 15% 20%;
-  height: 100%;
-}
-.introduction .carouselSection .studentC .cards .studentProfile {
-  grid-row: 1/2;
-  grid-column: 1/2;
-  display: grid;
-  grid-template-columns: repeat(5, auto);
-  grid-template-rows: repeat(12, auto);
-}
-.introduction .carouselSection .studentC .cards .studentProfile .studentImg {
-  padding: 0;
-  grid-column: 1/4;
-  grid-row: 1/13;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .studentImg .bgImg {
-  display: block;
-  width: 10rem;
-  background-repeat: no-repeat;
-  background-size: contain;
-  background-position: center;
-  aspect-ratio: 1/1;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .videoBtn {
-  grid-column: 4/5;
-  grid-row: 3/6;
-  padding: 30px;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .react {
-  grid-column: 4/6;
-  grid-row: 6/8;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .react i {
-  font-size: 1.3rem !important;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .react .fa-heart {
-  font-size: 15px;
-  color: red;
-  margin: 5px;
-}
-.introduction .carouselSection .studentC .cards .studentProfile .react .fa-heart span {
-  color: black;
-  font-family: "Rubik";
-}
-.introduction .carouselSection .studentC .cards .studentProfile .react .fa-bookmark span {
-  font-family: "Rubik";
-}
-.introduction .carouselSection .studentC .cards .name-card {
-  grid-row: 2/3;
-  grid-column: 1/2;
-  padding: 0 !important;
-  justify-self: end;
-  border: none;
-  width: 80%;
-  color: white;
-}
-.introduction .carouselSection .studentC .cards .postTags {
-  grid-row: 3/4;
-  grid-column: 1/2;
-  margin-top: 20px;
-  margin-bottom: 20px;
-  text-align: center;
-}
-.introduction .carouselSection .studentC .cards .postTags span {
-  font-size: 12px;
-  padding: 5px;
-  margin: 5px;
-  background: #4C2A70;
-  color: #FFFFFF;
-  height: -moz-min-content !important;
-  height: min-content !important;
-}
-.introduction .carouselSection .studentC .cards .skillTags {
-  grid-row: 4/5;
-  grid-column: 1/2;
-  text-align: center;
-  margin-bottom: 5px;
-  margin-top: 5px;
-  text-align: center;
-}
-.introduction .carouselSection .studentC .cards .skillTags span {
-  font-size: 12px;
-  padding: 1px;
-  margin: 5px;
   color: #4C2A70;
-  border: 1px solid #4C2A70;
-  border-radius: 5px;
-  height: -moz-min-content !important;
-  height: min-content !important;
+  font-size: 1.5rem;
+  text-align: end;
+  width: 90%;
 }
 
 .postsSection-artical-list {
@@ -1619,5 +1743,24 @@ footer .row .col-md-3 div a {
   }
   to {
     transform: scaleY(1);
+  }
+}
+@media only screen and (max-width: 1400px) {
+  .studentC h5 {
+    font-size: 1rem !important;
+  }
+  .studentC h6 {
+    grid-column: 3/12 !important;
+  }
+  .studentC .postTags {
+    grid-column: 8/14 !important;
+  }
+  .studentC .postTags p {
+    font-size: 0.5rem !important;
+  }
+  .introduction .introCard .infoSection .details .status {
+    text-align: center;
+    width: 8rem;
+    font-size: 1rem;
   }
 }/*# sourceMappingURL=artical.css.map */

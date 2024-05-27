@@ -497,3 +497,102 @@
             class="btn btn-outline text-center w-100">查看更多{{$Data['article']->author->name}}的文章</a>
     </div>
 </div>
+
+<!-- introduction carousel old -->
+<div class="owl-carousel owl-theme studentNav">
+    @foreach ($Data['vip'] as $key => $user)
+    <!-- student card -->
+    <div class="item studentC" onclick="cardClickable({{ $user->id }})">
+        <div>
+            <div class="cards">
+                <!-- student profile pic -->
+                <div class="studentProfile">
+                    <div class="studentImg">
+                        @if(is_null($user->avatar))
+                        <!-- <img src="{{asset('uploads/images/default_avatar.png')}}" alt="Card image cap" width="200" height="200"> -->
+                        <div class=" d-flex justify-content-center">
+                            <span style="background-image: url('{{asset('uploads/images/default_avatar.png')}}') ;"
+                                class="bgImg">&nbsp</span>
+                        </div>
+                        @else
+                        <!-- <img src="/uploads/{{ $user->avatar }}" alt="Card image cap" width="200" height="200"> -->
+                        <div class=" d-flex justify-content-center">
+                            <span style="background-image: url('/uploads/{{ $user->avatar }}');"
+                                class="bgImg">&nbsp</span>
+                        </div>
+                        @endif
+                    </div>
+                    <!-- video Btn -->
+                    <div class="videoBtn" onclick="event.stopPropagation(); event.preventDefault();">
+                        @if(is_null($user->profile_video))
+                        <a class="text" onClick="alert('學長姐尚未上傳影音');">
+                            <img class="card-img-top"
+                                src="https://cdn.pixabay.com/photo/2016/02/01/12/33/play-1173551_640.png"
+                                alt="Card image cap">
+                        </a>
+                        @else
+                        <a href="{{ $user->profile_video }}" class="text" target="_blank">
+                            <img class="card-img-top"
+                                src="https://cdn.pixabay.com/photo/2016/02/01/12/33/play-1173551_640.png"
+                                alt="Card image cap">
+                        </a>
+                        @endif
+                    </div>
+                    <!-- react icons -->
+                    <div class="react" onclick="event.stopPropagation(); event.preventDefault();">
+                        @if(auth()->check())
+                        <i class="fa fa-heart" style="
+                                            color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
+                                            " data-id="{{$user->id}}">
+                            <span class="text-black">{{$user->likedUser->count()}}</span>
+                        </i>
+                        <i class="fa fa-bookmark" data-id="{{$user->id}}" style="
+                                               color:@if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
+                                               ">
+                            <span class="text-black">{{$user->collectedUser->count()}}</span>
+                        </i>
+                        @else
+                        <i class="fa fa-heart text-black" data-id="{{$user->id}}">
+                            <span class="text-black">{{$user->likedUser->count()}}</span>
+                        </i>
+                        <i class="fa fa-bookmark" data-id="{{$user->id}}">
+                            <span class="text-black">{{$user->collectedUser->count()}}</span>
+                        </i>
+                        @endif
+                    </div>
+                </div>
+                <!-- name card -->
+                {{--                                    <a href="{{route('get-introduction', $user->id)}}"
+                class="text-decoration-none">--}}
+                <div class="name-card">
+                    <h4>{{ $user->name }}</h4>
+                    <h6>{{ !is_null($user->universityItem) ? $user->universityItem->english_name:'' }}</h6>
+                </div>
+                {{--                                    </a>--}}
+                <!-- post tag -->
+                <div class="postTags  row row-cols-3 mt-2 justify-content-center">
+                    @foreach($user->postCategory as $key => $postCategoryRelation)
+                    @if($key< 3) <span href="#" class="col-3 btn btn-outline-secondary m-1"
+                        style="font-size: 0.6rem;">{{$postCategoryRelation->postCategory->name}}</span>
+                        @endif
+                        @endforeach
+                </div>
+                <!-- skill tag -->
+                <div class="skillTags  row row-cols-3 mt-2 justify-content-center">
+                    @foreach($user->skills as $key => $skillRelation)
+                    @if($key< 6) <span href="#" class="col-3 btn btn-outline-secondary m-1"
+                        style="font-size: 0.6rem;">{{$skillRelation->skill->name}}</span>
+                        @if($key==2)
+                        <br>
+                        @endif
+                        @endif
+                        @endforeach
+                </div>
+                <!-- more info -->
+                <a href="{{url('introduction/'.$user->id)}}"
+                    style="text-decoration: none; color: dimgrey; text-align:center;">點擊查看更多</a>
+            </div>
+        </div>
+    </div>
+    @endforeach
+</div>

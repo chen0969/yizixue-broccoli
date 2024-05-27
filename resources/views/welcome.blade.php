@@ -38,8 +38,9 @@
                 </div>
                 <!-- background -->
                 <svg viewBox="0 0 330 480">
-                    <path d="M301.9,2c14.5,0,26.4,11.8,26.4,26.4v306.7c0,14.5-11.8,26.4-26.4,26.4H28.1c-14.5,0-26.4-11.8-26.4-26.4V28.4C1.8,13.8,13.6,2,28.1,2h273.7M301.9,0H28.1C12.5,0-.2,12.7-.2,28.4v306.7c0,15.7,12.7,28.4,28.4,28.4h273.7c15.7,0,28.4-12.7,28.4-28.4V28.4c0-15.7-12.7-28.4-28.4-28.4h0Z"/>
-                    <polygon points="330 480 0 480 0 305 330 337.1 330 480"/>
+                    <path
+                        d="M301.9,2c14.5,0,26.4,11.8,26.4,26.4v306.7c0,14.5-11.8,26.4-26.4,26.4H28.1c-14.5,0-26.4-11.8-26.4-26.4V28.4C1.8,13.8,13.6,2,28.1,2h273.7M301.9,0H28.1C12.5,0-.2,12.7-.2,28.4v306.7c0,15.7,12.7,28.4,28.4,28.4h273.7c15.7,0,28.4-12.7,28.4-28.4V28.4c0-15.7-12.7-28.4-28.4-28.4h0Z" />
+                    <polygon points="330 480 0 480 0 305 330 337.1 330 480" />
                 </svg>
                 <!-- school img -->
                 <div class="schoolImg">
@@ -270,11 +271,13 @@
             <div class="info">
                 <h5 id="newsTopic">{{$Data['Post']->title}}</h5>
                 <div class="tags">
-                    @forelse($Data['Post']->category as $relation)
-                    <p>{{$relation->postCategory->name}}</p>
-                    @empty
-                    <p>nothing here.</p>
-                    @endforelse
+                    @foreach($Data['Post']->category as $relation)
+                    @if($relation->postCategory && $relation->postCategory->name)
+                    <p>{{ $relation->postCategory->name }}</p>
+                    @else
+                    <p>Category name not found</p>
+                    @endif
+                    @endforeach
                 </div>
                 <p class="meta">{{$Data['Post']->title}}</p>
                 <p class="brief">{!! \Illuminate\Support\Str::limit(strip_tags($Data['Post']->body)) !!}</p>
@@ -305,15 +308,18 @@
                 class="text-decoration-none text-black">德國</a>｜其他歐洲
         </p>
         <p>
-            <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"class="text-decoration-none text-black">台灣</a>｜
-            <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"class="text-decoration-none text-black">新加坡</a>｜
+            <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"
+                class="text-decoration-none text-black">台灣</a>｜
+            <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"
+                class="text-decoration-none text-black">新加坡</a>｜
             <a href="{{route('university-list', ['country'=>'JAPAN'])}}" class="text-decoration-none text-black">⽇本</a>｜
             <a href="{{route('university-list', ['country'=>'KOREA'])}}" class="text-decoration-none text-black">韓國</a>｜
             其他亞洲
         </p>
         <p>
             中國|
-            <a href="{{route('university-list', ['country'=>'HONG KONG'])}}"class="text-decoration-none text-black">香港</a>｜
+            <a href="{{route('university-list', ['country'=>'HONG KONG'])}}"
+                class="text-decoration-none text-black">香港</a>｜
             <a href="{{route('university-list', ['country'=>'MACAU'])}}" class="text-decoration-none text-black">澳⾨</a>
         </p>
     </div>

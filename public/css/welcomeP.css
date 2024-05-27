@@ -234,10 +234,14 @@ header .headerCard svg polygon {
   border: 2px solid #4C2A70;
   border-radius: 2rem;
   transform: scale(0.8);
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .uCardSection .sliderUni .uniCard .uniLogo span {
   display: block;
-  width: 8rem;
+  height: 5rem;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
@@ -246,11 +250,15 @@ header .headerCard svg polygon {
 .uCardSection .sliderUni .uniCard h6 {
   font-size: 0.8rem;
 }
+.uCardSection .sliderUni .uniCard h5 {
+  font-size: 1rem;
+}
 .uCardSection .sliderUni .uniCard h4 {
-  font-size: 0.8rem;
-  width: 90%;
+  font-size: 1rem;
+  height: 40%;
   text-align: center;
-  padding: 2rem;
+  align-content: center;
+  padding: 1rem;
   background-color: #BD9EBE;
   color: white;
 }
@@ -379,6 +387,7 @@ header .headerCard svg polygon {
   flex-direction: column;
   padding: 10px;
   margin: 0;
+  overflow-x: hidden;
 }
 .newsSection .newsbg .newsCard .info h5, .newsSection .newsbg .newsCard .info p {
   margin: 0;
@@ -463,4 +472,22 @@ footer .row .col-md-3 div a {
   text-decoration: none;
   color: white;
   margin-bottom: 1rem;
+}
+
+@media only screen and (max-width: 1400px) {
+  .studentC h5 {
+    font-size: 1rem !important;
+  }
+  .studentC h6 {
+    grid-column: 3/12 !important;
+  }
+  .studentC .postTags {
+    grid-column: 9/14 !important;
+  }
+  .studentC .postTags p {
+    font-size: 0.2rem !important;
+  }
+  .joinSection a, .joinSection p {
+    font-size: 2rem !important;
+  }
 }/*# sourceMappingURL=welcomeP.css.map */

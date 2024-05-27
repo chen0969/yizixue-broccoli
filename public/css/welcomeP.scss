@@ -232,20 +232,30 @@ header{
             border: 2px solid $primePurple;
             border-radius: 2rem;
             transform: scale(0.8);
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
             .uniLogo span{
                 display: block;
-                width: 8rem;
+                height: 5rem;
                 background-repeat: no-repeat;
                 background-size: contain;
                 background-position: center;
                 aspect-ratio: 1/1;
             }
-            h6{font-size: 0.8rem;}
-            h4{
+            h6{
                 font-size: 0.8rem;
-                width: 90%;
+            }
+            h5{
+                font-size: 1rem;
+            }
+            h4{
+                font-size: 1rem;
+                height: 40%;
                 text-align: center;
-                padding: 2rem;
+                align-content: center;
+                padding: 1rem;
                 background-color: $primePurpleLight;
                 color: white;
             }
@@ -369,6 +379,7 @@ header{
                 flex-direction: column;
                 padding: 10px;
                 margin: 0;
+                overflow-x: hidden;
                 h5, p{margin: 0;}
                 h5{
                     border-left: solid 5px red; 
@@ -448,4 +459,28 @@ footer{
         }
     }
     
+}
+
+@media only screen and (max-width: 1400px) {
+    .studentC{
+        h5{
+            font-size: 1rem !important;
+        }
+        h6{
+            grid-column: 3/12 !important;
+        }
+        .postTags{
+            grid-column: 9/14 !important;
+            p{
+                font-size: 0.2rem !important;
+            }
+        }
+    }
+
+    .joinSection{
+        a, p{
+            font-size: 2rem !important;
+        }
+    }
+
 }
