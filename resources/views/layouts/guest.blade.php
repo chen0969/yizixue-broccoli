@@ -48,8 +48,8 @@
                 aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav">
-                <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('senior')}}">學長姐|快找</a></li>
-                <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('study-abroad')}}">留學誌|推薦</a></li>
+                <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('senior')}}">學長姐 | 快找</a></li>
+                <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('study-abroad')}}">留學誌 | 推薦</a></li>
                 @if(auth()->check())
                     <li class="nav-item"><a class="nav-link scrollFunction" href="{{route('home')}}">易子學系統</a></li>
                     <li class="nav-item">
@@ -134,7 +134,7 @@
 <script>
     $(".owl-carousel").owlCarousel({
         loop: true, // 循環播放
-        margin: 10, // 外距 10px
+        margin: 0, // 外距 10px
         nav: false, // 顯示點點
         responsive: {
             0: {
@@ -147,7 +147,7 @@
                 items: 4 // 螢幕大小為 1000 以上 顯示 5 個項目
             },
             1500: {
-                items: 5 // 螢幕大小為 1000 以上 顯示 5 個項目
+                items: 4 // 螢幕大小為 1000 以上 顯示 5 個項目
             }
         }
     });
@@ -159,7 +159,7 @@
 <script>
     $('.sliderUni.center').slick({
   centerMode: true,
-  centerPadding: '5rem',
+  centerPadding: '0rem',
   slidesToShow: 5,
   dots: true,
   arrows: false

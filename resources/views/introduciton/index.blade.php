@@ -187,6 +187,7 @@
         <!-- posts cards -->
         <h2 class="myArtical">我的文章</h2>
         <div class="postCard">
+            <section>
             @if(!is_null($Data['user']->post))
             @foreach($Data['user']->post as $count => $post)
             @if($count < 4) <div class="card">
@@ -215,6 +216,7 @@
         @endforeach
         @endif
         <a class="moreTag" href="{{route('article-list', $Data['user']->id)}}">查看更多文章</a>
+            </section>
     </div>
     <h2>參考文件</h2>
     <!-- attachments -->
@@ -273,11 +275,11 @@
     </div>
     <hr>
     <!-- real carsuel -->
-    <div class="carouselSection mb-5">
-        <!-- from welcome -->
+    <div class="carouselSection">
+        <div class="innerCarousel">
         <div class="owl-carousel owl-theme studentNav">
             @foreach ($Data['vip'] as $key => $user)
-            <div class="item studentC" onclick="cardClickable({{ $user->id }})">
+            <div class="studentC" onclick="cardClickable({{ $user->id }})">
                 <!-- img div -->
                 <div class="studentImg">
                     @if(is_null($user->avatar))
@@ -340,6 +342,7 @@
             @endforeach
         </div>
         <a class="moreTag" href="{{route('article-list', $Data['user']->id)}}">點擊查看更多</a>
+        </div>
     </div>
 </div>
 

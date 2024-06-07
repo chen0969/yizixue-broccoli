@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
+class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -97,6 +97,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         ),
         'L' => 
         array (
+            'Lunaweb\\EmailVerification\\' => 26,
             'League\\MimeTypeDetection\\' => 25,
             'League\\Flysystem\\' => 17,
             'Laravel\\Tinker\\' => 15,
@@ -126,6 +127,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
             'Encore\\CKEditor\\' => 16,
             'Encore\\Admin\\' => 13,
             'Egulias\\EmailValidator\\' => 23,
+            'Ecpay\\Sdk\\' => 10,
         ),
         'D' => 
         array (
@@ -154,8 +156,8 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'phpDocumentor\\Reflection\\' => 
         array (
             0 => __DIR__ . '/..' . '/phpdocumentor/reflection-common/src',
-            1 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
-            2 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            1 => __DIR__ . '/..' . '/phpdocumentor/type-resolver/src',
+            2 => __DIR__ . '/..' . '/phpdocumentor/reflection-docblock/src',
         ),
         'XdgBaseDir\\' => 
         array (
@@ -310,6 +312,10 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
         ),
+        'Lunaweb\\EmailVerification\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src',
+        ),
         'League\\MimeTypeDetection\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/mime-type-detection/src',
@@ -365,6 +371,10 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'Egulias\\EmailValidator\\' => 
         array (
             0 => __DIR__ . '/..' . '/egulias/email-validator/src',
+        ),
+        'Ecpay\\Sdk\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ecpay/sdk/src',
         ),
         'Dotenv\\' => 
         array (
@@ -484,6 +494,7 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'App\\Http\\Controllers\\CommentQAController' => __DIR__ . '/../..' . '/app/Http/Controllers/CommentQAController.php',
         'App\\Http\\Controllers\\ContractController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContractController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
+        'App\\Http\\Controllers\\EcpayController' => __DIR__ . '/../..' . '/app/Http/Controllers/EcpayController.php',
         'App\\Http\\Controllers\\FrontPageController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontPageController.php',
         'App\\Http\\Controllers\\GuestQaController' => __DIR__ . '/../..' . '/app/Http/Controllers/GuestQaController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -967,6 +978,43 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'Dotenv\\Loader' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Loader.php',
         'Dotenv\\Parser' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Parser.php',
         'Dotenv\\Validator' => __DIR__ . '/..' . '/vlucas/phpdotenv/src/Validator.php',
+        'Ecpay\\Sdk\\Abstracts\\AbstractAesResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Abstracts/AbstractAesResponse.php',
+        'Ecpay\\Sdk\\Abstracts\\AbstractDecryptedResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Abstracts/AbstractDecryptedResponse.php',
+        'Ecpay\\Sdk\\Abstracts\\AbstractFactory' => __DIR__ . '/..' . '/ecpay/sdk/src/Abstracts/AbstractFactory.php',
+        'Ecpay\\Sdk\\Abstracts\\AbstractResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Abstracts/AbstractResponse.php',
+        'Ecpay\\Sdk\\Abstracts\\AbstractVerifiedResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Abstracts/AbstractVerifiedResponse.php',
+        'Ecpay\\Sdk\\Exceptions\\RtnException' => __DIR__ . '/..' . '/ecpay/sdk/src/Exceptions/RtnException.php',
+        'Ecpay\\Sdk\\Exceptions\\TransException' => __DIR__ . '/..' . '/ecpay/sdk/src/Exceptions/TransException.php',
+        'Ecpay\\Sdk\\Factories\\Factory' => __DIR__ . '/..' . '/ecpay/sdk/src/Factories/Factory.php',
+        'Ecpay\\Sdk\\Interfaces\\Request\\RequestInterface' => __DIR__ . '/..' . '/ecpay/sdk/src/Interfaces/Request/RequestInterface.php',
+        'Ecpay\\Sdk\\Interfaces\\Response\\ResponseInterface' => __DIR__ . '/..' . '/ecpay/sdk/src/Interfaces/Response/ResponseInterface.php',
+        'Ecpay\\Sdk\\Interfaces\\Services\\HtmlInterface' => __DIR__ . '/..' . '/ecpay/sdk/src/Interfaces/Services/HtmlInterface.php',
+        'Ecpay\\Sdk\\Interfaces\\Services\\HttpClientInterface' => __DIR__ . '/..' . '/ecpay/sdk/src/Interfaces/Services/HttpClientInterface.php',
+        'Ecpay\\Sdk\\Interfaces\\Services\\Test\\TestInterface' => __DIR__ . '/..' . '/ecpay/sdk/src/Interfaces/Services/Test/TestInterface.php',
+        'Ecpay\\Sdk\\Request\\AesRequest' => __DIR__ . '/..' . '/ecpay/sdk/src/Request/AesRequest.php',
+        'Ecpay\\Sdk\\Request\\CheckMacValueRequest' => __DIR__ . '/..' . '/ecpay/sdk/src/Request/CheckMacValueRequest.php',
+        'Ecpay\\Sdk\\Request\\Request' => __DIR__ . '/..' . '/ecpay/sdk/src/Request/Request.php',
+        'Ecpay\\Sdk\\Response\\AesJsonResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/AesJsonResponse.php',
+        'Ecpay\\Sdk\\Response\\AesStrResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/AesStrResponse.php',
+        'Ecpay\\Sdk\\Response\\ArrayResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/ArrayResponse.php',
+        'Ecpay\\Sdk\\Response\\EncodedStrResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/EncodedStrResponse.php',
+        'Ecpay\\Sdk\\Response\\JsonResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/JsonResponse.php',
+        'Ecpay\\Sdk\\Response\\StrResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/StrResponse.php',
+        'Ecpay\\Sdk\\Response\\VerifiedArrayResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/VerifiedArrayResponse.php',
+        'Ecpay\\Sdk\\Response\\VerifiedEncodedStrResponse' => __DIR__ . '/..' . '/ecpay/sdk/src/Response/VerifiedEncodedStrResponse.php',
+        'Ecpay\\Sdk\\Services\\AesService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/AesService.php',
+        'Ecpay\\Sdk\\Services\\ArrayService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/ArrayService.php',
+        'Ecpay\\Sdk\\Services\\AutoSubmitFormService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/AutoSubmitFormService.php',
+        'Ecpay\\Sdk\\Services\\CheckMacValueService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/CheckMacValueService.php',
+        'Ecpay\\Sdk\\Services\\CurlService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/CurlService.php',
+        'Ecpay\\Sdk\\Services\\Helper' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/Helper.php',
+        'Ecpay\\Sdk\\Services\\HtmlService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/HtmlService.php',
+        'Ecpay\\Sdk\\Services\\PostService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/PostService.php',
+        'Ecpay\\Sdk\\Services\\UrlService' => __DIR__ . '/..' . '/ecpay/sdk/src/Services/UrlService.php',
+        'Ecpay\\Sdk\\TestCase\\MultipleServiceTestCase' => __DIR__ . '/..' . '/ecpay/sdk/src/TestCase/MultipleServiceTestCase.php',
+        'Ecpay\\Sdk\\TestCase\\SingleServiceTestCase' => __DIR__ . '/..' . '/ecpay/sdk/src/TestCase/SingleServiceTestCase.php',
+        'Ecpay\\Sdk\\Traits\\HashInfo' => __DIR__ . '/..' . '/ecpay/sdk/src/Traits/HashInfo.php',
+        'Ecpay\\Sdk\\Traits\\StageInfo' => __DIR__ . '/..' . '/ecpay/sdk/src/Traits/StageInfo.php',
         'Egulias\\EmailValidator\\EmailLexer' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailLexer.php',
         'Egulias\\EmailValidator\\EmailParser' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailParser.php',
         'Egulias\\EmailValidator\\EmailValidator' => __DIR__ . '/..' . '/egulias/email-validator/src/EmailValidator.php',
@@ -2806,6 +2854,18 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
         'League\\MimeTypeDetection\\GeneratedExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/GeneratedExtensionToMimeTypeMap.php',
         'League\\MimeTypeDetection\\MimeTypeDetector' => __DIR__ . '/..' . '/league/mime-type-detection/src/MimeTypeDetector.php',
         'League\\MimeTypeDetection\\OverridingExtensionToMimeTypeMap' => __DIR__ . '/..' . '/league/mime-type-detection/src/OverridingExtensionToMimeTypeMap.php',
+        'Lunaweb\\EmailVerification\\Contracts\\CanVerifyEmail' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Contracts/CanVerifyEmail.php',
+        'Lunaweb\\EmailVerification\\EmailVerification' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/EmailVerification.php',
+        'Lunaweb\\EmailVerification\\Events\\EmailVerificationSent' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Events/EmailVerificationSent.php',
+        'Lunaweb\\EmailVerification\\Events\\UserVerified' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Events/UserVerified.php',
+        'Lunaweb\\EmailVerification\\Exceptions\\UserNotVerifiedException' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Exceptions/UserNotVerifiedException.php',
+        'Lunaweb\\EmailVerification\\Listeners\\SendUserVerificationMail' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Listeners/SendUserVerificationMail.php',
+        'Lunaweb\\EmailVerification\\Middleware\\IsEmailVerified' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Middleware/IsEmailVerified.php',
+        'Lunaweb\\EmailVerification\\Notifications\\EmailVerification' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Notifications/EmailVerification.php',
+        'Lunaweb\\EmailVerification\\Providers\\EmailVerificationEventServiceProvider' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Providers/EmailVerificationEventServiceProvider.php',
+        'Lunaweb\\EmailVerification\\Providers\\EmailVerificationServiceProvider' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Providers/EmailVerificationServiceProvider.php',
+        'Lunaweb\\EmailVerification\\Traits\\CanVerifyEmail' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Traits/CanVerifyEmail.php',
+        'Lunaweb\\EmailVerification\\Traits\\VerifiesEmail' => __DIR__ . '/..' . '/josiasmontag/laravel-email-verification/src/Traits/VerifiesEmail.php',
         'Mockery' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery.php',
         'Mockery\\Adapter\\Phpunit\\MockeryPHPUnitIntegration' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryPHPUnitIntegration.php',
         'Mockery\\Adapter\\Phpunit\\MockeryTestCase' => __DIR__ . '/..' . '/mockery/mockery/library/Mockery/Adapter/Phpunit/MockeryTestCase.php',
@@ -4899,11 +4959,11 @@ class ComposerStaticInitc92402dab2a9a6395306d9ab57265575
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitc92402dab2a9a6395306d9ab57265575::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitc92402dab2a9a6395306d9ab57265575::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitc92402dab2a9a6395306d9ab57265575::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitc92402dab2a9a6395306d9ab57265575::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitc92402dab2a9a6395306d9ab57265575::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$classMap;
 
         }, null, ClassLoader::class);
     }

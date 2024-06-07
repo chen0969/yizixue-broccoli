@@ -53,12 +53,15 @@ class UserController extends Controller
             'references' => 'file|max:2048',
             'description' => 'max:500|nullable',
             'skills' => 'array|min:0|max:12',
-            'post_categories' => 'array|min:0|max:3'
+            'post_categories' => 'array|min:0|max:3',
+            'email' => 'required_with:email|email|unique:users,email,'.auth()->user()->id
         ], [
             'references.max.file' => '檔案不得超過2M',
             'description.max' => '字數不得超過500字',
             'skills.max' => '專長不得超過12個',
-            'post_categories.max' => '主題不得超過3個'
+            'post_categories.max' => '主題不得超過3個',
+            'email.email' => 'Email格式不正確',
+            'email.unique' => '已有相同Email註冊'
         ]);
 
         if($req->filled('post_categories')){
@@ -73,6 +76,7 @@ class UserController extends Controller
         $User->name = isset($req->name)?$req->name:$User->name;
         $User->nickname = isset($req->nickname)?$req->nickname:$User->nickname;
         $User->university = isset($req->university)?$req->university:$User->university;
+        $User->is_study = $req->has('is_study')?1:0;
         $User->email = isset($req->email)?$req->email:$User->email;
         $User->phone = isset($req->phone)?$req->phone:$User->phone;
         $User->line = isset($req->line)?$req->line:$User->line;

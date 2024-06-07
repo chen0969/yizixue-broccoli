@@ -4,10 +4,13 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Lunaweb\EmailVerification\Traits\CanVerifyEmail;
+use Lunaweb\EmailVerification\Contracts\CanVerifyEmail as CanVerifyEmailContract;
 
-class User extends Authenticatable
+class User extends Authenticatable implements CanVerifyEmailContract
 {
     use Notifiable;
+    use CanVerifyEmail;
 
     /**
      * The attributes that are mass assignable.
@@ -19,6 +22,10 @@ class User extends Authenticatable
     // ];
 
     protected $guarded = [];
+
+//    protected $casts = [
+//        'verified' => 'boolean'
+//    ];
 
     /**
      * The attributes that should be hidden for arrays.
