@@ -144,7 +144,7 @@
             @if(!is_null($Data['interested']))
             @foreach($Data['interested'] as $post)
 
-            <div class="row moreArticles">
+            <div class="moreArticles">
                 <a href="{{ route('article', $post->id) }}">
                     <!-- img -->
                     <div class="postImg">

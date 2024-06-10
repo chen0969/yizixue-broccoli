@@ -6,16 +6,24 @@
   width: 100%;
   background-color: rgba(255, 255, 255, 0);
   z-index: 2;
-  display: grid;
-  grid-template-columns: 50% 50%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0px;
 }
 .navbar .navbar-brand {
   padding: 10px;
   grid-column: 1/2;
 }
+.navbar .navbar-brand #logoImg {
+  width: 15vw;
+}
 .navbar .container {
-  grid-column: 2/3;
+  display: flex;
+  flex-direction: row;
   justify-content: end;
+  margin: 0;
 }
 .navbar .container .collapse {
   justify-content: end;
@@ -28,7 +36,10 @@
 }
 .navbar .container .collapse .navbar-nav li a {
   color: white;
-  font-size: 0.9vw;
+  font-size: 1.5vw;
+}
+.navbar .container .collapse .navbar-nav li svg {
+  width: 7vw;
 }
 
 .searchBar {
@@ -1479,6 +1490,7 @@
   display: flex;
   flex-direction: row;
   width: 45%;
+  overflow: hidden;
 }
 .singleArticle .relateArticle .cards .moreArticles a {
   all: unset;
@@ -1487,8 +1499,8 @@
   flex-direction: row;
   align-items: center;
   font-size: 2vw;
-  padding: 0.5vw;
   width: 100%;
+  padding-right: 0.5vw;
   gap: 0.5vw;
 }
 .singleArticle .relateArticle .cards .moreArticles a .postImg {
@@ -1794,36 +1806,58 @@
   font-weight: 200;
 }
 
-footer .col-md-4 img {
-  width: 15rem;
-  margin: 3rem;
+.footer {
+  display: flex;
+  flex-direction: row;
 }
-footer .col-md-4 .copyright {
-  font-size: 0.6rem;
+.footer div.left {
+  width: 30%;
+  border-right: solid 0.1vw white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
-footer .row {
+.footer div.left img {
+  width: 20vw;
+  margin: 1.5vw;
+}
+.footer div.left .copyright {
+  color: white;
+  font-size: 0.7vw;
+}
+.footer div.right {
+  width: 70%;
   height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
 }
-footer .row .col-md-3 {
+.footer div.right .topic {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  letter-spacing: 0.5rem;
+  letter-spacing: 0.1vw;
+  margin: 1.5vw;
 }
-footer .row .col-md-3 h6 {
-  font-size: 1.2rem;
+.footer div.right .topic h6 {
+  color: white;
+  font-size: 1.5vw;
   text-align: start;
-  margin-bottom: 1rem;
+  margin-bottom: 1vw;
 }
-footer .row .col-md-3 div {
+.footer div.right .topic div {
   display: flex;
   flex-direction: column;
   align-items: start;
 }
-footer .row .col-md-3 div a {
+.footer div.right .topic div a {
+  all: unset;
+  cursor: pointer;
+  font-size: 1vw;
   text-decoration: none;
   color: white;
-  margin-bottom: 1rem;
+  margin-bottom: 1vw;
 }
 
 .question-and-answer-page a.readMore {
