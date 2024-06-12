@@ -106,10 +106,25 @@ body {
   align-items: center;
 }
 .innerbody section {
-  width: 1400px;
+  width: 100%;
   margin: 10rem 0 10rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-.innerbody .studentSection .title, .innerbody .uCardSection .title, .innerbody .qaSection .title, .innerbody .newsSection .title {
+.innerbody .studentSection .title,
+.innerbody .uCardSection .title,
+.innerbody .qaSection .title,
+.innerbody .newsSection .title {
+  display: flex;
+  width: 100vw;
+  flex-direction: row;
+  justify-content: start;
+}
+.innerbody .studentSection .title a,
+.innerbody .uCardSection .title a,
+.innerbody .qaSection .title a,
+.innerbody .newsSection .title a {
   all: unset;
   cursor: pointer;
   display: block;
@@ -120,33 +135,16 @@ body {
   border-radius: 0 1vw 1vw 0;
   font-size: 2vw;
   text-align: end;
-  margin-bottom: 1vw;
-  position: absolute;
-  left: 0;
-  transform: translateY(-10rem);
-}
-.innerbody .studentSection .owl-nav, .innerbody .uCardSection .owl-nav, .innerbody .qaSection .owl-nav, .innerbody .newsSection .owl-nav {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-}
-.innerbody .studentSection .owl-nav button span, .innerbody .uCardSection .owl-nav button span, .innerbody .qaSection .owl-nav button span, .innerbody .newsSection .owl-nav button span {
-  font-family: "Rubik", sans-serif;
-  font-weight: 900;
-  font-size: 3vw;
-}
-.innerbody .studentSection .owl-dots, .innerbody .uCardSection .owl-dots, .innerbody .qaSection .owl-dots, .innerbody .newsSection .owl-dots {
-  margin-top: -0.5vw;
-}
-.innerbody .studentSection .owl-dots .active span, .innerbody .uCardSection .owl-dots .active span, .innerbody .qaSection .owl-dots .active span, .innerbody .newsSection .owl-dots .active span {
-  width: 1vw !important;
-  transition: 0.1s !important;
+  margin: 3vw 0 1vw 0;
 }
 .innerbody .studentSection {
-  margin: 1vw 0 1vw 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 .innerbody .studentSection .owl-carousel {
-  transform: scale(1.1);
+  max-width: 80vw;
 }
 .innerbody .studentSection .owl-carousel .studentC {
   margin: 0.5vw;
@@ -196,7 +194,7 @@ body {
 .innerbody .studentSection .owl-carousel .studentC h4 {
   grid-row: 1/3;
   grid-column: 2/8;
-  font-size: 1vw;
+  font-size: 1.4vw;
   color: #4C2A70;
   align-self: flex-end;
   justify-self: start;
@@ -205,7 +203,7 @@ body {
 .innerbody .studentSection .owl-carousel .studentC h5 {
   grid-row: 18/20;
   grid-column: 5/12;
-  font-size: 1vw;
+  font-size: 1.2vw;
   font-weight: 400;
   color: white;
   text-align: end;
@@ -215,7 +213,7 @@ body {
 .innerbody .studentSection .owl-carousel .studentC h6 {
   grid-row: 1/3;
   grid-column: 8/12;
-  font-size: 0.5vw;
+  font-size: 1vw;
   text-overflow: clip;
   align-self: flex-end;
   justify-self: end;
@@ -223,8 +221,8 @@ body {
 .innerbody .studentSection .owl-carousel .studentC .react {
   grid-row: 20/21;
   grid-column: 1/5;
-  font-size: 0.7vw;
-  padding: 0.1vw;
+  font-size: 1.3vw;
+  padding: 0.2vw;
 }
 .innerbody .studentSection .owl-carousel .studentC .postTags {
   grid-row: 11/15;
@@ -242,49 +240,76 @@ body {
   margin: 0.1vw 0 0.1vw 0;
   border-radius: 0.1vw;
 }
+.innerbody .studentSection .owl-carousel .owl-dots {
+  height: 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.innerbody .studentSection .owl-carousel .owl-dots .owl-dot > span {
+  display: block;
+  width: 1.5vw;
+  height: 1vw;
+  margin: 0.3vw;
+  border-radius: 1vw;
+  background-color: #4C2A70;
+  cursor: pointer;
+}
+.innerbody .studentSection .owl-carousel .owl-dots .owl-dot.active > span {
+  transition: 0.5s !important;
+  background-color: #BD9EBE;
+}
 .innerbody .studentSection .readmore {
   all: unset;
   cursor: pointer;
   display: block;
+  width: 80vw;
   text-align: end;
   color: #4C2A70;
-  font-size: 1vw;
+  font-size: 1.5vw;
   padding: 0 2vw 0 2vw;
 }
+.innerbody .uCardSection {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
 .innerbody .uCardSection .sliderUni {
+  max-width: 80vw;
   margin: 0;
-  padding: 1rem 0 0 0;
+  padding: 1vw 0 0 0;
   background-color: #e2d8e2;
-  border-radius: 30px;
+  border-radius: 2vw;
 }
 .innerbody .uCardSection .sliderUni .uniCard {
-  margin: 0.3rem;
+  margin: 0.5vw;
   background-color: white;
   aspect-ratio: 3/4;
-  border: 2px solid #4C2A70;
+  border: 0.1vw solid #4C2A70;
   border-radius: 2rem;
   transform: scale(0.8);
-  padding: 0.5rem;
+  padding: 0.5vw;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 }
 .innerbody .uCardSection .sliderUni .uniCard .uniLogo span {
   display: block;
-  height: 5rem;
+  height: 8vw;
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center;
   aspect-ratio: 1/1;
 }
 .innerbody .uCardSection .sliderUni .uniCard h6 {
-  font-size: 0.8rem;
+  font-size: 1vw;
 }
 .innerbody .uCardSection .sliderUni .uniCard h5 {
-  font-size: 1rem;
+  font-size: 1vw;
 }
 .innerbody .uCardSection .sliderUni .uniCard h4 {
-  font-size: 1rem;
+  font-size: 1vw;
   width: 90%;
   height: 40%;
   text-align: center;
@@ -302,61 +327,79 @@ body {
   flex-direction: row;
   justify-content: center;
   align-items: center;
+  height: 5vw;
 }
 .innerbody .uCardSection .sliderUni .slick-dots li {
   list-style-type: none;
   display: block;
+  z-index: 2;
 }
 .innerbody .uCardSection .sliderUni .slick-dots li button {
   all: unset;
   display: block;
-  font-size: 0.5rem;
+  font-size: 0px;
   color: #BD9EBE;
-  width: 20px;
-  margin: 1rem;
-  border-radius: 30px;
-  background-color: #BD9EBE;
+  width: 1.5vw;
+  height: 1vw;
+  margin: 0.3vw;
+  border-radius: 1vw;
+  background-color: #4C2A70;
   cursor: pointer;
 }
 .innerbody .uCardSection .sliderUni .slick-dots .slick-active > button {
   transition: 0.5s !important;
-  color: #4C2A70;
-  background-color: #4C2A70;
+  color: #BD9EBE;
+  background-color: #BD9EBE;
 }
 .innerbody .uCardSection .readmore {
   all: unset;
   cursor: pointer;
   display: block;
+  width: 70vw;
   text-align: end;
   color: #4C2A70;
-  font-size: 1vw;
+  font-size: 1.5vw;
   padding: 0 2vw 0 2vw;
   transform: translateY(-4rem);
 }
 .innerbody .qaSection {
-  max-width: 1800px;
-  margin: 0rem 10rem 12rem 10rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 90vw;
 }
 .innerbody .qaSection .qaCard {
-  border: #BD9EBE 0.2rem solid;
-  margin: 1rem;
-  height: 10rem;
-  border-radius: 30px;
+  border: #BD9EBE 0.3vw solid;
+  margin: 1vw;
+  width: 25vw;
+  aspect-ratio: 2/0.9;
+  border-radius: 3vw;
   padding: 0;
   overflow: hidden;
 }
 .innerbody .qaSection .qaCard div {
   background-color: #BD9EBE;
-  border-radius: 0 30px 30px 0;
+  border-radius: 0 3vw 3vw 0;
 }
-.innerbody .qaSection .qaCard div a {
+.innerbody .qaSection .qaCard div a,
+.innerbody .qaSection .qaCard div p {
   all: unset;
+  font-size: 1vw;
   display: block;
   color: white;
-  padding: 0.2rem;
+  padding: 0.5vw;
 }
 .innerbody .qaSection .qaCard div .categName {
-  font-size: 2rem;
+  font-size: 2vw;
+}
+.innerbody .qaSection .qaCard:hover {
+  transition: 0.5s;
+  border: #4C2A70 0.3vw solid;
+}
+.innerbody .qaSection .qaCard:hover div {
+  transition: 0.5s;
+  background-color: #4C2A70;
 }
 .innerbody .qaSection .readmore {
   all: unset;
@@ -364,7 +407,8 @@ body {
   display: block;
   text-align: end;
   color: #4C2A70;
-  font-size: 1vw;
+  font-size: 1.5vw;
+  width: 80vw;
   padding: 0 2vw 0 2vw;
 }
 .innerbody .joinSection {
@@ -374,32 +418,31 @@ body {
   background-position: center;
   background-size: cover;
   width: 100vw;
+  aspect-ratio: 2/0.5;
 }
 .innerbody .joinSection div {
   display: flex;
   flex-direction: row;
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   padding: 2vw;
   width: 95%;
-  height: 30rem;
-  padding-left: 15%;
-  padding-right: 15%;
   padding-top: 10%;
 }
 .innerbody .joinSection div a {
   all: unset;
   background-color: #4C2A70;
   color: white;
-  border-radius: 0.2vw;
+  border-radius: 1vw;
   cursor: pointer;
-  font-size: 1.5vw;
+  font-size: 3vw;
   padding: 0.2vw;
   box-shadow: 0px 5px 5px black;
+  margin-right: 3vw;
 }
 .innerbody .joinSection div p {
   color: white;
-  font-size: 5rem;
+  font-size: 6vw;
   font-weight: 800;
   text-shadow: 0px 2px 2px black;
   margin: 0;
@@ -410,6 +453,7 @@ body {
 }
 .innerbody .newsSection .newsbg {
   padding: 3vw;
+  width: 100%;
   overflow-x: hidden;
   background-color: #e2d8e2;
 }
@@ -439,7 +483,8 @@ body {
   margin: 0;
   overflow-x: hidden;
 }
-.innerbody .newsSection .newsbg .newsCard .info h5, .innerbody .newsSection .newsbg .newsCard .info p {
+.innerbody .newsSection .newsbg .newsCard .info h5,
+.innerbody .newsSection .newsbg .newsCard .info p {
   margin: 0;
   font-size: 1.5vw;
 }
@@ -481,6 +526,10 @@ body {
   font-size: 1.5vw;
 }
 .innerbody .localOlder {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
   width: 100vw;
   margin: 3rem 1rem 1rem 1rem;
   padding: 0 3rem 0 3rem;
@@ -489,15 +538,17 @@ body {
   font-size: 2vw;
   padding-left: 0.1vw;
   border-left: solid red 0.5vw;
-  margin-bottom: 0.1vw;
+  margin-bottom: 0.5vw;
 }
 .innerbody .localOlder div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   font-weight: 600;
+  width: 100%;
 }
-.innerbody .localOlder div p, .innerbody .localOlder div a {
+.innerbody .localOlder div p,
+.innerbody .localOlder div a {
   font-size: 1.5vw;
 }
 
@@ -553,28 +604,4 @@ body {
   text-decoration: none;
   color: white;
   margin-bottom: 1vw;
-}
-
-@media only screen and (max-width: 1500px) {
-  .title {
-    transform: translateY(-6rem) !important;
-  }
-  .studentSection .owl-carousel {
-    transform: scale(0.7);
-  }
-  .studentSection .owl-carousel .studentC h5 {
-    font-size: 1rem !important;
-  }
-  .studentSection .owl-carousel .studentC h6 {
-    grid-column: 3/12 !important;
-  }
-  .studentSection .owl-carousel .studentC .postTags {
-    grid-column: 9/14 !important;
-  }
-  .studentSection .owl-carousel .studentC .postTags p {
-    font-size: 0.2rem !important;
-  }
-  .joinSection a, .joinSection p {
-    font-size: 2rem !important;
-  }
 }/*# sourceMappingURL=welcomeP.css.map */

@@ -25,7 +25,9 @@
     <section id="features">
         <div class="studentSection">
             <!-- title -->
-            <a class="title" href="{{route('senior')}}">學長姐 | 快找</a>
+             <h3 class="title">
+                <a href="{{route('senior')}}">學長姐 | 快找</a>
+             </h3>
             <!-- items -->
             <div class="owl-carousel owl-theme">
                 @foreach ($Data['Users'] as $key => $user)
@@ -100,7 +102,9 @@
     <section id="features">
         <div class="uCardSection">
             <!-- title -->
-            <a class="title" href="{{route('university-list')}}">關注 | 學校</a>
+            <h3 class="title">
+            <a href="{{route('university-list')}}">關注 | 學校</a>
+             </h3>
             <!-- information -->
             <div class="sliderUni center">
                 @php
@@ -134,7 +138,9 @@
 
     <!-- QA section -->
     <section class="qaSection">
-        <a class="title" href="{{route('qna')}}">問與答｜諮詢</a>
+        <h3 class="title">
+        <a href="{{route('qna')}}">問與答｜諮詢</a>
+        </h3>
         <!-- QA section -->
         <div class="row justify-content-around">
             <!-- studyabroad -->

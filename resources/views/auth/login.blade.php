@@ -26,23 +26,21 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container login">
 
         <!-- Outer Row -->
-        <div class="row justify-content-center">
+        <div class="loginbox">
 
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
+            <!-- <div class="col-xl-10 col-lg-12 col-md-9"> -->
+                <!-- <div class="card o-hidden shadow-lg my-5"> -->
+                    <div class="card-body">
                         <!-- Nested Row within Card Body -->
-                        <div class="row">
-
-                            <div class="col-lg-12">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-bg mb-4" style="color: #4C2A70">會員登入</h1>
-                                    </div>
+                        <!-- <div class="row"> -->
+                            <!-- <div class="col-lg-12"> -->
+                                <!-- <div class="p-5"> -->
+                                    <!-- <div class="text-center "> -->
+                                        <h1>會員登入</h1>
+                                    <!-- </div> -->
 
                                     <form class="user" method="POST" action="{{ route('login') }}">
                                         {{ csrf_field() }}
@@ -79,29 +77,21 @@
                                             <button type="submit" class=" text-white btn btn-user btn-block" style="background-color: #4C2A70">
                                                 登入
                                             </button>
-
-{{--                                            <a class="btn btn-link" href="{{ route('password.request') }}">--}}
-{{--                                                忘記密碼?--}}
-{{--                                            </a>--}}
                                         </div>
-                                        <a href="{{url('line')}}" class="btn btn-success bg-success btn-user btn-block">
+                                        <a href="{{url('line')}}" class="btn btn-user btn-block line">
                                             Login with Line
                                         </a>
                                     </form>
 
                                     <hr>
-                                    <div class="text-center">
-                                        <div class="form-group">
-                                            <a class="btn text-white btn-block btn-user" style="background-color: #4C2A70" href="{{route('register')}}">註冊</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                                    <a class="notmember" href="{{route('register')}}">還不是會員？點我註冊</a>
+                                <!-- </div> -->
+                            <!-- </div> -->
+                        <!-- </div> -->
                     </div>
-                </div>
+                <!-- </div> -->
 
-            </div>
+            <!-- </div> -->
 
         </div>
 
