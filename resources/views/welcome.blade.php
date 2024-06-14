@@ -52,11 +52,14 @@
                         <span style="background-image: url('{{asset('university/USA/US1.png')}}') ;">&nbsp</span>
                     </div>
                     <!-- name card -->
-                    <h4>{{ $user->name }}</h4>
+                    <h4>
+                        <!-- {{ $user->name }} -->
+                    {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
+                    </h4>
                     <!-- school english -->
                     <h5>{{ !is_null($user->universityItem) ? $user->universityItem->english_name : '' }}</h5>
                     <!-- school chinese -->
-                    <h6>{{ !is_null($user->universityItem) ? $user->universityItem->chinese_name : '' }}</h6>
+                    <h6>{{ !is_null($user->universityItem) ? \Illuminate\Support\Str::limit($user->universityItem->chinese_name, 10) : '' }}</h6>
                     <!-- react icons -->
                     <div class="react d-flex flex-row justify-content-evenly align-items-center"
                         onclick="event.stopPropagation(); return false; ">
@@ -94,7 +97,7 @@
                 </div>
                 @endforeach
             </div>
-            <a class="readmore" href="#">查看更多 &gt;</a>
+            <a class="readmore" href="/senior">查看更多 &gt;</a>
         </div>
     </section>
 
@@ -152,9 +155,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -171,9 +174,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -190,9 +193,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -209,9 +212,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -228,9 +231,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -247,9 +250,9 @@
                     <a class="categName" href="{{route('qna', ['category_id'=> $category->id])}}">
                         {{$category->name}}
                     </a>
-                    @forelse($category->QACategoryRelation->take(3) as $relation)
+                    @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                        {{$relation->qa->title}}
+                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
