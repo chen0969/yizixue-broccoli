@@ -106,7 +106,7 @@
     </nav>
 </div>
 
-<div class="container-fluid px-5 adjOnSingleArticle adjOnIntroduction adjOnLogin">
+<div class="container-fluid px-5 adjOnSingleArticle adjOnIntroduction">
     @yield('content')
 </div>
 

@@ -24,7 +24,7 @@ body {
   padding: 10px;
 }
 .navbar .navbar-brand #logoImg {
-  width: 20vw;
+  width: 15vw;
 }
 .navbar .container {
   margin: 1vw;
@@ -234,11 +234,11 @@ body {
   background-color: #4C2A70;
   width: -moz-fit-content;
   width: fit-content;
-  font-size: 0.35vw;
+  font-size: 0.8vw;
   letter-spacing: 0.05vw;
   padding: 0.2vw;
-  margin: 0.1vw 0 0.1vw 0;
-  border-radius: 0.1vw;
+  margin: 0.2vw 0 0.2vw 0;
+  border-radius: 0.2vw;
 }
 .innerbody .studentSection .owl-carousel .owl-dots {
   height: 5vw;

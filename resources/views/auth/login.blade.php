@@ -26,7 +26,7 @@
 
 
 @section('content')
-    <div class="container login">
+    <div class="container login adjOnLogin">
 
         <!-- Outer Row -->
         <div class="loginbox">
