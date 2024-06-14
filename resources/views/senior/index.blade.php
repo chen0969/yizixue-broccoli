@@ -111,11 +111,11 @@
                 <span style="background-image: url('{{asset('university/USA/US1.png')}}') ;">&nbsp</span>
             </div>
             <!-- name card -->
-            <h4>{{ $user->name }}</h4>
+            <h4>{{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}</h4>
             <!-- school english -->
             <h5>{{ !is_null($user->universityItem) ? $user->universityItem->english_name : '' }}</h5>
             <!-- school chinese -->
-            <h6>{{ !is_null($user->universityItem) ? $user->universityItem->chinese_name : '' }}</h6>
+            <h6>{{ !is_null($user->universityItem) ? \Illuminate\Support\Str::limit($user->universityItem->chinese_name, 10) : '' }}</h6>
             <!-- react icons -->
             <div class="react d-flex flex-row justify-content-evenly align-items-center"
                 onclick="event.stopPropagation(); return false; ">

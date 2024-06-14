@@ -25,9 +25,9 @@
     <section id="features">
         <div class="studentSection">
             <!-- title -->
-             <h3 class="title">
+            <h3 class="title">
                 <a href="{{route('senior')}}">學長姐 | 快找</a>
-             </h3>
+            </h3>
             <!-- items -->
             <div class="owl-carousel owl-theme">
                 @foreach ($Data['Users'] as $key => $user)
@@ -53,13 +53,13 @@
                     </div>
                     <!-- name card -->
                     <h4>
-                        <!-- {{ $user->name }} -->
-                    {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
+                        {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
                     </h4>
                     <!-- school english -->
                     <h5>{{ !is_null($user->universityItem) ? $user->universityItem->english_name : '' }}</h5>
                     <!-- school chinese -->
-                    <h6>{{ !is_null($user->universityItem) ? \Illuminate\Support\Str::limit($user->universityItem->chinese_name, 10) : '' }}</h6>
+                    <h6>{{ !is_null($user->universityItem) ? \Illuminate\Support\Str::limit($user->universityItem->chinese_name, 10) : '' }}
+                    </h6>
                     <!-- react icons -->
                     <div class="react d-flex flex-row justify-content-evenly align-items-center"
                         onclick="event.stopPropagation(); return false; ">
@@ -106,8 +106,8 @@
         <div class="uCardSection">
             <!-- title -->
             <h3 class="title">
-            <a href="{{route('university-list')}}">關注 | 學校</a>
-             </h3>
+                <a href="{{route('university-list')}}">關注 | 學校</a>
+            </h3>
             <!-- information -->
             <div class="sliderUni center">
                 @php
@@ -118,14 +118,13 @@
                 @if ($count >= 6)
                 @break
                 @endif
-                <div class="uniCard d-flex flex-column justify-space-between align-items-center"
-                    onclick="uniCardClick('{{ $university->slug }}')">
+                <div class="uniCard d-flex flex-column justify-space-between align-items-center">
                     <div class="uniLogo d-flex justify-content-center">
                         <span style="background-image: url('{{asset($university->image_path)}}') ;">&nbsp</span>
                     </div>
                     <h6>{{ \Illuminate\Support\Str::limit($university->chinese_name, 15) }}</h6>
                     <h4>{{ \Illuminate\Support\Str::limit($university->english_name, 25) }}</h4>
-                    <h5>目前有<a
+                    <h5 onclick="uniCardClick('{{ $university->slug }}')">目前有<a
                             href="{{route('senior', ['university' => $university->slug])}}">{{$university->vip->count()}}</a>位在校
                     </h5>
                 </div>
@@ -142,7 +141,7 @@
     <!-- QA section -->
     <section class="qaSection">
         <h3 class="title">
-        <a href="{{route('qna')}}">問與答｜諮詢</a>
+            <a href="{{route('qna')}}">問與答｜諮詢</a>
         </h3>
         <!-- QA section -->
         <div class="row justify-content-around">
@@ -176,7 +175,7 @@
                     </a>
                     @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -195,7 +194,7 @@
                     </a>
                     @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -214,7 +213,7 @@
                     </a>
                     @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -233,7 +232,7 @@
                     </a>
                     @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>
@@ -252,7 +251,7 @@
                     </a>
                     @forelse($category->QACategoryRelation->take(2) as $relation)
                     <a class="categQA" href="{{route('qna.show', $relation->qa->id)}}">
-                    {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
+                        {{ ($relation->qa->title) ? \Illuminate\Support\Str::limit($relation->qa->title, 20): "" }}
                     </a>
                     @empty
                     <p class="text-white">Hey, there is nothing yet.</p>

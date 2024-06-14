@@ -307,6 +307,7 @@ body {
 }
 .innerbody .uCardSection .sliderUni .uniCard h5 {
   font-size: 1vw;
+  cursor: pointer;
 }
 .innerbody .uCardSection .sliderUni .uniCard h4 {
   font-size: 1vw;
