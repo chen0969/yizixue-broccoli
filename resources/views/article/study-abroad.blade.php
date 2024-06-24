@@ -1,16 +1,16 @@
 @extends('layouts.guest2')
 
 @section('content')
-<div class="studyAbroad">
+<div class=".l-studyAbroad">
+    <!-- breadcrumb -->
+<div class="c-breadcrumbs">
+    <div>
+        <h4 class="c-breadcrumbs_prePage"><a href="{{url('/')}}" class="text-decoration-none text-black">首頁</a> > 留學誌
+        </h4>
+        <h3 class="c-breadcrumbs_currentPage">留學誌</h3>
+    </div>
+</div>
     <div class="breadAndSearch">
-        <!-- tag & tag -->
-        <div class="row studyAbroad-breadcrumbs">
-            <div class="d-flex flex-column align-tiems-start">
-                <h4 class="mt-3 text-black"><a href="{{url('/')}}" class="text-decoration-none text-black">首頁</a> > 留學誌
-                </h4>
-                <h3 class="text-center">留學誌</h3>
-            </div>
-        </div>
         <!-- search bar -->
         <div class="searchBar">
             <form method="get" action="{{route('study-abroad')}}">
@@ -37,26 +37,21 @@
         <!-- sideBar -->
         <div class="sideBar">
             <!-- categories -->
-            <div class="row">
-                <ul class="list-group">
-                    <li class="list-group-item" style="background-color: #4C2A70">
-                        <a style="text-decoration: none;" class="text-white text-center"
+            <div class="c-sideNav_selections_topics">
+                    <button><a style="text-decoration: none;" class="text-white text-center"
                             href="{{route('study-abroad')}}">
                             全部文章
-                        </a>
-                    </li>
+                        </a></button>
+                    <hr>
                     @forelse($Data['category'] as $category)
-                    <li class="list-group-item" style="background-color: #4C2A70">
-                        <a style="text-decoration: none;" class="text-white text-center"
+                    <button><a style="text-decoration: none;" class="text-white text-center"
                             href="{{route('study-abroad', ['category_id' => $category->id])}}">
                             {{$category->name}}
-                        </a>
-                    </li>
+                        </a></button>
                     @empty
                     @endforelse
-
-                </ul>
-            </div>
+                    <hr>
+                </div>
 
             <!-- types (hot and new) -->
             <div class="row mt-5 d-flex flex-column types">

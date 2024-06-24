@@ -1,0 +1,25 @@
+// basic setting
+@import 'utility/broccoli_base.scss';
+@import 'utility/broccoli_color';
+@import 'utility/broccoli_mixins';
+@import 'utility/broccoli_utility';
+@import 'utility/broccoli_variables';
+@import 'utility/broccoli_custom_mixin';
+// header & footer
+@import 'layout/headers.scss';
+@import 'layout/footer.scss';
+// layouts
+@import 'layout/seniorPage_layout.scss';
+@import 'layout/welcomePage_layout.scss';
+@import 'layout/university_layout.scss';
+@import 'layout/studyAbroad.scss';
+// components
+@import 'component/breadcrumbs.scss';
+@import 'component/sideNav.scss';
+@import 'component/studentCard.scss';
+@import 'component/uniCard.scss';
+@import 'component/qaCard.scss';
+@import 'component/newsCard.scss';
+// objects
+@import 'object/btns.scss';
+@import 'object/swiperCustom.scss';
