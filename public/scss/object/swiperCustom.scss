@@ -10,6 +10,11 @@
             transform: scale(0.75);
         }
     }
+
+    div.c-uniCard.swiper-slide.swiper-slide-active{
+        transform: scale(0.9);
+    }
+
     // pagnation
     span.swiper-pagination-bullet, span.swiper-pagination-bullet-active{
         width: 2rem;
