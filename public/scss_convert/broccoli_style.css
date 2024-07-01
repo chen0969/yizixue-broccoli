@@ -2494,6 +2494,24 @@ section {
   padding: var(--spacing-12);
 }
 
+.l-aboutUs__aboutSwiper {
+  background-color: #BD9EBE;
+}
+.l-aboutUs__sponsor {
+  background-color: var(--color-white);
+}
+.l-aboutUs__centerBorder {
+  border-right: solid 2px var(--color-black);
+  border-left: solid 2px var(--color-black);
+}
+.l-aboutUs__team {
+  background-color: var(--color-white);
+}
+.l-aboutUs__teamSwiper {
+  background-color: var(--color-white);
+  margin: var(--spacing-24);
+}
+
 .c-breadcrumbs {
   display: flex;
   flex-direction: column;
@@ -3000,6 +3018,15 @@ section {
   font-size: var(--text-md);
 }
 
+.c-bannerCarousel__slide {
+  display: block;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  aspect-ratio: 1/1;
+  aspect-ratio: 3.5/1;
+}
+
 .o-btn {
   all: unset;
   font-size: var(--text-4xl);
@@ -3111,40 +3138,6 @@ section {
   font-weight: 800;
 }
 
-.o-swiperCustom div.swiper {
-  width: 80%;
-}
-.o-swiperCustom div.swiper.schoolSwiper {
-  width: 80%;
-  background-color: #e2d8e2;
-  border-radius: var(--spacing-24);
-}
-.o-swiperCustom div.swiper.schoolSwiper .c-uniCard {
-  transform: scale(0.75);
-}
-.o-swiperCustom div.c-uniCard.swiper-slide.swiper-slide-active {
-  transform: scale(0.9);
-}
-.o-swiperCustom span.swiper-pagination-bullet, .o-swiperCustom span.swiper-pagination-bullet-active {
-  width: 2rem;
-  height: 1.1rem;
-  border-radius: var(--spacing-12);
-}
-.o-swiperCustom span.swiper-pagination-bullet {
-  background-color: #4C2A70;
-  opacity: 1;
-}
-.o-swiperCustom span.swiper-pagination-bullet-active {
-  background-color: #BD9EBE;
-  opacity: 1;
-}
-.o-swiperCustom .paginationCustom {
-  position: absolute;
-  text-align: center;
-  transform: translate3d(0, 0, 0);
-  z-index: 10;
-}
-
 .o-searchBar {
   overflow: hidden;
   border-radius: var(--spacing-80);
@@ -3165,4 +3158,68 @@ section {
   height: 100%;
   border: solid var(--spacing-4) #4C2A70;
   border-radius: 0 var(--spacing-80) var(--spacing-80) 0;
+}
+
+.o-subTitle {
+  min-width: 25rem;
+  text-align: end;
+  background-color: #4C2A70;
+  padding: var(--spacing-12);
+  border-radius: 0 var(--spacing-24) var(--spacing-24) 0;
+  font-size: var(--text-3xl);
+  color: var(--color-white);
+}
+
+.s-swiperCustom div.swiper {
+  width: 80%;
+}
+.s-swiperCustom div.swiper.schoolSwiper {
+  width: 80%;
+  background-color: #e2d8e2;
+  border-radius: var(--spacing-24);
+}
+.s-swiperCustom div.swiper.schoolSwiper .c-uniCard {
+  transform: scale(0.75);
+}
+.s-swiperCustom div.c-uniCard.swiper-slide.swiper-slide-active {
+  transform: scale(0.9);
+}
+.s-swiperCustom span.swiper-pagination-bullet, .s-swiperCustom span.swiper-pagination-bullet-active {
+  width: 2rem;
+  height: 1.1rem;
+  border-radius: var(--spacing-12);
+}
+.s-swiperCustom span.swiper-pagination-bullet {
+  background-color: #4C2A70;
+  opacity: 1;
+}
+.s-swiperCustom span.swiper-pagination-bullet-active {
+  background-color: #BD9EBE;
+  opacity: 1;
+}
+.s-swiperCustom .paginationCustom {
+  position: absolute;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
+}
+
+.s-bannerSwiperCustom span.swiper-pagination-bullet, .s-bannerSwiperCustom span.swiper-pagination-bullet-active {
+  width: 2rem;
+  height: 1.1rem;
+  border-radius: var(--spacing-12);
+  background-color: var(--color-white);
+}
+.s-bannerSwiperCustom span.swiper-pagination-bullet {
+  opacity: 1;
+}
+.s-bannerSwiperCustom span.swiper-pagination-bullet-active {
+  opacity: 1;
+  width: 4rem;
+}
+.s-bannerSwiperCustom .paginationCustom {
+  position: absolute;
+  text-align: center;
+  transform: translate3d(0, 0, 0);
+  z-index: 10;
 }/*# sourceMappingURL=broccoli_style.css.map */

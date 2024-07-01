@@ -151,6 +151,17 @@
                 clickable: true,
             },
         });
+
+        var swiper = new Swiper(".aboutUsSwiper", {
+            loop: true,
+            autoplay: {
+                delay: 2000,
+            },
+            pagination: {
+                el: ".aboutUsPagi",
+                clickable: true,
+            },
+        });
     </script>
     <!-- end of cards click function -->
     <script src="{{ asset('js/broccoli-sideBar.js')}}"></script>
