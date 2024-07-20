@@ -53,8 +53,12 @@
                                             <polygon class="cls-1" points="329.5 170 0 170 0 0 330 45.1 329.5 170" />
                                         </svg>
                                         <!-- school img -->
-                                        <span class="c-studentCardSwiper_schoolImg"
-                                            style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">&nbsp;</span>
+                                         <div class="c-studentCardSwiper_schoolImg" style="background-image: url('{{asset('uploads/images/bg-for-uniLogo.png')}}');">
+                                         <span
+                                         style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">
+                                         &nbsp;
+                                        </span>
+                                         </div>
                                         <!-- name card -->
                                         <h4 class="c-studentCardSwiper_userName">
                                             {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
@@ -138,8 +142,9 @@
                                 @endif
                                 <div class="swiper-slide">
                                     <div class="c-uniCard" onclick="uniCardClick('{{ $university->slug }}')">
-                                        <span class="c-uniCard_img"
-                                            style="background-image: url('{{asset($university->image_path)}}') ;">&nbsp;</span>
+                                            <span class="c-uniCard_img"
+                                                style="background-image: url('{{asset($university->image_path)}}') ;">&nbsp;
+                                            </span>
                                         <h6>{{ \Illuminate\Support\Str::limit($university->chinese_name, 15) }}
                                         </h6>
                                         <h4>{{ \Illuminate\Support\Str::limit($university->english_name, 25) }}
