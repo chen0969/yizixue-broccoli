@@ -116,7 +116,7 @@
                                         <!-- namecard -->
                                         <a class="align-content-center"
                                             href="{{route('get-introduction', $post->author->id)}}">
-                                            {{ !is_null($post->author->name) ? \Illuminate\Support\Str::limit($post->author->name, 10) : '' }}
+                                            {{ !is_null($post->author->nickname) ? \Illuminate\Support\Str::limit($post->author->nickname, 10) : '' }}
                                         </a>
                                     </div>
 
@@ -150,14 +150,14 @@
                                     <!-- reacts -->
                                     <div class="o-react w-100 p-3">
                                         @if(auth()->check())
-                                        <i class="bi bi-heart u-cursor-pointer" style="
+                                        <i class="bi @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) bi-heart-fill @else bi-heart @endif u-cursor-pointer like-post" style="
                                     color: @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                             <span>
                                                 {{$post->likePost->count()}}
                                             </span>
                                         </i>
-                                        <i class="bi bi-bookmark u-cursor-pointer" style="
+                                        <i class="bi @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif u-cursor-pointer collect-post" style="
                                     color: @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                             <span>
@@ -165,12 +165,12 @@
                                             </span>
                                         </i>
                                         @else
-                                        <i class="bi bi-heart u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
+                                        <i class="bi bi-heart like-post u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
                                             <span>
                                                 {{$post->likePost->count()}}
                                             </span>
                                         </i>
-                                        <i class="bi bi-bookmark u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
+                                        <i class="bi bi-bookmark collect-post u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
                                             <span>
                                                 {{$post->collectPost->count()}}
                                             </span>
@@ -195,48 +195,49 @@
         </div>
     </div>
 </div>
+@endsection
 
+@section('page_js')
+    <script>
+        $('.like-post').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('like-post')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red').children('span').text(res.total);
 
-<script>
-    $('.socialIcons .fa-heart').click(function () {
-        let that = $(this);
-        $.ajax({
-            url: "{{url('like-post')}}" + "/" + $(this).data('id'),
-            method: 'GET',
-            success: function (res) {
-                if (res.operator === 'no') {
-                    alert(res.message);
-                } else if (res.operator === 'add') {
-                    that.css('color', 'red').children('span').text(res.total);
-
-                } else if (res.operator === 'reduce') {
-                    that.css('color', 'black').children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black').children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
                 }
-            },
-            error: function (error) {
-                console.log(error)
-            }
+            });
         });
-    });
 
-    $('.socialIcons .fa-bookmark').click(function () {
-        let that = $(this);
-        $.ajax({
-            url: "{{url('collect-post')}}" + "/" + $(this).data('id'),
-            method: 'GET',
-            success: function (res) {
-                if (res.operator === 'no') {
-                    alert(res.message);
-                } else if (res.operator === 'add') {
-                    that.css('color', 'red').children('span').text(res.total);
-                } else if (res.operator === 'reduce') {
-                    that.css('color', 'black').children('span').text(res.total);
+        $('.collect-post').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('collect-post')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red').children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black').children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
                 }
-            },
-            error: function (error) {
-                console.log(error)
-            }
+            });
         });
-    });
-</script>
+    </script>
 @endsection

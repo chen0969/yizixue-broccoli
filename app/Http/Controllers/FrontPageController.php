@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BulletinBoard;
+use App\Carousel;
 use App\Post;
 use App\QACategory;
 use App\QACategoryRelation;
@@ -22,18 +23,16 @@ class FrontPageController extends Controller
     public function index()
     {
         $users = User::where('expired', '>=', now())->get();
-
         $Data = [
             'Skills' => new Skill,
             'UserSkillRelation' => new UserSkillRelation,
             'Users' => $users,
             'University' => University::withCount('vip')->orderBy('vip_count', 'desc')->limit(15)->get(),
             'PostCategory' => new PostCategory,
-            'QaCategory' => QACategory::with('QACategoryRelation')->get(),
-            'Post' => Post::whereIn('uid', $users->pluck('id'))->inRandomOrder()->first()
+            'QaCategory' => QACategory::with(['QACategoryRelation' => function($q){$q->orderByDesc('created_at');}])->get(),
+            'Post' => Post::whereIn('uid', $users->pluck('id'))->inRandomOrder()->first(),
+            'Carousel' => Carousel::where('is_active', true)->first(),
         ];
-
-//        dd($Data['QaCategory']);
 
         return view('welcome')->with('Data', $Data);
     }
@@ -48,7 +47,7 @@ class FrontPageController extends Controller
                 'id' => $item->id,
                 'body' => Str::limit(strip_tags($item->body)),
                 'title' => $item->title,
-                'image_path' => url('uploads/'.$item->image_path),
+                'image_path' => (str_starts_with('/', $item->image_path)) ? str_replace(' ', '%20', url('uploads'.$item->image_path)) : str_replace(' ', '%20', url('uploads/'.$item->image_path)),
                 "category" => $item->category->transform(function($item){ return $item->postCategory->name; }),
                 'url' => url('article/'.$item->id)
             ];

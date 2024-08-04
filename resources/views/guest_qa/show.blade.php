@@ -28,12 +28,17 @@
                 <!-- The question title -->
                 <h2 class="col-md-10 l-qnaGuest__title">{{ !is_null($qna->title) ? \Illuminate\Support\Str::limit($qna->title, 50) : '' }}</h2>
                 <div class="col-md-2 align-content-end">
-                    <!-- !!!!!! -->
-                    <!-- please merge the bookmark function here -->
-                    <i class="bi bi-bookmark d-flex u-cursor-pointer">
-                        <span class="text-black">T</span>
-                    </i>
-                    <!-- !!!!!! -->
+                    @if(auth()->check())
+                        <i class="bi @if(auth()->user()->collectQa->where('qa_id', $qna->id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif  collect-qa d-flex u-cursor-pointer" data-id="{{$qna->id}}" style="
+                                    color: @if(auth()->user()->collectQa->where('qa_id', $qna->id)->count()==1) red @else black @endif ;
+                                            ">
+                            <span>{{$qna->collectQa->count()}}</span>
+                        </i>
+                    @else
+                        <i class="bi bi-bookmark-fill collect-qa d-flex u-cursor-pointer" data-id="{{$qna->id}}">
+                            <span>{{$qna->collectQa->count()}}</span>
+                        </i>
+                    @endif
                 </div>
             </div>
             <!-- QA tags -->
@@ -64,8 +69,8 @@
                     <div class="row mt-3">
                         <span for="" class="o-qnaBtn col-md-2">時間</span>
                         <p class="align-content-end pt-2 col-md-10 l-qnaGuest__statusContent">
-                            {{ Carbon\Carbon::parse($qna->contact_time)->format('Y-m-d H:i:s')}} 至
-                            {{ \Carbon\Carbon::parse($qna->contact_time_end)->format('Y-m-d H:i:s')}}</p>
+                            {{ Carbon\Carbon::parse($qna->contact_time)->format('H:i:s')}} 至
+                            {{ \Carbon\Carbon::parse($qna->contact_time_end)->format('H:i:s')}}</p>
                         <hr class="mt-3">
                     </div>
 
@@ -298,10 +303,17 @@
                                 </div>
                                 <div class="col-md-2">
                                     <div class="lign-content-end">
-                                        <!-- please merge the bookmark function here -->
-                                        <i class="bi bi-bookmark d-flex u-cursor-pointer">
-                                            <span class="text-black">T</span>
-                                        </i>
+                                        @if(auth()->check())
+                                            <i class="bi @if(auth()->user()->collectQa->where('qa_id', $qa->qa_id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif   collect-qa d-flex u-cursor-pointer" data-id="{{$qa->qa_id}}" style="
+                                            color: @if(auth()->user()->collectQa->where('qa_id', $qa->qa_id)->count()==1) red @else black @endif ;
+                                            ">
+                                                <span>{{$qa->qa->collectQa->count()}}</span>
+                                            </i>
+                                        @else
+                                            <i class="bi bi-bookmark collect-qa d-flex u-cursor-pointer" data-id="{{$qa->qa_id}}">
+                                                <span>{{$qa->qa->collectQa->count()}}</span>
+                                            </i>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -319,4 +331,29 @@
         @endif
     </div>
 </div>
+@endsection
+@section('page_js')
+    <script>
+        $('.collect-qa').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('collect-qa')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                        that.children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                        that.children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+    </script>
 @endsection

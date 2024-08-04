@@ -10,10 +10,10 @@
                     <a class="c-breadcrumbs__prePage" href="{{url('/')}}">首頁</a>
                     >
                     <a class="c-breadcrumbs__prePage" href="{{route('article-list', $Data['user']->id)}}">
-                        {{$Data['user']->name}}
+                        {{$Data['user']->nickname}}
                     </a>
                 </h4>
-                <h3 class="c-breadcrumbs__currentPage">{{$Data['user']->name}}</h3>
+                <h3 class="c-breadcrumbs__currentPage">{{$Data['user']->nickname}}</h3>
             </div>
         </div>
     </div>
@@ -31,7 +31,7 @@
         <div class="col-md-8">
             <div class="l-introduction__infoCard">
                 <!-- user name -->
-                <h2 class="l-introduction__userName">{{$Data['user']->name}}</h2>
+                <h2 class="l-introduction__userName">{{$Data['user']->nickname}}</h2>
                 <!-- tags -->
                 <div class="l-introduction__tags">
                     <div class="row">
@@ -43,7 +43,7 @@
                                     <!-- school img -->
                                     <div class="col-md-2">
                                         <span class="l-introduction__schoolImg"
-                                            style="background-image: url('{{asset('university/USA/US1.png')}}') ;">&nbsp;</span>
+                                            style="background-image: url('{{asset($Data['user']->universityItem->image_path)}}') ;">&nbsp;</span>
                                     </div>
                                     <!-- school name -->
                                     <div class="col-md-6">
@@ -54,7 +54,7 @@
                                             {{!is_null($Data['user']->universityItem) ?$Data['user']->universityItem->english_name:''}}
                                         </h6>
                                     </div>
-                                    <h3 class="col-md-4 o-whiteBtn">在學</h3>
+                                    <h3 class="col-md-4 o-whiteBtn">{{$Data['user']->is_study == 1 ?'在學':'非在學'}}</h3>
                                 </div>
                                 <!-- post categ -->
                                 <div class="row">
@@ -88,32 +88,31 @@
                 <div class="l-introduction__socialBtn">
                     <!-- react -->
                     @if(auth()->check())
-                    <div class="o-actBtn">
-                        <i class="bi bi-heart u-cursor-pointer"
-                            style="color:  @if($Data['user']->likedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) red @else black @endif"
-                            data-id="{{$Data['user']->id}}">
-                        </i>
-                        <p>{{$Data['user']->likedUser->count()}}</p>
-                    </div>
-                    <div class="o-actBtn">
-                        <i class="bi bi-bookmark u-cursor-pointer"
-                            style="color:  @if($Data['user']->collectedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) red @else black @endif"
-                            data-id="{{$Data['user']->id}}">
-                        </i>
-                        <p>{{$Data['user']->collectedUser->count()}}</p>
-                    </div>
+                        <div class="o-actBtn">
+                            <i class="bi @if($Data['user']->likedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) bi-heart-fill @else bi-heart @endif  like-user"
+                                style="color:  @if($Data['user']->likedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) red @else black @endif"
+                                data-id="{{$Data['user']->id}}">
+                            </i>
+                            <p>{{$Data['user']->likedUser->count()}}</p>
+                        </div>
+                        <div class="o-actBtn">
+                            <i class="bi @if($Data['user']->collectedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif  collect-user"
+                                style="color:  @if($Data['user']->collectedUser->where('uid', auth()->user()->id)->where('user_id', $Data['user']->id)->count() == 1) red @else black @endif"
+                                data-id="{{$Data['user']->id}}">
+                            </i>
+                            <p>{{$Data['user']->collectedUser->count()}}</p>
+                        </div>
                     @else
-                    <div class="o-actBtn">
-                        <i class="bi bi-heart text-black u-cursor-pointer o-react" style="margin:5px">
-                        </i>
-                        <p>{{$Data['user']->likedUser->count()}}</p>
-                    </div>
-                    <div class="o-actBtn">
-                        <i class="bi bi-bookmark u-cursor-pointer" style="margin:5px">
-
-                        </i>
-                        <p>{{$Data['user']->collectedUser->count()}}</p>
-                    </div>
+                        <div class="o-actBtn">
+                            <i class="bi bi-heart like-user" style="margin:5px">
+                            </i>
+                            <p>{{$Data['user']->likedUser->count()}}</p>
+                        </div>
+                        <div class="o-actBtn">
+                            <i class="bi bi-bookmark collect-user" style="margin:5px">
+                            </i>
+                            <p>{{$Data['user']->collectedUser->count()}}</p>
+                        </div>
                     @endif
                     <!-- video & audio -->
                     @if(is_null($Data['user']->profile_video))
@@ -124,7 +123,7 @@
                     </div>
                     @else
                     <div>
-                        <a class="o-tag" href="{{$Data['user']->profile_video}}" target="_blank">
+                        <a href="{{$Data['user']->profile_video}}" class="o-tag" target="_blank">
                             <i class="bi bi-play-fill"></i>
                         </a>
                     </div>
@@ -159,88 +158,83 @@
     <div class="row">
         <div class="col-md-12 p-5">
             <div class="container">
-                <div class="row gy-5">
-                    <!-- self intro -->
-                    <div class="col-md-12">
-                        <div class="l-introduction__detailContent">
-                            @if(is_null($Data['user']->description))
-                            尚未填寫自我介紹
-                            @else
-                            {!! $Data['user']->description !!}
-                            @endif
-                        </div>
+            <div class="row gy-5">
+                <!-- self intro -->
+                <div class="col-md-12">
+                    <div class="l-introduction__detailContent">
+                        @if(is_null($Data['user']->description))
+                        尚未填寫自我介紹
+                        @else
+                        {!! $Data['user']->description !!}
+                        @endif
                     </div>
-                    <!-- education -->
-                    <div class="col-md-12">
-                        <div class="l-introduction__detailContent">
-                            <h3 class="o-normalTitle mb-5">學歷經歷</h3>
-                            <p>
-                                {{ !is_null($Data['user']->universityItem) ? $Data['user']->universityItem->english_name : '' }}
-                            </p>
+                </div>
+                <!-- education -->
+                <div class="col-md-12">
+                    <div class="l-introduction__detailContent">
+                        <h3 class="o-normalTitle">學歷經歷</h3>
+                        @forelse($Data['user']->experiences as $experience)
+                            <p>{{$experience->learning_experience}}</p>
                             <hr>
-                            <p>
-                                {{ !is_null($Data['user']->universityItem) ? $Data['user']->universityItem->english_name : '' }}
-                            </p>
+                        @empty
+                            <p></p>
                             <hr>
-                        </div>
+                        @endforelse
                     </div>
-                    <!-- social -->
-                    <div class="col-md-12">
-                        <div class="l-introduction__detailContent">
-                            <h3 class="o-normalTitle mb-5">社交網路</h3>
-                            <div class="container-fluid">
-                                <div class="row">
-                                    <!-- line -->
-                                    <div class="col-md-3 align-content-end">
-                                        <i class="bi bi-line o-socialIcon"></i>
-                                        <a href="/" class="text-black text-decoration-none" target="_blank">
-                                            LINE:{{$Data['user']->line}}
-                                        </a>
-                                    </div>
-                                    <!-- fb -->
-                                    <div class="col-md-3 align-content-end">
-                                        <i class="bi bi-facebook o-socialIcon"></i>
-                                        @if(!is_null($Data['user']->fb)) <a href="{{$Data['user']->fb}}"
-                                            class="text-black text-decoration-none" target="_blank">
-                                            FB: {{ parse_url($Data['user']->fb, PHP_URL_PATH)}} </a> @else @endif
-                                    </div>
-                                    <!-- ig -->
-                                    <div class="col-md-3 align-content-end">
-                                        <i class="bi bi-instagram o-socialIcon"></i>
-                                        @if(!is_null($Data['user']->ig)) <a href="{{$Data['user']->ig}}"
-                                            class="text-black text-decoration-none" target="_blank">
-                                            IG: {{ parse_url($Data['user']->ig, PHP_URL_PATH)}} </a> @else @endif
-
-                                    </div>
-                                    <!-- linkedin -->
-                                    <div class="col-md-3 align-content-end">
-                                        <i class="bi bi-linkedin o-socialIcon">
-                                        </i>
-                                        <a href="#" class="text-black text-decoration-none" target="_blank">
-                                            LinkedIn:
-                                        </a>
-                                    </div>
+                </div>
+                <!-- social -->
+                <div class="col-md-12">
+                    <div class="l-introduction__detailContent">
+                        <h3 class="o-normalTitle mb-5">社交網路</h3>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <!-- line -->
+                                <div class="col-md-3 align-content-end">
+                                    <i class="bi bi-line o-socialIcon"></i>
+                                    LINE:{{$Data['user']->line}}
+                                </div>
+                                <!-- fb -->
+                                <div class="col-md-3 align-content-end">
+                                    <i class="bi bi-facebook o-socialIcon"></i>
+                                    @if(!is_null($Data['user']->fb)) <a href="{{$Data['user']->fb}}"
+                                        class="text-black text-decoration-none" target="_blank">
+                                        FB: {{ parse_url($Data['user']->fb, PHP_URL_PATH)}} </a> @else @endif
+                                </div>
+                                <!-- ig -->
+                                <div class="col-md-3 align-content-end">
+                                    <i class="bi bi-instagram o-socialIcon"></i>
+                                    @if(!is_null($Data['user']->ig)) <a href="{{$Data['user']->ig}}"
+                                        class="text-black text-decoration-none" target="_blank">
+                                        IG: {{ parse_url($Data['user']->ig, PHP_URL_PATH)}} </a> @else @endif
+                                </div>
+                                <!-- linkedin -->
+                                <div class="col-md-3 align-content-end">
+                                    <i class="bi bi-linkedin o-socialIcon"></i>
+                                    @if(!is_null($Data['user']->linkedin)) <a href="{{$Data['user']->linkedin}}"
+                                        class="text-black text-decoration-none" target="_blank">
+                                        LinkedIn: {{ parse_url($Data['user']->linkedin, PHP_URL_PATH)}} </a> @else @endif
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-md-12">
-                        <div class="l-introduction__detailContent">
-                            <h3 class="o-normalTitle mb-5">與我聯繫</h3>
-                            <div>
-                                <p>
-                                    <i class="bi bi-envelope-fill"></i>
-                                    電子郵件：{{$Data['user']->email}}</p>
-                                <p>
-                                    <i class="bi bi-telephone-fill"></i>
-                                    手機號碼：{{$Data['user']->phone}}</p>
-                            </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="l-introduction__detailContent">
+                        <h3 class="o-normalTitle mb-5">與我聯繫</h3>
+                        <div>
+                            <p>
+                                <i class="bi bi-envelope-fill"></i>
+                                電子郵件：{{$Data['user']->email}}</p>
+                            <p>
+                                <i class="bi bi-telephone-fill"></i>
+                                手機號碼：{{$Data['user']->phone}}</p>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
+        </div>
+     </div>
 </div>
 <!-- my article -->
 <!-- detail section -->
@@ -263,7 +257,8 @@
                                 <!-- card -->
                                 @if(!is_null($Data['user']->post))
                                 @foreach($Data['user']->post as $count => $post)
-                                @if($count < 4) <div class="col-md-6">
+                                @if($count < 4)
+                                <div class="col-md-6">
                                     <div class="c-articleCard">
                                         <div class="container l-introduction__articleCard">
                                             <div class="row align-items-center">
@@ -286,14 +281,14 @@
                                                         <!-- tags -->
                                                         <div>
                                                             @forelse($post->category as $count => $cate)
-                                                            @if($count < 3) <a
-                                                                href="{{route('study-abroad', ['category_id' => $cate->postCategory->id])}}"
+                                                            @if($count < 3)
+                                                            <a href="{{route('study-abroad', ['category_id' => $cate->postCategory->id])}}"
                                                                 class="o-tag">
                                                                 {{$cate->postCategory->name}}
-                                                                </a>
-                                                                @endif
-                                                                @empty
-                                                                @endforelse
+                                                            </a>
+                                                            @endif
+                                                            @empty
+                                                            @endforelse
                                                         </div>
                                                         <!-- title -->
                                                         <a class="c-articleCard__title"
@@ -310,14 +305,14 @@
                                                         <!-- reacts -->
                                                         <div class="o-react w-100 p-3">
                                                             @if(auth()->check())
-                                                            <i class="bi bi-heart" style="
+                                                            <i class="bi @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) bi-heart-fill @else bi-heart @endif like-post" style="
                                                                 color: @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                                                 " data-id="{{$post->id}}">
                                                                 <span>
                                                                     {{$post->likePost->count()}}
                                                                 </span>
                                                             </i>
-                                                            <i class="bi bi-bookmark" style="
+                                                            <i class="bi @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif  collect-post" style="
                                                                 color: @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                                                 " data-id="{{$post->id}}">
                                                                 <span>
@@ -325,14 +320,12 @@
                                                                 </span>
                                                             </i>
                                                             @else
-                                                            <i class="bi bi-heart" style="color: black;"
-                                                                data-id="{{$post->id}}">
+                                                            <i class="bi bi-heart like-post" style="color: black;" data-id="{{$post->id}}">
                                                                 <span>
                                                                     {{$post->likePost->count()}}
                                                                 </span>
                                                             </i>
-                                                            <i class="bi bi-bookmark" style="color: black;"
-                                                                data-id="{{$post->id}}">
+                                                            <i class="bi bi-bookmark collect-post" style="color: black;" data-id="{{$post->id}}">
                                                                 <span>
                                                                     {{$post->collectPost->count()}}
                                                                 </span>
@@ -348,20 +341,24 @@
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+                                @endif
+                                @endforeach
+                                @endif
                             </div>
-                            @endif
-                            @endforeach
-                            @endif
                         </div>
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <a class="o-readMore" href="{{route('article-list', $Data['user']->id)}}">查看更多文章</a>
+                    <div class="col-md-12">
+                        @if($Data['user']->post->count() > 0)
+                        <a class="o-readMore" href="{{route('article-list', $Data['user']->id)}}">查看更多文章</a>
+                        @else
+                            <a class="o-readMore"></a>
+                        @endif
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>
 <!-- attachments -->
 <h2 class="l-introduction__title mt-5">參考文件</h2>
@@ -434,7 +431,7 @@
                     <div class="swiper studentSwiper">
                         <div class="swiper-wrapper">
                             @foreach ($Data['vip'] as $key => $user)
-                            <div class="swiper-slide">
+                            <div class=" swiper-slide">
                                 <div class="c-studentCardSwiper" onclick="cardClickable({{ $user->id }})">
                                     <!-- img div -->
                                     @if(is_null($user->avatar))
@@ -450,10 +447,10 @@
                                     </svg>
                                     <!-- school img -->
                                     <span class="c-studentCardSwiper_schoolImg"
-                                        style="background-image: url('{{asset('university/USA/US1.png')}}') ;">&nbsp;</span>
+                                        style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">&nbsp;</span>
                                     <!-- name card -->
                                     <h4 class="c-studentCardSwiper_userName">
-                                        {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
+                                        {{ ($user->nickname) ? \Illuminate\Support\Str::limit($user->nickname,10): "" }}
                                     </h4>
                                     <!-- school english -->
                                     <h5 class="c-studentCardSwiper_schoolEnglish">
@@ -467,22 +464,22 @@
                                     <div class="c-studentCardSwiper_react"
                                         onclick="event.stopPropagation(); return false; ">
                                         @if(auth()->check())
-                                        <i class="bi bi-heart" style="
-                                    color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
-                                    " data-id="{{$user->id}}">
-                                            <span class="text-black">{{$user->likedUser->count()}}</span>
+                                        <i class="bi @if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-heart-fill @else bi-heart @endif  like-user" style="
+                                        color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
+                                        " data-id="{{$user->id}}">
+                                            <span>{{$user->likedUser->count()}}</span>
                                         </i>
-                                        <i class="bi bi-bookmark" data-id="{{$user->id}}" style="
-                                    color:  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
-                                    ">
-                                            <span class="text-black">{{$user->collectedUser->count()}}</span>
+                                        <i class="bi  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif  collect-user" data-id="{{$user->id}}" style="
+                                        color:  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
+                                        ">
+                                            <span>{{$user->collectedUser->count()}}</span>
                                         </i>
                                         @else
-                                        <i class="bi bi-heart" style="color: black;" data-id="{{$user->id}}">
-                                            <span class="text-black">{{$user->likedUser->count()}}</span>
+                                        <i class="bi bi-heart like-user" style="color: black;" data-id="{{$user->id}}">
+                                            <span>{{$user->likedUser->count()}}</span>
                                         </i>
-                                        <i class="bi bi-bookmark" data-id="{{$user->id}}">
-                                            <span class="text-black">{{$user->collectedUser->count()}}</span>
+                                        <i class="bi bi-bookmark collect-user" data-id="{{$user->id}}">
+                                            <span>{{$user->collectedUser->count()}}</span>
                                         </i>
                                         @endif
                                     </div>
@@ -513,4 +510,99 @@
         </div>
     </div>
 </div>
+
+@endsection
+
+@section('page_js')
+        <script>
+            $('.like-user').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('like-user')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            })
+
+            $('.collect-user').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('collect-user')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+            })
+
+            $('.like-post').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('like-post')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            })
+
+            $('.collect-post').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('collect-post')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+            })
+        </script>
 @endsection

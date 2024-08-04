@@ -54,27 +54,29 @@
                                 <div class="col-md-3">
                                     <div class="o-react">
                                         @if(auth()->check())
-                                        <i class="bi bi-heart u-cursor-pointer"
+                                        <i class="bi @if(auth()->user()->likePost->where('post_id', $Data['article']->id)->count() == 1) bi-heart-fill @else bi-heart @endif u-cursor-pointer like-post"
                                             style="color:@if(auth()->user()->likePost->where('post_id', $Data['article']->id)->count() == 1) red @else black @endif ;margin:5px"
                                             data-id="{{$Data['article']->id}}">
                                             <span>{{$Data['article']->likePost->count()}}</span>
                                         </i>
-                                        <i class="bi bi-bookmark u-cursor-pointer"
+                                        <i class="bi @if(auth()->user()->collectPost->where('post_id', $Data['article']->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif u-cursor-pointer collect-post"
                                             style="color: @if(auth()->user()->collectPost->where('post_id', $Data['article']->id)->count() == 1) red @else black @endif ;margin:5px"
                                             data-id="{{$Data['article']->id}}">
                                             <span>{{$Data['article']->collectPost->count()}}</span>
                                         </i>
                                         @else
-                                        <i class="bi bi-heart u-cursor-pointer" style=" color:black; margin:5px"
+                                        <i class="bi bi-heart like-post u-cursor-pointer" style=" color:black; margin:5px"
                                             data-id="{{$Data['article']->id}}">
                                             <span>{{$Data['article']->likePost->count()}}</span>
                                         </i>
-                                        <i class="bi bi-bookmark u-cursor-pointer" style=" color:black; margin:5px"
+                                        <i class="bi bi-bookmark collect-post u-cursor-pointer" style=" color:black; margin:5px"
                                             data-id="{{$Data['article']->id}}">
                                             <span>{{$Data['article']->collectPost->count()}}</span>
                                         </i>
                                         @endif
-                                        <i class="bi bi-share u-cursor-pointer" style=" color:black; margin:5px"></i>
+                                            <a href="https://social-plugins.line.me/lineit/share?url={{route('article', ['id' => $Data['article']->id])}}" class="text-none" target="_blank">
+                                                <i class="bi bi-share u-cursor-pointer" style=" color:black; margin:5px"></i>
+                                            </a>
                                     </div>
                                 </div>
                             </div>
@@ -85,7 +87,7 @@
                         <div class="l-singleArticle__rightDiv">
                             <h2>文章作者</h2>
                             <!-- new student card -->
-                            <div class="c-studentCard">
+                            <div class="c-studentCard" onclick="cardClickable({{ $Data['article']->author->id }})">
                                 <!-- img div -->
                                 <span class="c-studentCard_studentImg"
                                     style="background-image: url('{{asset('uploads/'.$Data['article']->author->avatar)}}');">&nbsp;</span>
@@ -98,7 +100,7 @@
                                     style="background-image: url('{{asset('university/USA/US1.png')}}') ;">&nbsp;</span>
                                 <!-- name card -->
                                 <h4 class="c-studentCard_userName">
-                                    {{ ($Data['article']->author->name) ? \Illuminate\Support\Str::limit($Data['article']->author->name,8): "" }}
+                                    {{ ($Data['article']->author->nickname) ? \Illuminate\Support\Str::limit($Data['article']->author->nickname,8): "" }}
                                 </h4>
                                 <!-- school english -->
                                 <h5 class="c-studentCard_schoolEnglish">
@@ -110,12 +112,25 @@
                                 </h6>
                                 <!-- react icons -->
                                 <div class="c-studentCard_react" onclick="event.stopPropagation(); return false; ">
-                                    <i class="bi bi-heart u-cursor-pointer">
-                                        <span>T</span>
-                                    </i>
-                                    <i class="bi bi-bookmark u-cursor-pointer">
-                                        <span>T</span>
-                                    </i>
+                                    @if(auth()->check())
+                                        <i class="bi @if($Data['article']->author->likedUser->where('uid', auth()->user()->id)->where('user_id', $Data['article']->author->id)->count() == 1) bi-heart-fill @else bi-heart @endif u-cursor-pointer like-user" style="
+                                    color: @if($Data['article']->author->likedUser->where('uid', auth()->user()->id)->where('user_id', $Data['article']->author->id)->count() == 1) red @else black @endif ;
+                                    " data-id="{{$Data['article']->author->id}}">
+                                            <span>{{$Data['article']->author->likedUser->count()}}</span>
+                                        </i>
+                                        <i class="bi @if($Data['article']->author->collectedUser->where('uid', auth()->user()->id)->where('user_id', $Data['article']->author->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif u-cursor-pointer collect-user" style="
+                                    color: @if($Data['article']->author->collectedUser->where('uid', auth()->user()->id)->where('user_id', $Data['article']->author->id)->count() == 1) red @else black @endif ;
+                                    " data-id="{{$Data['article']->author->id}}">
+                                            <span>{{$Data['article']->author->collectedUser->count()}}</span>
+                                        </i>
+                                    @else
+                                        <i class="bi bi-heart like-user u-cursor-pointer" style="color:black;">
+                                            <span>{{$Data['article']->author->likedUser->count()}}</span>
+                                        </i>
+                                        <i class="bi bi-bookmark collect-user u-cursor-pointer" style="color: black;">
+                                            <span>{{$Data['article']->author->collectedUser->count()}}</span>
+                                        </i>
+                                    @endif
                                 </div>
                                 <!-- post tag -->
                                 <div class="c-studentCard_postTag">
@@ -197,7 +212,7 @@
                                                 @endif
                                                 <!-- namecard -->
                                                 <a href="{{route('get-introduction', $post->author->id)}}">
-                                                    {{ $post->author->name  }}
+                                                    {{ !is_null($post->author->nickname) ? \Illuminate\Support\Str::limit($post->author->nickname, 8) : '' }}
                                                 </a>
                                             </div>
 
@@ -232,14 +247,14 @@
                                             <!-- reacts -->
                                             <div class="o-react w-100 p-3">
                                                 @if(auth()->check())
-                                                <i class="bi bi-heart u-cursor-pointer" style="
+                                                <i class="bi @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) bi-heart-fill @else bi-heart @endif u-cursor-pointer like-post" style="
                                     color: @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                                     <span>
                                                         {{$post->likePost->count()}}
                                                     </span>
                                                 </i>
-                                                <i class="bi bi-bookmark u-cursor-pointer" style="
+                                                <i class="bi @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif u-cursor-pointer collect-post" style="
                                     color: @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                                     <span>
@@ -247,12 +262,12 @@
                                                     </span>
                                                 </i>
                                                 @else
-                                                <i class="bi bi-heart u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
+                                                <i class="bi bi-heart like-post u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
                                                     <span>
                                                         {{$post->likePost->count()}}
                                                     </span>
                                                 </i>
-                                                <i class="bi bi-bookmark u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
+                                                <i class="bi bi-bookmark collect-post u-cursor-pointer" style="color: black;" data-id="{{$post->id}}">
                                                     <span>
                                                         {{$post->collectPost->count()}}
                                                     </span>
@@ -274,5 +289,103 @@
             </div>
         </div>
     </div>
+@endsection
 
-    @endsection
+@section('page_js')
+        <script>
+            // fix container-fluid px-5 padding
+            $(document).ready(function () {
+                $(".adjOnSingleArticle").removeClass("px-5");
+                $(".adjOnSingleArticle").css("padding", "0");
+            });
+            $('.like-post').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('like-post/')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            })
+
+            $('.collect-post').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('collect-post/')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+            })
+
+            $('.like-user').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('like-user')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+            })
+
+            $('.collect-user').click(function () {
+                let that = $(this);
+                $.ajax({
+                    url: "{{url('collect-user')}}" + "/" + $(this).data('id'),
+                    method: 'GET',
+                    success: function (res) {
+                        if (res.operator === 'no') {
+                            alert(res.message);
+                        } else if (res.operator === 'add') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                            that.children('span').text(res.total);
+                        } else if (res.operator === 'reduce') {
+                            that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                            that.children('span').text(res.total);
+                        }
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+            })
+        </script>
+@endsection

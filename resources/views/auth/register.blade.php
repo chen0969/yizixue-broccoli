@@ -61,9 +61,10 @@
                                             <!-- I have check the code works, but it can only search chinese name now, we have to add english name into search pool. -->
                                             @foreach($Data['universities'] as $id => $name)
                                             <!-- this option tag contains all the chinese names -->
-                                            <option value="{{$name}}"></option>
+                                            <option value="{{$id}}">{{$name}}</option>
                                             @endforeach
                                         </datalist>
+                                        <input type="hidden" name="university" id="universityList-hidden">
                                         @if ($errors->has('university'))
                                         <span class="help-block alert-danger">
                                             <strong>{{ $errors->first('university') }}</strong>
@@ -135,7 +136,7 @@
 </div>
 @endsection
 
-<!-- 
+<!--
 
 {{--<div class="container">--}}
 {{--    <div class="row">--}}
@@ -226,3 +227,18 @@
 {{--</div>--}}
 
  -->
+@section('page_js')
+    <script>
+        document.querySelector('#string').addEventListener('input', function(e) {
+
+            var input = e.target,
+                list = input.getAttribute('list'),
+                options = document.querySelectorAll('#' + list + ' option[value="'+input.value+'"]'),
+                hiddenInput = document.getElementById('universityList-hidden');
+            if (options.length > 0) {
+                hiddenInput.value = input.value;
+                input.value = options[0].innerText;
+            }
+        });
+    </script>
+@endsection

@@ -85,6 +85,10 @@ class User extends Authenticatable implements CanVerifyEmailContract
         return $this->hasMany(CollectPost::class, 'uid');
     }
 
+    public function collectQa()
+    {
+        return $this->hasMany(CollectQA::class, 'uid');
+    }
     public function references()
     {
         return $this->hasMany(UserReference::class);
@@ -92,7 +96,13 @@ class User extends Authenticatable implements CanVerifyEmailContract
 
     public function universityItem()
     {
-        return $this->belongsTo(University::class, 'university');
+
+        return $this->belongsTo(University::class, 'university')->withDefault([
+            'name' => '',
+            'english_name' => '',
+            'chinese_name' => '',
+            'image_path' => null,
+        ]);
     }
 
     public function isVip()

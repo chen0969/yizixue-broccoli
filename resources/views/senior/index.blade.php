@@ -42,11 +42,11 @@
                                                     @forelse($post_categories as $category)
                                                     @if($loop->last)
                                                     <button><a
-                                                            href="{{route('study-abroad', ['category_id' => $category->id])}}">{{$category->name}}</a>
+                                                            href="{{route('senior', ['category' => $category->id])}}">{{$category->name}}</a>
                                                     </button>
                                                     @else
                                                     <button><a
-                                                            href="{{route('study-abroad', ['category_id' => $category->id])}}">{{$category->name}}</a>
+                                                            href="{{route('senior', ['category' => $category->id])}}">{{$category->name}}</a>
                                                     </button>
                                                     <hr>
                                                     @endif
@@ -213,7 +213,7 @@
                             <div class="l-seniorPage__content">
                                 <div class="container-fluid">
                                     <div class="row gy-5">
-                                        @forelse($users as $user)
+                                        @forelse($users->sortByDesc(function($user){return $user->liked_user_count + $user->collected_user_count;}) as $user)
                                         <div class="col-md-4 p-0">
                                             <div class="c-studentCard" onclick="cardClickable({{ $user->id }})">
                                                 <!-- img div -->
@@ -234,7 +234,7 @@
                                                     style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">&nbsp;</span>
                                                 <!-- name card -->
                                                 <h4 class="c-studentCard_userName">
-                                                    {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,8): "" }}
+                                                    {{ ($user->nickname) ? \Illuminate\Support\Str::limit($user->nickname,8): "" }}
                                                 </h4>
                                                 <!-- school english -->
                                                 <h5 class="c-studentCard_schoolEnglish">
@@ -248,24 +248,22 @@
                                                 <div class="c-studentCard_react"
                                                     onclick="event.stopPropagation(); return false; ">
                                                     @if(auth()->check())
-                                                    <i class="bi bi-heart"
+                                                    <i class="bi @if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-heart-fill @else bi-heart @endif like-user"
                                                         style="color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif"
                                                         data-id="{{$user->id}}">
-                                                        <span class="text-black">{{$user->likedUser->count()}}</span>
+                                                        <span>{{$user->likedUser->count()}}</span>
                                                     </i>
-                                                    <i class="bi bi-bookmark" data-id="{{$user->id}}"
+                                                    <i class="bi @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif collect-user" data-id="{{$user->id}}"
                                                         style="color:  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif">
-                                                        <span
-                                                            class="text-black">{{$user->collectedUser->count()}}</span>
+                                                        <span>{{$user->collectedUser->count()}}</span>
                                                     </i>
                                                     @else
-                                                    <i class="bi bi-heart" style="color: black;"
+                                                    <i class="bi bi-heart like-user" style="color: black;"
                                                         data-id="{{$user->id}}">
-                                                        <span class="text-black">{{$user->likedUser->count()}}</span>
+                                                        <span>{{$user->likedUser->count()}}</span>
                                                     </i>
-                                                    <i class="bi bi-bookmark" data-id="{{$user->id}}">
-                                                        <span
-                                                            class="text-black">{{$user->collectedUser->count()}}</span>
+                                                    <i class="bi bi-bookmark collect-user" data-id="{{$user->id}}">
+                                                        <span>{{$user->collectedUser->count()}}</span>
                                                     </i>
                                                     @endif
                                                 </div>
@@ -320,7 +318,7 @@
                                                     style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">&nbsp;</span>
                                                 <!-- name card -->
                                                 <h4 class="c-studentCard_userName">
-                                                    {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,10): "" }}
+                                                    {{ ($user->nickname) ? \Illuminate\Support\Str::limit($user->nickname,10): "" }}
                                                 </h4>
                                                 <!-- school english -->
                                                 <h5 class="c-studentCard_schoolEnglish">
@@ -334,24 +332,22 @@
                                                 <div class="c-studentCard_react"
                                                     onclick="event.stopPropagation(); return false; ">
                                                     @if(auth()->check())
-                                                    <i class="bi bi-heart"
+                                                    <i class="bi @if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-heart-fill @else bi-heart @endif like-user"
                                                         style="color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif"
                                                         data-id="{{$user->id}}">
-                                                        <span class="text-black">{{$user->likedUser->count()}}</span>
+                                                        <span>{{$user->likedUser->count()}}</span>
                                                     </i>
-                                                    <i class="bi bi-bookmark" data-id="{{$user->id}}"
+                                                    <i class="bi @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif collect-user" data-id="{{$user->id}}"
                                                         style="color:  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif">
-                                                        <span
-                                                            class="text-black">{{$user->collectedUser->count()}}</span>
+                                                        <span>{{$user->collectedUser->count()}}</span>
                                                     </i>
                                                     @else
-                                                    <i class="bi bi-heart" style="color: black;"
+                                                    <i class="bi bi-heart like-user" style="color: black;"
                                                         data-id="{{$user->id}}">
-                                                        <span class="text-black">{{$user->likedUser->count()}}</span>
+                                                        <span>{{$user->likedUser->count()}}</span>
                                                     </i>
-                                                    <i class="bi bi-bookmark" data-id="{{$user->id}}">
-                                                        <span
-                                                            class="text-black">{{$user->collectedUser->count()}}</span>
+                                                    <i class="bi bi-bookmark collect-user" data-id="{{$user->id}}">
+                                                        <span>{{$user->collectedUser->count()}}</span>
                                                     </i>
                                                     @endif
                                                 </div>
@@ -391,4 +387,52 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('page_js')
+    <script>
+        $('.like-user').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('like-user')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red');
+                        that.children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black');
+                        that.children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+
+        $('.collect-user').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('collect-user')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red');
+                        that.children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black');
+                        that.children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+    </script>
 @endsection

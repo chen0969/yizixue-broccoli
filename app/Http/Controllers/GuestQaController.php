@@ -20,7 +20,7 @@ class GuestQaController extends Controller
             $query->whereIn('id', $qas_id);
         }
 
-        $qas = $query->with('categoryRelation')->paginate();
+        $qas = $query->with('categoryRelation')->orderByDesc('created_at')->paginate(5);
         $posts = Post::latest('created_at')->limit(2)->get();
         $categories = QACategory::all();
         return view('guest_qa.index', compact(['qas', 'posts', 'categories']));
@@ -32,7 +32,7 @@ class GuestQaController extends Controller
         if(is_null($qna)){
             return redirect()->back();
         }
-        $sameqna = QACategoryRelation::whereIn('category_id', $qna->categoryRelation->pluck('category_id'))->inRandomOrder()->paginate();
+        $sameqna = QACategoryRelation::whereIn('category_id', $qna->categoryRelation->pluck('category_id'))->inRandomOrder()->orderByDesc('created_at')->paginate(6);
         $categories = QACategory::all();
         return view('guest_qa.show', compact(['qna', 'sameqna', 'categories']));
     }

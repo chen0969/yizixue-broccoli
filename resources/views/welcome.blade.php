@@ -8,11 +8,13 @@
                 <div class="l-innerHeader__headerCard">
                     <div class="l-innerHeader__headerCard__banner">
                         <span id="bannerImg"
-                            style="background-image: url('{{ asset('uploads/images/banner_p1.jpg') }}') ;">&nbsp;</span>
+                            style="background-image: {{ !empty($Data['Carousel']) ? 'url("'.asset('uploads/'.$Data['Carousel']->image_path).'")' : 'url("")' }}">&nbsp;</span>
                     </div>
                     <div class="l-innerHeader__headerCard__slogan">
-                        <h1 id="topic" class="fw-bolder text-white mb-2">海外留學，</h1>
-                        <h1 class="fw-bolder text-white mb-5">先找學長姐罩</h1>
+                        <h1 id="topic" class="fw-bolder text-white mb-2 description1">
+                            {{ !empty($Data['Carousel']) ? $Data['Carousel']->description1 : '' }}</h1>
+                        <h1 class="fw-bolder text-white mb-5 description2">
+                            {{ !empty($Data['Carousel']) ? $Data['Carousel']->description2 : '' }}</h1>
                     </div>
                     <svg viewBox="0 0 1920 1080">
                         <polygon points="298.8 1079.5 0 1080 0 .5 750 0 298.8 1079.5" />
@@ -23,7 +25,6 @@
     </div>
 </div>
 
-<!-- <div class="l-innerbody"> -->
 <div class="container-fluid l-innerbody">
     <div class="row">
         <!-- Student Card Section -->
@@ -53,15 +54,15 @@
                                             <polygon class="cls-1" points="329.5 170 0 170 0 0 330 45.1 329.5 170" />
                                         </svg>
                                         <!-- school img -->
-                                         <div class="c-studentCardSwiper_schoolImg" style="background-image: url('{{asset('uploads/images/bg-for-uniLogo.png')}}');">
-                                         <span
-                                         style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">
-                                         &nbsp;
-                                        </span>
-                                         </div>
+                                        <div class="c-studentCardSwiper_schoolImg">
+                                            <span
+                                                style="background-image: url('{{asset($user->universityItem->image_path)}}') ;">
+                                                &nbsp;
+                                            </span>
+                                        </div>
                                         <!-- name card -->
                                         <h4 class="c-studentCardSwiper_userName">
-                                            {{ ($user->name) ? \Illuminate\Support\Str::limit($user->name,7): "" }}
+                                            {{ ($user->nickname) ? \Illuminate\Support\Str::limit($user->nickname,7): "" }}
                                         </h4>
                                         <!-- school english -->
                                         <h5 class="c-studentCardSwiper_schoolEnglish">
@@ -75,21 +76,23 @@
                                         <div class="c-studentCardSwiper_react"
                                             onclick="event.stopPropagation(); return false; ">
                                             @if(auth()->check())
-                                            <i class="bi bi-heart" style="
+                                            <i class="bi @if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-heart-fill @else bi-heart @endif  like-user"
+                                                style="
                                     color:@if($user->likedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
                                     " data-id="{{$user->id}}">
                                                 <span>{{$user->likedUser->count()}}</span>
                                             </i>
-                                            <i class="bi bi-bookmark" data-id="{{$user->id}}" style="
+                                            <i class="bi @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) bi-bookmark-fill @else bi-bookmark @endif  collect-user"
+                                                data-id="{{$user->id}}" style="
                                     color:  @if($user->collectedUser->where('uid', auth()->user()->id)->where('user_id', $user->id)->count() == 1) red @else black @endif
                                     ">
                                                 <span>{{$user->collectedUser->count()}}</span>
                                             </i>
                                             @else
-                                            <i class="bi bi-heart" style="color: black;" data-id="{{$user->id}}">
+                                            <i class="bi bi-heart like-user" data-id="{{$user->id}}">
                                                 <span>{{$user->likedUser->count()}}</span>
                                             </i>
-                                            <i class="bi bi-bookmark" data-id="{{$user->id}}">
+                                            <i class="bi bi-bookmark collect-user" data-id="{{$user->id}}">
                                                 <span>{{$user->collectedUser->count()}}</span>
                                             </i>
                                             @endif
@@ -140,11 +143,11 @@
                                 @if ($count >= 8)
                                 @break
                                 @endif
-                                <div class="swiper-slide">
+                                <div class="swiper-slide d-flex justify-content-center">
                                     <div class="c-uniCard" onclick="uniCardClick('{{ $university->slug }}')">
-                                            <span class="c-uniCard_img"
-                                                style="background-image: url('{{asset($university->image_path)}}') ;">&nbsp;
-                                            </span>
+                                        <span class="c-uniCard_img"
+                                            style="background-image: url('{{asset($university->image_path)}}') ;">&nbsp;
+                                        </span>
                                         <h6>{{ \Illuminate\Support\Str::limit($university->chinese_name, 15) }}
                                         </h6>
                                         <h4>{{ \Illuminate\Support\Str::limit($university->english_name, 25) }}
@@ -177,7 +180,7 @@
             </h3>
             <div class="container p-5">
                 <!-- QA section -->
-                <div class="row g-5">
+                <div class="row g-5 u-deskver-flex">
                     <!-- studyabroad -->
                     <div class="col-md-4">
                         <div class="container-fluid">
@@ -202,6 +205,7 @@
                                             @endforelse
                                         </div>
                                     </div>
+                                    <!-- merge to back end -->
                                     <div class="col-md-4">
                                         <img class="c-qaCard__icon"
                                             src="{{ asset('uploads/images/yzl-studyabroad.png') }}" alt="icons">
@@ -371,20 +375,39 @@
                         </div>
                     </div>
                 </div>
+                <!-- QA phone ver -->
+                 <div class="u-phonever-flex">
+                    phone ver
+                 </div>
                 <div class="col-md-12">
-                    <a class="o-readMore" href="/qna">查看更多 &gt;</a>
+                    <a class="o-readMore" href="{{route('qna')}}">查看更多 &gt;</a>
                 </div>
             </div>
         </div>
         <!-- join -->
         <div class="col-md-12 p-0 mt-5">
-            <section class="l-innerbody__join"
-                style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
-                <div class="l-innerbody__joinSection">
-                    <a class="o-btn" href="{{route('login')}}">加入 ｜ 易子學</a>
-                    <p>讓專業，持續變現</p>
+            <!-- new code -->
+            <div class="l-join">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <div class="l-join__content">
+                                <!-- please merge back-end content here -->
+                                <p>You can put more letters here, like this or this.</p>
+                                <!-- please merge back-end btn content here -->
+                                <a class="o-btn" href="{{route('login')}}">加入 ｜ 易子學</a>
+                            </div>
+                        </div>
+                        <div class="col-md-7">
+                            <!-- please merger back-end photo here -->
+                            <div class="l-join__img"
+                                style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
+                                &nbsp;
+                            </div>
+                        </div>
+                    </div>
                 </div>
-            </section>
+            </div>
         </div>
         <!-- news -->
         <div class="col-md-12 p-0 mt-5">
@@ -469,7 +492,7 @@
                             其他亞洲
                         </p>
                         <p>
-                            中國|
+                            中國｜
                             <a href="{{route('university-list', ['country'=>'HONG KONG'])}}"
                                 class="text-decoration-none text-black">香港</a>｜
                             <a href="{{route('university-list', ['country'=>'MACAU'])}}"
@@ -481,7 +504,58 @@
         </div>
     </div>
 </div>
-</div>
-<!-- </div> -->
 
+@endsection
+
+@section('page_js')
+<script>
+    $('.like-user').click(function () {
+        let that = $(this);
+        $.ajax({
+            url: 'like-user/' + $(this).data('id'),
+            method: 'GET',
+            success: function (res) {
+                if (res.operator === 'no') {
+                    alert(res.message);
+                } else if (res.operator === 'add') {
+                    that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass(
+                        'bi-heart-fill').css('color', 'red');
+                    that.children('span').text(res.total);
+                } else if (res.operator === 'reduce') {
+                    that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart')
+                        .css('color', 'black');
+                    that.children('span').text(res.total);
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+    })
+
+    $('.collect-user').click(function () {
+        let that = $(this);
+        $.ajax({
+            url: 'collect-user/' + $(this).data('id'),
+            method: 'GET',
+            success: function (res) {
+                if (res.operator === 'no') {
+                    alert(res.message);
+                } else if (res.operator === 'add') {
+                    that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass(
+                        'bi-bookmark-fill').css('color', 'red');
+                    that.children('span').text(res.total);
+                } else if (res.operator === 'reduce') {
+                    that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass(
+                        'bi-bookmark').css('color', 'black');
+                    that.children('span').text(res.total);
+                }
+            },
+            error: function (error) {
+                console.log(error)
+            }
+        });
+
+    })
+</script>
 @endsection

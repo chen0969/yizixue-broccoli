@@ -29,4 +29,10 @@ Route::group([
     $router->resource('user-skill-relations', UserSkillRelationController::class);
     $router->resource('pay-products', PayProductController::class);
     $router->resource('carousels', CarouselController::class);
+    $router->resource('about-us-carousels', AboutUsCarouselController::class);
+    $router->resource('about-us-contents', AboutUsContentController::class);
+    $router->resource('yizixue-faq-categories', YizixueFaqCategoryController::class);
+    $router->resource('yizixue-faqs', YizixueFaqController::class);
+    $router->resource('yizixue-faq-carousels', YizixueFaqCarouselController::class);
+
 });

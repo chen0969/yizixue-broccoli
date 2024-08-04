@@ -11,14 +11,14 @@
                     <a class="c-breadcrumbs__prePage" href="{{url('/')}}">首頁</a>
                     >
                     <a class="c-breadcrumbs__prePage" href="{{route('get-introduction', $Data['user']->id)}}">
-                        {{$Data['user']->name}}
+                        {{$Data['user']->nickname}}
                     </a>
                     >
                     <a class="c-breadcrumbs__prePage" href="{{route('get-introduction', $Data['user']->id)}}">
-                        {{$Data['user']->name}}的文章
+                        {{$Data['user']->nickname}}的文章
                     </a>
                 </h4>
-                <h3 class="c-breadcrumbs__currentPage">{{$Data['user']->name}}的文章</h3>
+                <h3 class="c-breadcrumbs__currentPage">{{$Data['user']->nickname}}的文章</h3>
             </div>
         </div>
     </div>
@@ -52,7 +52,7 @@
                                 <div class="row">
                                     <!-- author name -->
                                     <div class="col-md-12">
-                                        <h2 class="o-whiteTitle">{{$Data['user']->name}}</h2>
+                                        <h2 class="o-whiteTitle">{{$Data['user']->nickname}}</h2>
                                     </div>
                                     <!-- school img -->
                                     <div class="col-md-2 p-2">
@@ -116,7 +116,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="o-normalTitle">
-                <h2 class="o-normalTitle">{{$Data['user']->name}}的文章</h2>
+                <h2 class="o-normalTitle">{{$Data['user']->nickname}}的文章</h2>
             </div>
         </div>
         @if($Data['posts']->total())
@@ -153,14 +153,14 @@
                                 <!-- reacts -->
                                 <div class="o-react w-100 pb-2 pr-2">
                                     @if(auth()->check())
-                                    <i class="bi bi-heart" style="
+                                    <i class="bi @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) bi-heart-fill @else bi-heart @endif like-post" style="
                                     color: @if(auth()->user()->likePost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                         <span>
                                             {{$post->likePost->count()}}
                                         </span>
                                     </i>
-                                    <i class="bi bi-bookmark" style="
+                                    <i class="bi @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) bi-bookmark-fill @else bi-bookmark @endif  collect-post" style="
                                     color: @if(auth()->user()->collectPost->where('post_id', $post->id)->count()==1) red @else black @endif ;
                                     " data-id="{{$post->id}}">
                                         <span>
@@ -168,12 +168,12 @@
                                         </span>
                                     </i>
                                     @else
-                                    <i class="bi bi-heart" style="color: black;" data-id="{{$post->id}}">
+                                    <i class="bi bi-heart like-post" data-id="{{$post->id}}">
                                         <span>
                                             {{$post->likePost->count()}}
                                         </span>
                                     </i>
-                                    <i class="bi bi-bookmark" style="color: black;" data-id="{{$post->id}}">
+                                    <i class="bi bi-bookmark collect-post" data-id="{{$post->id}}">
                                         <span>
                                             {{$post->collectPost->count()}}
                                         </span>
@@ -208,4 +208,48 @@
         </div>
     </div>
 </div>
+@endsection
+
+@section('page_js')
+    <script>
+        $('.like-post').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('like-post')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart-fill').css('color', 'red').children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-heart').removeClass('bi-heart-fill').addClass('bi-heart').css('color', 'black').children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+
+        $('.collect-post').click(function () {
+            let that = $(this);
+            $.ajax({
+                url: "{{url('collect-post')}}" + "/" + $(this).data('id'),
+                method: 'GET',
+                success: function (res) {
+                    if (res.operator === 'no') {
+                        alert(res.message);
+                    } else if (res.operator === 'add') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark-fill').css('color', 'red').children('span').text(res.total);
+                    } else if (res.operator === 'reduce') {
+                        that.removeClass('bi-bookmark').removeClass('bi-bookmark-fill').addClass('bi-bookmark').css('color', 'black').children('span').text(res.total);
+                    }
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+            });
+        });
+    </script>
 @endsection
