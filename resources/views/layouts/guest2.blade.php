@@ -194,8 +194,8 @@
                                 <a href="">前輩網</a>
                                 <!-- please replace with the real back-end code -->
                                 <a href="/service-agreement">服務條款</a>
-                                <!-- 為何figma隱私權聲明頁面是連到會員規約？？ -->
-                                <a href="/membership-agreement">隱私權聲明</a>
+                                <!-- 會員規約 -->
+                                <a href="/membership-agreement">會員規約</a>
                                 <!-- please replace with the real back-end code -->
                                 <a href="/disclaimer">免責聲明</a>
                             </div>
