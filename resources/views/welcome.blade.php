@@ -285,7 +285,7 @@
                                 <div class="row">
                                     <div class="col-11 col-md-8">
                                         @php
-                                        $category = $Data['QaCategory']->get(4);
+                                        $category = $Data['QaCategory']->get(3);
                                         @endphp
                                         <div class="c-qaCard__content">
                                             <a class="c-qaCard__categName"
@@ -317,7 +317,7 @@
                                 <div class="row">
                                     <div class="col-11 col-md-8">
                                         @php
-                                        $category = $Data['QaCategory']->get(5);
+                                            $category = $Data['QaCategory']->get(4);
                                         @endphp
                                         <div class="c-qaCard__content">
                                             <a class="c-qaCard__categName"
@@ -349,7 +349,7 @@
                                 <div class="row">
                                     <div class="col-11 col-md-8">
                                         @php
-                                        $category = $Data['QaCategory']->get(6);
+                                        $category = $Data['QaCategory']->get(5);
                                         @endphp
                                         <div class="c-qaCard__content">
                                             <a class="c-qaCard__categName"
@@ -389,17 +389,24 @@
                         <div class="col-md-5">
                             <div class="l-join__content">
                                 <!-- please merge back-end content here -->
-                                <p>You can put more letters here, like this or this.</p>
+                                <p>{{ !empty($Data['Ad']->ad_description) ? $Data['Ad']->ad_description : '' }}</p>
                                 <!-- please merge back-end btn content here -->
-                                <a class="o-btn" href="{{route('login')}}">加入 ｜ 易子學</a>
+                                <a class="o-btn" href="{{ !empty($Data['Ad']->button_url) ? $Data['Ad']->button_url : '#'}}">{{ !empty($Data['Ad']->button_text) ? $Data['Ad']->button_text : '' }}</a>
                             </div>
                         </div>
                         <div class="col-md-5">
                             <!-- please merger back-end photo here -->
+                            @if(!empty($Data['Ad']->image_path))
                             <div class="l-join__img"
-                                style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
+                                style="background-image: url('{{asset('uploads/'.$Data['Ad']->image_path)}}');">
                                 &nbsp;
                             </div>
+                            @else
+                            <div class="l-join__img"
+                                 style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
+                                &nbsp;
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>

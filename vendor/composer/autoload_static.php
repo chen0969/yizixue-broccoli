@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
+class ComposerStaticInit489880122264dcfee47066e491e7d4c6
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -20,8 +20,8 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         'f0906e6318348a765ffb6eb24e0d0938' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Foundation/helpers.php',
         '58571171fd5812e6e447dce228f52f4d' => __DIR__ . '/..' . '/laravel/framework/src/Illuminate/Support/helpers.php',
-        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '4e8671d7be9056dcd04ddd9e8e15f9cc' => __DIR__ . '/..' . '/encore/laravel-admin/src/helpers.php',
+        '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '1d1b89d124cc9cb8219922c9d5569199' => __DIR__ . '/..' . '/hamcrest/hamcrest-php/hamcrest/Hamcrest.php',
         '6124b4c8570aa390c21fafd04a26c69f' => __DIR__ . '/..' . '/myclabs/deep-copy/src/DeepCopy/deep_copy.php',
         '801c31d8ed748cfa537fa45402288c95' => __DIR__ . '/..' . '/psy/psysh/src/functions.php',
@@ -124,6 +124,7 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         ),
         'E' => 
         array (
+            'Encore\\TinyMCE\\' => 15,
             'Encore\\CKEditor\\' => 16,
             'Encore\\Admin\\' => 13,
             'Egulias\\EmailValidator\\' => 23,
@@ -360,6 +361,10 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         array (
             0 => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker',
         ),
+        'Encore\\TinyMCE\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/super-eggs/laravel-admin-tinymce/src',
+        ),
         'Encore\\CKEditor\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src',
@@ -458,16 +463,20 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'AboutUsContentSeeder' => __DIR__ . '/../..' . '/database/seeds/AboutUsContentSeeder.php',
         'App\\AboutUsCarousel' => __DIR__ . '/../..' . '/app/AboutUsCarousel.php',
         'App\\AboutUsContent' => __DIR__ . '/../..' . '/app/AboutUsContent.php',
+        'App\\AdColumn' => __DIR__ . '/../..' . '/app/AdColumn.php',
         'App\\Admin\\Controllers\\AboutUsCarouselController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AboutUsCarouselController.php',
         'App\\Admin\\Controllers\\AboutUsContentController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AboutUsContentController.php',
+        'App\\Admin\\Controllers\\AdController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AdController.php',
         'App\\Admin\\Controllers\\AuthController' => __DIR__ . '/../..' . '/app/Admin/Controllers/AuthController.php',
         'App\\Admin\\Controllers\\BulletinBoardController' => __DIR__ . '/../..' . '/app/Admin/Controllers/BulletinBoardController.php',
         'App\\Admin\\Controllers\\CarouselController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CarouselController.php',
         'App\\Admin\\Controllers\\CollectPostController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CollectPostController.php',
         'App\\Admin\\Controllers\\CollectUserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/CollectUserController.php',
+        'App\\Admin\\Controllers\\DisclaimerController' => __DIR__ . '/../..' . '/app/Admin/Controllers/DisclaimerController.php',
         'App\\Admin\\Controllers\\ExampleController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ExampleController.php',
         'App\\Admin\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Admin/Controllers/HomeController.php',
         'App\\Admin\\Controllers\\InviteController' => __DIR__ . '/../..' . '/app/Admin/Controllers/InviteController.php',
+        'App\\Admin\\Controllers\\MemberAgreementController' => __DIR__ . '/../..' . '/app/Admin/Controllers/MemberAgreementController.php',
         'App\\Admin\\Controllers\\PayProductController' => __DIR__ . '/../..' . '/app/Admin/Controllers/PayProductController.php',
         'App\\Admin\\Controllers\\PostCategoryController' => __DIR__ . '/../..' . '/app/Admin/Controllers/PostCategoryController.php',
         'App\\Admin\\Controllers\\PostCategoryRelationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/PostCategoryRelationController.php',
@@ -475,7 +484,9 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'App\\Admin\\Controllers\\QACategoryController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QACategoryController.php',
         'App\\Admin\\Controllers\\QACategoryRelationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QACategoryRelationController.php',
         'App\\Admin\\Controllers\\QnAController' => __DIR__ . '/../..' . '/app/Admin/Controllers/QnAController.php',
+        'App\\Admin\\Controllers\\ServiceAgreementController' => __DIR__ . '/../..' . '/app/Admin/Controllers/ServiceAgreementController.php',
         'App\\Admin\\Controllers\\SkillController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SkillController.php',
+        'App\\Admin\\Controllers\\SubscriptionAgreementController' => __DIR__ . '/../..' . '/app/Admin/Controllers/SubscriptionAgreementController.php',
         'App\\Admin\\Controllers\\UniversityController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UniversityController.php',
         'App\\Admin\\Controllers\\UserController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserController.php',
         'App\\Admin\\Controllers\\UserRelationController' => __DIR__ . '/../..' . '/app/Admin/Controllers/UserRelationController.php',
@@ -490,6 +501,7 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'App\\CollectUser' => __DIR__ . '/../..' . '/app/CollectUser.php',
         'App\\CommentQA' => __DIR__ . '/../..' . '/app/CommentQA.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Disclaimer' => __DIR__ . '/../..' . '/app/Disclaimer.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Experience' => __DIR__ . '/../..' . '/app/Experience.php',
         'App\\Http\\Controllers\\AboutUsController' => __DIR__ . '/../..' . '/app/Http/Controllers/AboutUsController.php',
@@ -505,6 +517,7 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'App\\Http\\Controllers\\ContractController' => __DIR__ . '/../..' . '/app/Http/Controllers/ContractController.php',
         'App\\Http\\Controllers\\Controller' => __DIR__ . '/../..' . '/app/Http/Controllers/Controller.php',
         'App\\Http\\Controllers\\EcpayController' => __DIR__ . '/../..' . '/app/Http/Controllers/EcpayController.php',
+        'App\\Http\\Controllers\\EditorController' => __DIR__ . '/../..' . '/app/Http/Controllers/EditorController.php',
         'App\\Http\\Controllers\\FrontPageController' => __DIR__ . '/../..' . '/app/Http/Controllers/FrontPageController.php',
         'App\\Http\\Controllers\\GuestQaController' => __DIR__ . '/../..' . '/app/Http/Controllers/GuestQaController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
@@ -529,6 +542,7 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'App\\Invite' => __DIR__ . '/../..' . '/app/Invite.php',
         'App\\LikePost' => __DIR__ . '/../..' . '/app/LikePost.php',
         'App\\LikeUser' => __DIR__ . '/../..' . '/app/LikeUser.php',
+        'App\\MemberAgreement' => __DIR__ . '/../..' . '/app/MemberAgreement.php',
         'App\\Observers\\PostCategoryObserver' => __DIR__ . '/../..' . '/app/Observers/PostCategoryObserver.php',
         'App\\Observers\\PostObserver' => __DIR__ . '/../..' . '/app/Observers/PostObserver.php',
         'App\\Observers\\QnAObserver' => __DIR__ . '/../..' . '/app/Observers/QnAObserver.php',
@@ -548,10 +562,12 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'App\\QACategoryRelation' => __DIR__ . '/../..' . '/app/QACategoryRelation.php',
         'App\\QnA' => __DIR__ . '/../..' . '/app/QnA.php',
         'App\\QnaAttachment' => __DIR__ . '/../..' . '/app/QnaAttachment.php',
+        'App\\ServiceAgreement' => __DIR__ . '/../..' . '/app/ServiceAgreement.php',
         'App\\Services\\LinePayService' => __DIR__ . '/../..' . '/app/Services/LinePayService.php',
         'App\\Services\\LineService' => __DIR__ . '/../..' . '/app/Services/LineService.php',
         'App\\Services\\Response' => __DIR__ . '/../..' . '/app/Services/Response.php',
         'App\\Skill' => __DIR__ . '/../..' . '/app/Skill.php',
+        'App\\SubscriptionAgreement' => __DIR__ . '/../..' . '/app/SubscriptionAgreement.php',
         'App\\University' => __DIR__ . '/../..' . '/app/University.php',
         'App\\User' => __DIR__ . '/../..' . '/app/User.php',
         'App\\UserPostCategoryRelation' => __DIR__ . '/../..' . '/app/UserPostCategoryRelation.php',
@@ -570,6 +586,7 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'Carbon\\Translator' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Translator.php',
         'Carbon\\Upgrade' => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon/Upgrade.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'ContractSeeder' => __DIR__ . '/../..' . '/database/seeds/ContractSeeder.php',
         'Cron\\AbstractField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/AbstractField.php',
         'Cron\\CronExpression' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/CronExpression.php',
         'Cron\\DayOfMonthField' => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron/DayOfMonthField.php',
@@ -1419,6 +1436,9 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
         'Encore\\CKEditor\\CKEditor' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/CKEditor.php',
         'Encore\\CKEditor\\CKEditorServiceProvider' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/CKEditorServiceProvider.php',
         'Encore\\CKEditor\\Editor' => __DIR__ . '/..' . '/laravel-admin-ext/ckeditor/src/Editor.php',
+        'Encore\\TinyMCE\\Editor' => __DIR__ . '/..' . '/super-eggs/laravel-admin-tinymce/src/Editor.php',
+        'Encore\\TinyMCE\\TinyMCE' => __DIR__ . '/..' . '/super-eggs/laravel-admin-tinymce/src/TinyMCE.php',
+        'Encore\\TinyMCE\\TinyMCEServiceProvider' => __DIR__ . '/..' . '/super-eggs/laravel-admin-tinymce/src/TinyMCEServiceProvider.php',
         'Faker\\Calculator\\Ean' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Ean.php',
         'Faker\\Calculator\\Iban' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Iban.php',
         'Faker\\Calculator\\Inn' => __DIR__ . '/..' . '/fzaninotto/faker/src/Faker/Calculator/Inn.php',
@@ -4976,11 +4996,11 @@ class ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInitb7493a414190d8dff4dc48cb5dc6f067::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit489880122264dcfee47066e491e7d4c6::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit489880122264dcfee47066e491e7d4c6::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit489880122264dcfee47066e491e7d4c6::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit489880122264dcfee47066e491e7d4c6::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit489880122264dcfee47066e491e7d4c6::$classMap;
 
         }, null, ClassLoader::class);
     }

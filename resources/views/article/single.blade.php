@@ -43,7 +43,7 @@
                                 <!-- categorys -->
                                     @if(!is_null($Data['article']->category))
                                     @foreach($Data['article']->category as $category)
-                                    <a class="col-3 col-md-2 o-tag"
+                                    <a class="o-tag"
                                         href="{{route('study-abroad', ['category_id' => $category->postCategory->id])}}">
                                         {{$category->postCategory->name}}
                                     </a>

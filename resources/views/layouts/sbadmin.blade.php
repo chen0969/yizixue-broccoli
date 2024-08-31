@@ -59,7 +59,7 @@
         <ul class="l-collectPost__deshSide navbar-nav sidebar sidebar-dark accordion" id="accordionSidebar">
             <!-- Sidebar - Brand -->
             <a class="o-collectPost_btn align-content-center" href="/home">
-            <i class="fa fa-home"></i>    
+            <i class="fa fa-home"></i>
             易子學系統
             </a>
 
@@ -166,9 +166,9 @@
 
 
             <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
+{{--            <div class="text-center d-none d-md-inline">--}}
+{{--                <button class="rounded-circle border-0" id="sidebarToggle"></button>--}}
+{{--            </div>--}}
 
         </ul>
         <!-- End of Sidebar -->
@@ -238,13 +238,82 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2021</span>
+            <footer>
+        <div class="l-footer container-fluid">
+            <div class="row p-5 align-items-stretch">
+                <!-- logo -->
+                <div class="col-12 col-md-6 col-lg-4 mx-auto">
+                    <div class="l-footer__brand h-100">
+                        <img src="{{asset('uploads/images/yzl-footer-logo.png')}}" alt="footer logo">
+                        <div class="row g-3">
+                            <p class="col-md-12 text-center">
+                                行家在線有限公司 | 統一編號 83453577 | all rights reserved<br>
+                                <br>
+                                客服信箱 service@yizixue.com.tw | 客服時間 Mon-Fri 09:30-17:30
+                            </p>
+                        </div>
                     </div>
                 </div>
-            </footer>
+                <!-- site map -->
+                <div class="col-lg-8">
+                    <!-- desk ver -->
+                    <div class="l-footer__siteMap_desk">
+                        <div class="l-footer__siteMap_desk_topic">
+                            <h6>加入｜易子學</h6>
+                            <div>
+                                <a href="{{route('login')}}">登入｜註冊</a>
+                                <a href="https://lin.ee/RjpZvEC">聯絡我們</a>
+                            </div>
+                        </div>
+                        <div class="l-footer__siteMap_desk_topic">
+                            <h6>關於｜會員</h6>
+                            <div>
+                                <a href="{{route('senior')}}">找學長姐</a>
+                                <a href="{{route('university-list')}}">找學校</a>
+                                <a href="{{route('qna')}}">問與答</a>
+                                <a href="{{route('study-abroad')}}">留學誌</a>
+                            </div>
+                        </div>
+                        <div class="l-footer__siteMap_desk_topic">
+                            <h6>關於｜學長姐</h6>
+                            <div>
+                                <a href="{{route('pay-product-list')}}">成為學長姐</a>
+                                <!-- please replace with the real back-end code -->
+                                <a href="/yizixue-faq">教戰守則</a>
+                                <a href="/subscription-agreement">付費訂閱條款</a>
+                                <!-- unsure page, please clearify -->
+                                <!-- <a href="/subscription-agreement">註冊條款？</a> -->
+                            </div>
+                        </div>
+                        <div class="l-footer__siteMap_desk_topic">
+                            <h6>關於｜易子學</h6>
+                            <div>
+                                <!-- please replace with the real back-end code -->
+                                <a href="/about-us">關於我們</a>
+                                <a href="">前輩網</a>
+                                <!-- please replace with the real back-end code -->
+                                <a href="/service-agreement">服務條款</a>
+                                <!-- 會員規約 -->
+                                <a href="/membership-agreement">會員規約</a>
+                                <!-- please replace with the real back-end code -->
+                                <a href="/disclaimer">免責聲明</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- phone ver -->
+                    <div class="l-footer__siteMap_phone p-5">
+                        <h6>
+                            <a href="/about-us">關於我們</a>
+                        </h6>
+                        <p>｜</p>
+                        <h6>
+                            <a href="https://lin.ee/RjpZvEC">聯絡我們</a>
+                        </h6>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
             <!-- End of Footer -->
 
         </div>
@@ -293,9 +362,18 @@
     <script src="{{ asset('sb-admin/js/sb-admin-2.min.js') }}"></script>
 
     <script src="{{ asset('vendor/laravel-ckeditor/ckeditor.js') }}"></script>
+
+    <!-- TinyMce editor-->
+    <script src="{{ asset('vendor/laravel-admin-ext/tinymce/tinymce/tinymce.min.js')  }}"></script>
     <script>
-        CKEDITOR.replace('article-ckeditor');
+        // CKEDITOR.replace('article-ckeditor');
+        tinymce.init({
+            selector: '#article-ckeditor',
+            language: 'zh_CN',
+            "resize":false,"plugins":"advlist autolink link image lists preview code help fullscreen table autoresize ","toolbar":"undo redo | styleselect | fontsizeselect bold italic | link image blockquote removeformat | indent outdent bullist numlist code","images_upload_url":"\/api\/v1\/images"
+        });
     </script>
+
 
     <script>
         $('#OpenImgUpload').click(function () {
@@ -316,12 +394,12 @@
             } else {}
         }
 
-        imgInp_studentProof.onchange = evt => {
-            const [file] = imgInp_studentProof.files
-            if (file) {
-                blahStudentProof.src = URL.createObjectURL(file)
-            }
-        }
+        // imgInp_studentProof.onchange = evt => {
+        //     const [file] = imgInp_studentProof.files
+        //     if (file) {
+        //         blahStudentProof.src = URL.createObjectURL(file)
+        //     }
+        // }
     </script>
 
 </body>

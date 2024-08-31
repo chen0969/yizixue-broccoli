@@ -1,33 +1,35 @@
 @extends('layouts.sbadmin')
-<style>
-    #checkbox input[type="checkbox"] {
-        display: none;
-    }
 
-    #checkbox input:checked+.button {
-        background: #5e7380;
-        color: #fff;
-    }
-
-    #checkbox .button {
-        display: inline-block;
-        margin: 0 5px 10px 0;
-        padding: 5px 10px;
-        background: #f7f7f7;
-        color: #333;
-        cursor: pointer;
-    }
-
-    #checkbox .button:hover {
-        background: #bbb;
-        color: #fff;
-    }
-
-    #checkbox .round {
-        border-radius: 5px;
-    }
-</style>
 @section('content')
+    <style>
+        #checkbox input[type="checkbox"] {
+            display: none;
+        }
+
+        #checkbox input:checked+.button {
+            background: #5e7380;
+            color: #fff;
+        }
+
+        #checkbox .button {
+            display: inline-block;
+            margin: 0 5px 10px 0;
+            padding: 5px 10px;
+            background: #f7f7f7;
+            color: #333;
+            cursor: pointer;
+        }
+
+        #checkbox .button:hover {
+            background: #bbb;
+            color: #fff;
+        }
+
+        #checkbox .round {
+            border-radius: 5px;
+        }
+    </style>
+
     <!-- Begin Page Content -->
     <div class="container-fluid">
 
@@ -252,6 +254,12 @@
                                         {{$errors->first('email')}}
                                     </div>
                                 @endif
+                                @if($errors->has('recommender'))
+                                    <div class="alert alert-danger alert-dismissible text-center">
+                                        <button class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                        {{$errors->first('recommender')}}
+                                    </div>
+                                @endif
                                 <div class="dropdown no-arrow">
                                     <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -285,7 +293,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">大學</p>
+                                        <p class="mb-0">學校</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{ is_null(Auth::user()->universityItem)? '' : Auth::user()->universityItem->english_name }}</p>
@@ -330,7 +338,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Facebook</p>
+                                        <p class="mb-0">Facebook網址</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{ Auth::user()->fb }}</p>
@@ -339,7 +347,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">Instagram</p>
+                                        <p class="mb-0">Instagram網址</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{ Auth::user()->ig }}</p>
@@ -348,7 +356,7 @@
                                 <hr>
                                 <div class="row">
                                     <div class="col-sm-3">
-                                        <p class="mb-0">LinkedIn</p>
+                                        <p class="mb-0">LinkedIn網址</p>
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{ Auth::user()->linkedin }}</p>
@@ -361,6 +369,15 @@
                                     </div>
                                     <div class="col-sm-9">
                                         <p class="text-muted mb-0">{{ Auth::user()->address }}</p>
+                                    </div>
+                                </div>
+                                <hr>
+                                <div class="row">
+                                    <div class="col-sm-3">
+                                        <p class="mb-0">推薦人MAIL</p>
+                                    </div>
+                                    <div class="col-sm-9">
+                                        <p class="text-muted mb-0">{{ Auth::user()->recommender }}</p>
                                     </div>
                                 </div>
                                 <hr>
@@ -469,7 +486,7 @@
                                     readonly>
                             </div>
                             <div class="mb-3">
-                                <textarea id="article-ckeditor" name="description">{{ Auth::user()->description }}</textarea>
+                                <textarea class="form-control" rows="20" id="article-ckeditor" name="description">{{ Auth::user()->description }}</textarea>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -511,14 +528,7 @@
                                     class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="university" class="form-label">大學</label>
-{{--                                <select name="university" id="university" class="form-control">--}}
-{{--                                    @if(!is_null($Data['universities']))--}}
-{{--                                        @foreach($Data['universities'] as $university)--}}
-{{--                                            <option class="form-control" value="{{$university->id}}" @if(Auth::user()->university == $university->id) selected @endif>{{$university->name}}</option>--}}
-{{--                                        @endforeach--}}
-{{--                                    @endif--}}
-{{--                                </select>--}}
+                                <label for="university" class="form-label">學校</label>
                                 <input id="string" placeholder="就讀學校" list="universityList" class="form-control form-control-user" value="{{!empty(Auth::user()->universityItem) ? Auth::user()->universityItem->chinese_name.Auth::user()->universityItem->english_name : ""}}">
                                 <!-- this datalist should contain all the school names -->
                                 <datalist id="universityList">
@@ -529,8 +539,6 @@
                                     @endforeach
                                 </datalist>
                                 <input type="hidden" name="university" id="universityList-hidden">
-{{--                                <input type="text" value="{{ Auth::user()->university }}" name="university"--}}
-{{--                                    class="form-control">--}}
                             </div>
                             <div class="mb-3">
                                 <label for="is_study" class="form-label">在學中</label>
@@ -554,17 +562,17 @@
                                     class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="line" class="form-label">Facebook</label>
+                                <label for="line" class="form-label">Facebook網址</label>
                                 <input type="text" value="{{ Auth::user()->fb }}" name="fb"
                                        class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="line" class="form-label">Instagram</label>
+                                <label for="line" class="form-label">Instagram網址</label>
                                 <input type="text" value="{{ Auth::user()->ig }}" name="ig"
                                        class="form-control">
                             </div>
                             <div class="mb-3">
-                                <label for="linkedin" class="form-label">LinkedIn</label>
+                                <label for="linkedin" class="form-label">LinkedIn網址</label>
                                 <input type="text" value="{{ Auth::user()->linkedin }}" name="linkedin"
                                        class="form-control">
                             </div>
@@ -572,6 +580,11 @@
                                 <label for="address" class="form-label">地址</label>
                                 <input type="text" value="{{ Auth::user()->address }}" name="address"
                                     class="form-control">
+                            </div>
+                            <div class="mb-3">
+                                <label for="recommender" class="form-label">推薦人MAIL</label>
+                                <input type="text" id="recommender" name="recommender" value="{{Auth::user()->recommender}}"
+                                       class="form-control" {{ is_null(Auth::user()->recommender) ?: 'disabled'  }} >
                             </div>
                             <div class="mb-3">
                                 <label for="student_proof" class="form-label">學生證上傳</label>

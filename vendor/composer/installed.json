@@ -4422,6 +4422,66 @@
             "install-path": "../sebastian/version"
         },
         {
+            "name": "super-eggs/laravel-admin-tinymce",
+            "version": "0.0.2",
+            "version_normalized": "0.0.2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/super-eggs/tinymce.git",
+                "reference": "cf892bcd84e83c6a29012897ef00256e06a42445"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/super-eggs/tinymce/zipball/cf892bcd84e83c6a29012897ef00256e06a42445",
+                "reference": "cf892bcd84e83c6a29012897ef00256e06a42445",
+                "shasum": ""
+            },
+            "require": {
+                "encore/laravel-admin": "~1.6",
+                "php": ">=7.0.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~6.0"
+            },
+            "time": "2020-03-13T08:00:05+00:00",
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Encore\\TinyMCE\\TinyMCEServiceProvider"
+                    ]
+                }
+            },
+            "installation-source": "dist",
+            "autoload": {
+                "psr-4": {
+                    "Encore\\TinyMCE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "super-eggs",
+                    "email": "1552915523@qq.com"
+                }
+            ],
+            "description": "TinyMCE extension for laravel-admin",
+            "homepage": "https://github.com/super-eggs/tinymce",
+            "keywords": [
+                "editor",
+                "extension",
+                "laravel-admin"
+            ],
+            "support": {
+                "issues": "https://github.com/super-eggs/tinymce/issues",
+                "source": "https://github.com/super-eggs/tinymce/tree/master"
+            },
+            "install-path": "../super-eggs/laravel-admin-tinymce"
+        },
+        {
             "name": "swiftmailer/swiftmailer",
             "version": "v6.3.0",
             "version_normalized": "6.3.0.0",

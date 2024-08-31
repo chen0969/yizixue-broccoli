@@ -87,13 +87,13 @@
                                 href="{{route('senior', ['category' => $category->id])}}">{{$category->name}}</a>
                                 <!-- <hr class="c-sideNav__hr"> -->
                         </button>
-                        
+
                         @else
                         <button class="col-3 col-lg-12 text-center"><a
                                 href="{{route('senior', ['category' => $category->id])}}">{{$category->name}}</a>
                                 <hr class="c-sideNav__hr">
                         </button>
-                        
+
                         @endif
                         @empty
                         @endforelse

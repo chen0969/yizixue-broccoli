@@ -178,7 +178,7 @@
                                         </svg>
                                     </div>
                                     <div class="col-9 col-md-10 pl-2 p-md-0">
-                                        <span class="l-qnaGuest__name">{{$qna->nickname}}</span>
+                                        <span class="l-qnaGuest__name">{{ (auth()->check() && auth()->user()->isVip() ) ? $qna->nickname : mb_substr($qna->nickname, 0, 1).'*****'}}</span>
                                     </div>
                                 </div>
                                 <!-- contact -->
@@ -283,7 +283,7 @@
                                         <svg class="c-qnaCard__thumbNail" viewbox="0 0 100 100">
                                             <circle cx="50" cy="50" r="50" />
                                         </svg>
-                                        <p class="align-content-center">匿名</p>
+                                        <p class="align-content-center">{{ mb_substr($qa->qa->author->nickname, 0, 1) }}{{ str_repeat('*', 5) }}</p>
                                     </div>
                                 </div>
                                 <div class="col-9 col-md-10 align-content-center">

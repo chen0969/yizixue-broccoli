@@ -57,18 +57,20 @@ class UserController extends Controller
 
         $req->validate([
             'references' => 'file|max:2048',
-            'description' => 'max:500|nullable',
-            'skills' => 'array|min:0|max:12',
+            'description' => 'max:1200|nullable',
+            'skills' => 'array|min:0|max:9',
             'post_categories' => 'array|min:0|max:3',
             'email' => 'required_with:email|email|unique:users,email,'.auth()->user()->id,
             'learning_experience' => 'array|min:0|max:5',
+            'recommender' => 'nullable|email'
         ], [
             'references.max.file' => '檔案不得超過2M',
-            'description.max' => '字數不得超過500字',
-            'skills.max' => '專長不得超過12個',
+            'description.max' => '字數不得超過1200字',
+            'skills.max' => '專長不得超過9個',
             'post_categories.max' => '主題不得超過3個',
             'email.email' => 'Email格式不正確',
             'email.unique' => '已有相同Email註冊',
+            'recommender.email' => '請填寫推薦人Email'
         ]);
 
         if($req->filled('post_categories')){
@@ -91,6 +93,7 @@ class UserController extends Controller
         $User->ig = isset($req->ig)?$req->ig:$User->ig;
         $User->linkedin = isset($req->linkedin)?$req->linkedin:$User->linkedin;
         $User->address = isset($req->address)?$req->address:$User->address;
+        $User->recommender = isset($req->recommender)?$req->recommender:$User->recommender;
         $User->description = isset($req->description)?$req->description:$User->description;
         $User->profile_video = isset($req->profile_video)?$req->profile_video:$User->profile_video;
         $User->profile_voice = isset($req->profile_voice)?$req->profile_voice:$User->profile_voice;

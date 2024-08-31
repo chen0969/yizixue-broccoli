@@ -3,7 +3,7 @@
         'name' => 'laravel/laravel',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => '75a8608733686a0ee3ec4d5e4da7c424825745b8',
+        'reference' => '6b8d94b32ee8aa8adb5b00f5e5c9c8e11ecabaec',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -424,7 +424,7 @@
         'laravel/laravel' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => '75a8608733686a0ee3ec4d5e4da7c424825745b8',
+            'reference' => '6b8d94b32ee8aa8adb5b00f5e5c9c8e11ecabaec',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
@@ -862,6 +862,15 @@
             'install_path' => __DIR__ . '/../sebastian/version',
             'aliases' => array(),
             'dev_requirement' => true,
+        ),
+        'super-eggs/laravel-admin-tinymce' => array(
+            'pretty_version' => '0.0.2',
+            'version' => '0.0.2.0',
+            'reference' => 'cf892bcd84e83c6a29012897ef00256e06a42445',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../super-eggs/laravel-admin-tinymce',
+            'aliases' => array(),
+            'dev_requirement' => false,
         ),
         'swiftmailer/swiftmailer' => array(
             'pretty_version' => 'v6.3.0',

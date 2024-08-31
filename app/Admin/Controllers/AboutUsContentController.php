@@ -31,10 +31,10 @@ class AboutUsContentController extends AdminController
         $grid->column('created_at', __('Created at'));
         $grid->column('updated_at', __('Updated at'));
         $grid->actions(function($action){
-            $action->disableDelete();
+//            $action->disableDelete();
             $action->disableView();
         });
-        $grid->disableCreateButton();
+
         return $grid;
     }
 
@@ -65,8 +65,7 @@ class AboutUsContentController extends AdminController
     {
         $form = new Form(new AboutUsContent());
 
-        $form->ckeditor('content', __('Content'))->options(['lang' => 'zh-TW']);
-
+        $form->tinymce('content', __('Content'));
         return $form;
     }
 }
