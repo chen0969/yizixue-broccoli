@@ -238,82 +238,13 @@
             <!-- End of Main Content -->
 
             <!-- Footer -->
-            <footer>
-        <div class="l-footer container-fluid">
-            <div class="row p-5 align-items-stretch">
-                <!-- logo -->
-                <div class="col-12 col-md-6 col-lg-4 mx-auto">
-                    <div class="l-footer__brand h-100">
-                        <img src="{{asset('uploads/images/yzl-footer-logo.png')}}" alt="footer logo">
-                        <div class="row g-3">
-                            <p class="col-md-12 text-center">
-                                行家在線有限公司 | 統一編號 83453577 | all rights reserved<br>
-                                <br>
-                                客服信箱 service@yizixue.com.tw | 客服時間 Mon-Fri 09:30-17:30
-                            </p>
-                        </div>
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <span>Copyright &copy; 行家在線有限公司 2024</span>
                     </div>
                 </div>
-                <!-- site map -->
-                <div class="col-lg-8">
-                    <!-- desk ver -->
-                    <div class="l-footer__siteMap_desk">
-                        <div class="l-footer__siteMap_desk_topic">
-                            <h6>加入｜易子學</h6>
-                            <div>
-                                <a href="{{route('login')}}">登入｜註冊</a>
-                                <a href="https://lin.ee/RjpZvEC">聯絡我們</a>
-                            </div>
-                        </div>
-                        <div class="l-footer__siteMap_desk_topic">
-                            <h6>關於｜會員</h6>
-                            <div>
-                                <a href="{{route('senior')}}">找學長姐</a>
-                                <a href="{{route('university-list')}}">找學校</a>
-                                <a href="{{route('qna')}}">問與答</a>
-                                <a href="{{route('study-abroad')}}">留學誌</a>
-                            </div>
-                        </div>
-                        <div class="l-footer__siteMap_desk_topic">
-                            <h6>關於｜學長姐</h6>
-                            <div>
-                                <a href="{{route('pay-product-list')}}">成為學長姐</a>
-                                <!-- please replace with the real back-end code -->
-                                <a href="/yizixue-faq">教戰守則</a>
-                                <a href="/subscription-agreement">付費訂閱條款</a>
-                                <!-- unsure page, please clearify -->
-                                <!-- <a href="/subscription-agreement">註冊條款？</a> -->
-                            </div>
-                        </div>
-                        <div class="l-footer__siteMap_desk_topic">
-                            <h6>關於｜易子學</h6>
-                            <div>
-                                <!-- please replace with the real back-end code -->
-                                <a href="/about-us">關於我們</a>
-                                <a href="">前輩網</a>
-                                <!-- please replace with the real back-end code -->
-                                <a href="/service-agreement">服務條款</a>
-                                <!-- 會員規約 -->
-                                <a href="/membership-agreement">會員規約</a>
-                                <!-- please replace with the real back-end code -->
-                                <a href="/disclaimer">免責聲明</a>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- phone ver -->
-                    <div class="l-footer__siteMap_phone p-5">
-                        <h6>
-                            <a href="/about-us">關於我們</a>
-                        </h6>
-                        <p>｜</p>
-                        <h6>
-                            <a href="https://lin.ee/RjpZvEC">聯絡我們</a>
-                        </h6>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+            </footer>
             <!-- End of Footer -->
 
         </div>
