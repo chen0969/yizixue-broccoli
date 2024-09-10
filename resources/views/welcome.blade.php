@@ -441,10 +441,10 @@
                                                     @endif
                                                     @endforeach
                                                 </div>
-                                                <p class="c-newsCard__meta">{{$Data['Post']->title}}</p>
-                                                <p class="c-newsCard__brief">
+                                                <a class="c-newsCard__meta" href="{{route('article', $Data['Post']->id)}}">{{$Data['Post']->title}}</a>
+                                                <a class="c-newsCard__brief" href="{{route('article', $Data['Post']->id)}}">
                                                     {{ (strip_tags($Data['Post']->body)) ? \Illuminate\Support\Str::limit(strip_tags($Data['Post']->body), 80): "" }}
-                                                </p>
+                                                </a>
                                                 <a class="o-readMore c-newsCard__readMore"
                                                     href="{{route('article', $Data['Post']->id)}}">閱讀完整文章</a>
                                             </div>
