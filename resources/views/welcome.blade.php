@@ -317,7 +317,7 @@
                                 <div class="row">
                                     <div class="col-11 col-md-8">
                                         @php
-                                            $category = $Data['QaCategory']->get(4);
+                                        $category = $Data['QaCategory']->get(4);
                                         @endphp
                                         <div class="c-qaCard__content">
                                             <a class="c-qaCard__categName"
@@ -391,7 +391,8 @@
                                 <!-- please merge back-end content here -->
                                 <p>{{ !empty($Data['Ad']->ad_description) ? $Data['Ad']->ad_description : '' }}</p>
                                 <!-- please merge back-end btn content here -->
-                                <a class="o-btn" href="{{ !empty($Data['Ad']->button_url) ? $Data['Ad']->button_url : '#'}}">{{ !empty($Data['Ad']->button_text) ? $Data['Ad']->button_text : '' }}</a>
+                                <a class="o-btn"
+                                    href="{{ !empty($Data['Ad']->button_url) ? $Data['Ad']->button_url : '#'}}">{{ !empty($Data['Ad']->button_text) ? $Data['Ad']->button_text : '' }}</a>
                             </div>
                         </div>
                         <div class="col-md-5">
@@ -403,7 +404,7 @@
                             </div>
                             @else
                             <div class="l-join__img"
-                                 style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
+                                style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
                                 &nbsp;
                             </div>
                             @endif
@@ -431,7 +432,9 @@
                                         <div class="col-md-7">
                                             <div class="c-newsCard__info">
                                                 <!-- fix the link -->
-                                                <h5><a id="newsTopic" href="{{route('article', $Data['Post']->id)}}">{{$Data['Post']->title}}</a></h5>
+                                                <h5><a id="newsTopic"
+                                                        href="{{route('article', $Data['Post']->id)}}">{{$Data['Post']->title}}</a>
+                                                </h5>
                                                 <div class="c-newsCard__tags">
                                                     @foreach($Data['Post']->category as $relation)
                                                     @if($relation->postCategory && $relation->postCategory->name)
@@ -441,8 +444,10 @@
                                                     @endif
                                                     @endforeach
                                                 </div>
-                                                <a class="c-newsCard__meta" href="{{route('article', $Data['Post']->id)}}">{{$Data['Post']->title}}</a>
-                                                <a class="c-newsCard__brief" href="{{route('article', $Data['Post']->id)}}">
+                                                <a class="c-newsCard__meta"
+                                                    href="{{route('article', $Data['Post']->id)}}">{{$Data['Post']->title}}</a>
+                                                <a class="c-newsCard__brief"
+                                                    href="{{route('article', $Data['Post']->id)}}">
                                                     {{ (strip_tags($Data['Post']->body)) ? \Illuminate\Support\Str::limit(strip_tags($Data['Post']->body), 80): "" }}
                                                 </a>
                                                 <a class="o-readMore c-newsCard__readMore"
@@ -482,7 +487,11 @@
                             <a href="{{route('university-list', ['country'=>'FRANCE'])}}"
                                 class="text-decoration-none text-black">法國</a>｜
                             <a href="{{route('university-list', ['country'=>'GERMANY'])}}"
-                                class="text-decoration-none text-black">德國</a>｜其他歐洲
+                                class="text-decoration-none text-black">德國</a>｜
+                            <a href="{{route('university-list', ['country'=>'EUROPE'])}}"
+                                class="text-decoration-none text-black">
+                                其他歐洲
+                            </a>
                         </p>
                         <p class="col-md-4">
                             <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"
@@ -493,7 +502,10 @@
                                 class="text-decoration-none text-black">⽇本</a>｜
                             <a href="{{route('university-list', ['country'=>'KOREA'])}}"
                                 class="text-decoration-none text-black">韓國</a>｜
-                            其他亞洲
+                            <a href="{{route('university-list', ['country'=>'ASIA'])}}"
+                                class="text-decoration-none text-black">
+                                其他亞洲
+                            </a>
                         </p>
                         <p class="col-md-2">
                             中國｜

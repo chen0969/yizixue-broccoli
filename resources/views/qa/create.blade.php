@@ -203,9 +203,9 @@
                                             {{$errors->all()}}
                                         </div>
                                     @endif
-                                    <input type="file" id="imgInp" name="attachments[]" class="form-control o-input">
-                                    <input type="file" id="imgInp" name="attachments[]" class="form-control o-input">
-                                    <input type="file" id="imgInp" name="attachments[]" class="form-control o-input">
+                                    <input type="file" id="imgInp" name="attachments[]" class="form-control mb-2">
+                                    <input type="file" id="imgInp" name="attachments[]" class="form-control mb-2">
+                                    <input type="file" id="imgInp" name="attachments[]" class="form-control mb-2">
                                 </div>
                                 <button type="submit" class="btn btn-primary">送出</button>
                             </form>

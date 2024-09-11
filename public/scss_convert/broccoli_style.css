@@ -4284,6 +4284,7 @@ section {
   caret-shape: block;
   caret-color: #BD9EBE;
   letter-spacing: 0.2rem;
+  font-size: var(--text-xl);
 }
 
 .o-welcomeTitle a {
