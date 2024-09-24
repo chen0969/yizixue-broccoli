@@ -53,6 +53,7 @@
                         <form method="POST" action="{{ route('save-post') }}" enctype="multipart/form-data">
                             {{ csrf_field() }}
                             <div class="mb-3">
+                                <label for="title" class="form-label" style="color:#4C2A70;">文章標題</label>
                                 <input type="text" name="title" class="form-control o-input" placeholder="輸入文章標題"
                                     value="{{old('title')}}">
                             </div>
@@ -67,7 +68,7 @@
                                 <input type="text" value="{{ $Data['authId'] }}" name="author"
                                     class="form-control o-input" readonly>
                             </div>
-                            <div id='upload-img-div' class="mb-3" style="border: 2px solid #4C2A70; 
+                            <div id='upload-img-div' class="mb-3" style="border: 2px solid #4C2A70;
                                 padding: 10px; border-radius: 5px; width:100%;">
                                 <input type="file" id="imgInp" name="image_path" class="form-control o-input"
                                     style="display:none" value="{{old('image_path')}}">

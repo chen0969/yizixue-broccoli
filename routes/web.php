@@ -29,6 +29,7 @@ Route::get('membership-agreement', 'ContractController@membershipAgreement')->na
 Route::get('service-agreement', 'ContractController@serviceAgreement')->name('service-agreement');
 Route::get('disclaimer', 'ContractController@disclaimer')->name('disclaimer');
 Route::get('subscription-agreement', 'ContractController@subscriptionAgreement')->name('subscription-agreement');
+Route::get('privacy', 'ContractController@privacy')->name('privacy');
 
 //line login
 Route::get('/line', 'LoginController@pageLine');
@@ -50,6 +51,10 @@ Route::get('collect-qa/{id}', 'CollectController@collectQa')->name('collect-qa')
 Route::delete('reference-delete/{id}', 'UserController@referenceDelete')->name('reference-delete');
 Route::get('reference-download/{id}', 'UserController@referenceDownload')->name('reference-download');
 
+
+//meta login
+Route::get('facebook-login', 'Auth\FacebookController@login')->name('facebook-login');
+Route::any('facebook-callback', 'Auth\FacebookController@callback')->name('facebook-callback');
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');

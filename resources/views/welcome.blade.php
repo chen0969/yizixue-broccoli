@@ -38,7 +38,7 @@
                     <div class="s-swiperCustom">
                         <div class="swiper studentSwiper">
                             <div class="swiper-wrapper">
-                                @foreach ($Data['Users']->take(8) as $key => $user)
+                                @foreach ($Data['Users']->take(8)->sortByDesc(function($user){ return $user->liked_user_count + $user->collected_user_count; }) as $key => $user)
                                 <div class="swiper-slide">
                                     <div class="c-studentCardSwiper" onclick="cardClickable({{ $user->id }})">
                                         <!-- img div -->
@@ -208,7 +208,7 @@
                                     <!-- merge to back end -->
                                     <div class="col col-md-4">
                                         <img class="c-qaCard__icon"
-                                            src="{{ asset('uploads/images/yzl-studyabroad.png') }}" alt="icons">
+                                            src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-studyabroad.png') }}" alt="icons">
                                     </div>
                                 </div>
                             </div>
@@ -239,7 +239,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 col-md-4">
-                                        <img class="c-qaCard__icon" src="{{ asset('uploads/images/yzl-test.png') }}"
+                                        <img class="c-qaCard__icon" src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-test.png') }}"
                                             alt="icons">
                                     </div>
                                 </div>
@@ -271,7 +271,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 col-md-4">
-                                        <img class="c-qaCard__icon" src="{{ asset('uploads/images/yzl-school.png') }}"
+                                        <img class="c-qaCard__icon" src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-school.png') }}"
                                             alt="icons">
                                     </div>
                                 </div>
@@ -303,7 +303,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 col-md-4">
-                                        <img class="c-qaCard__icon" src="{{ asset('uploads/images/yzl-campus.png') }}"
+                                        <img class="c-qaCard__icon" src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-campus.png') }}"
                                             alt="icons">
                                     </div>
                                 </div>
@@ -317,7 +317,7 @@
                                 <div class="row">
                                     <div class="col-11 col-md-8">
                                         @php
-                                        $category = $Data['QaCategory']->get(4);
+                                            $category = $Data['QaCategory']->get(4);
                                         @endphp
                                         <div class="c-qaCard__content">
                                             <a class="c-qaCard__categName"
@@ -335,7 +335,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 col-md-4">
-                                        <img class="c-qaCard__icon" src="{{ asset('uploads/images/yzl-club.png') }}"
+                                        <img class="c-qaCard__icon" src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-club.png') }}"
                                             alt="icons">
                                     </div>
                                 </div>
@@ -367,7 +367,7 @@
                                         </div>
                                     </div>
                                     <div class="col-1 col-md-4">
-                                        <img class="c-qaCard__icon" src="{{ asset('uploads/images/yzl-coop.png') }}"
+                                        <img class="c-qaCard__icon" src="{{ !empty($category->image_path) ? asset('uploads/'.$category->image_path) : asset('uploads/images/yzl-coop.png') }}"
                                             alt="icons">
                                     </div>
                                 </div>
@@ -404,7 +404,7 @@
                             </div>
                             @else
                             <div class="l-join__img"
-                                style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
+                                 style="background-image: url('{{asset('uploads/images/join-banner-cut.jpg')}}');">
                                 &nbsp;
                             </div>
                             @endif
@@ -489,9 +489,7 @@
                             <a href="{{route('university-list', ['country'=>'GERMANY'])}}"
                                 class="text-decoration-none text-black">德國</a>｜
                             <a href="{{route('university-list', ['country'=>'EUROPE'])}}"
-                                class="text-decoration-none text-black">
-                                其他歐洲
-                            </a>
+                               class="text-decoration-none text-black">其他歐洲</a>
                         </p>
                         <p class="col-md-4">
                             <a href="{{route('university-list', ['country'=>'TAIWAN'])}}"
@@ -503,12 +501,11 @@
                             <a href="{{route('university-list', ['country'=>'KOREA'])}}"
                                 class="text-decoration-none text-black">韓國</a>｜
                             <a href="{{route('university-list', ['country'=>'ASIA'])}}"
-                                class="text-decoration-none text-black">
-                                其他亞洲
-                            </a>
+                               class="text-decoration-none text-black">其他亞洲</a>
                         </p>
                         <p class="col-md-2">
-                            中國｜
+                            <a href="{{route('university-list', ['country' => 'CHINA'])}}"
+                                class="text-decoration-none text-black">中國</a>｜
                             <a href="{{route('university-list', ['country'=>'HONG KONG'])}}"
                                 class="text-decoration-none text-black">香港</a>｜
                             <a href="{{route('university-list', ['country'=>'MACAU'])}}"
