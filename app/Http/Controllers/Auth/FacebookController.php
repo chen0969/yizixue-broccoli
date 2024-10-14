@@ -11,14 +11,14 @@ use Auth;
 
 class FacebookController extends Controller
 {
-    private $clientId = '914391163652960';
-    private $clientSecret = '34c24b5671b4b4d12a04547314fffffa';
+    private $clientId = '373524802044694';
+    private $clientSecret = '7e4be9ff52ce598a391d3b7686ab7707';
     private $redirectUri = 'https://yizixue.com.tw/facebook-callback';
 
     public function login()
     {
 //        $url = 'https://www.facebook.com/v2.12/dialog/oauth?client_id=' . $this->clientId . '&redirect_uri=' . urlencode($this->redirectUri) . '&scope=email';
-        $url = 'https://www.facebook.com/v19.0/dialog/oauth?client_id=' . $this->clientId . '&redirect_uri=' . urlencode($this->redirectUri) . '&scope=email';
+        $url = 'https://www.facebook.com/v20.0/dialog/oauth?client_id=' . $this->clientId . '&redirect_uri=' . urlencode($this->redirectUri) . '&scope=email';
         return redirect($url);
     }
 
@@ -32,7 +32,7 @@ class FacebookController extends Controller
 
         // 用 code 交換 access token
         $client = new Client();
-        $response = $client->request('GET', 'https://graph.facebook.com/v19.0/oauth/access_token', [
+        $response = $client->request('GET', 'https://graph.facebook.com/v20.0/oauth/access_token', [
             'query' => [
                 'client_id' => $this->clientId,
                 'redirect_uri' => $this->redirectUri,
@@ -66,8 +66,11 @@ class FacebookController extends Controller
                 return redirect('/');
             }
         }else{
-            $find_user = User::where('fb_auth', $fb_user['id'])->first();
+            $find_user = User::where('email', $fb_user['email'])->first();
             if($find_user != null){
+                if(empty($find_user->fb_auth)){
+                    $find_user->update(['fb_auth' => $fb_user['id']]);
+                }
                 Auth::login($find_user);
                 return redirect('/');
             }else{

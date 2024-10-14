@@ -65,13 +65,18 @@
                 <button class="col-md-12 o-btn" type="submit">
                     登入
                 </button>
-                <!-- </div> -->
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <a href="{{url('line')}}" class="o-basicLink btn btn-user btn-block line">
-                        Login with Line
+                    <i class="bi bi-line o-socialIcon o-socialIcon__line"></i>
+                    <p>Login with Line</p>
                     </a>
                 </div>
-                <!-- </div> -->
+                <div class="col-md-6">
+                    <a href="{{route('facebook-login')}}" class="o-basicLink btn btn-user btn-block line">
+                    <i class="bi bi-meta o-socialIcon o-socialIcon__meta"></i>
+                    <p>Login with Meta</p>
+                    </a>
+                </div>
             </form>
         </div>
         <hr>
